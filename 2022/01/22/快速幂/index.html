@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="快速幂," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="博客园 快速幂算法CSDN 快速幂算法详解算法导论：Strassen算法 整数运算基本原理：     (a + b) % p &#x3D; (a % p + b % p) % p （1）      (a - b) % p &#x3D; (a % p - b % p ) % p （2）      **(a * b) % p &#x3D; (a % p * b % p) % p （3）**  最后一个mod p 是为了保证结果不超">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速幂算法">
+<meta property="og:url" content="https://wangerxzai.github.io/2022/01/22/%E5%BF%AB%E9%80%9F%E5%B9%82/index.html">
+<meta property="og:site_name" content="榀">
+<meta property="og:description" content="博客园 快速幂算法CSDN 快速幂算法详解算法导论：Strassen算法 整数运算基本原理：     (a + b) % p &#x3D; (a % p + b % p) % p （1）      (a - b) % p &#x3D; (a % p - b % p ) % p （2）      **(a * b) % p &#x3D; (a % p * b % p) % p （3）**  最后一个mod p 是为了保证结果不超">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/61d3f26a445f4348bf152bba08dba593.png#pic_center">
+<meta property="article:published_time" content="2022-01-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-10T14:18:48.062Z">
+<meta property="article:author" content="wanger">
+<meta property="article:tag" content="快速幂">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/61d3f26a445f4348bf152bba08dba593.png#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wangerxzai.github.io/2022/01/22/快速幂/"/>
+
+
+
+
+
+  <title>快速幂算法 | 榀</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">榀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding by Wanger</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/01/22/%E5%BF%AB%E9%80%9F%E5%B9%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="榀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">快速幂算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-22T00:00:00+08:00">
+                2022-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luruiyuan/p/5570756.html">博客园 快速幂算法</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19782019/article/details/85621386?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162961832616780265461129%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=162961832616780265461129&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-85621386.first_rank_v2_pc_rank_v29&utm_term=%E5%BF%AB%E9%80%9F%E5%B9%82&spm=1018.2226.3001.4187">CSDN 快速幂算法详解</a><br>算法导论：Strassen算法</p>
+<h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><p>基本原理：</p>
+<pre><code>    (a + b) % p = (a % p + b % p) % p （1）
+
+    (a - b) % p = (a % p - b % p ) % p （2）
+
+    **(a * b) % p = (a % p * b % p) % p （3）**
+</code></pre>
+<p>最后一个mod p 是为了保证结果不超过p，多个因子连续的乘积取模的结果等于每个因子取模后的乘积再取模的结果。提前取模以避免结果过大的爆表。</p>
+<h3 id="a-b"><a href="#a-b" class="headerlink" title="a*b"></a>a*b</h3><p>快速乘法的基本思想 ，是二进制和乘法分配律的结合（浮点数不满足结合律），比如说，13 &#x3D;&#x3D;(1101)2  ，4 *13等于4 *(1101)2 ，用分配律展开得到4 *13 &#x3D;&#x3D; 4 *(1000+100+1)2，我们不难观察出，快速幂可以通过判断当前的位（bit）是1还是0，推断出是否需要做求和操作，每次移动到下一位（bit）时，就对 ans进行 *2操作 ，等待是否求和。由于除以2和位移操作是等效的，因此这也可以看作是<strong>二分</strong>思想的应用，这种算法将b进行二分从而减少了不必要的运算，时间复杂度是log（n）。</p>
+<h3 id="a-b-1"><a href="#a-b-1" class="headerlink" title="a^b"></a>a^b</h3><p>快速幂其实可以看作是快速乘法的特例，在快速幂中，我们不再对ans进行 *2操作，因为在a ^b中b的意义已经从乘数变成了指数，但是我们可以仍然把b写成二进制，举例说明：此时，我们将4 *13改为4 ^13，13&#x3D;（1101）2 ，二进制13写开我们得到（1000+100+1），注意，这里的所有二进制是指数，指数的相加意味着底数相乘，因此有4 ^13 &#x3D;&#x3D; (4 ^8) * (4 ^4) * (4 ^1)。再注意到指数之间的2倍关系，我们就可以用很少的几个变量，完成这一算法。这样，我们就将原本用循环需要O(n)的算法，改进为O（logN）的算法。</p>
+<ul>
+<li>快速乘法</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速乘法 </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">qmul</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">// 根据数据范围可选择long long </span></span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">if</span>( b&amp;<span class="number">1</span>)ans+=a; <span class="comment">//按位与完成位数为1的判断</span></span><br><span class="line">       b&gt;&gt;=<span class="number">1</span>;a&lt;&lt;=<span class="number">1</span>;    <span class="comment">//位运算代替/2和*2</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果涉及到快速乘法取模，则需要进行一些微小改动</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速乘法取模 </span></span><br><span class="line"> <span class="function"><span class="type">int</span> <span class="title">qmul_mod</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> mod)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">     <span class="keyword">while</span>(b)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">if</span>((b%=mod)&amp;<span class="number">1</span>)ans+=a%=mod;<span class="comment">//这里需要b%=mod 以及a%=mod </span></span><br><span class="line">         b&gt;&gt;=<span class="number">1</span>;a&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> ans%mod;  <span class="comment">//ans也需要对mod取模 </span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>快速幂</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速幂 a^b </span></span><br><span class="line">  <span class="function"><span class="type">int</span> <span class="title">qpow</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//attention</span></span><br><span class="line">      <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">while</span>(b)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span>(b&amp;<span class="number">1</span>)ans*=a;<span class="comment">//和快速乘法的区别</span></span><br><span class="line">          b&gt;&gt;=<span class="number">1</span>;a*=a;<span class="comment">//区别，同上</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line"> &#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以及含有取模的快速幂：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">qpow_mod</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> mod)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)ans=(ans%mod)*(a%mod);<span class="comment">//如果确定数据不会爆的话，可写成 ans*=a%=mod;</span></span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>;a*=a%=mod;<span class="comment">//等价于a=(a%mod)*(a%mod)，且将一个模运算通过赋值代替，提高了效率</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;<span class="comment">//数据不会爆的话，这里的%运算会等价于第5中不断重复的 ans%mod</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们对于性能还有更进一步的要求，那么也就是减少取模运算了，那么我们需要确定数据范围不会爆掉<br>在这样的前提下，我们可以只用原先1&#x2F;4的取模运算量完成快速幂</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">qpow_mod</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> mod)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)ans*=a%=mod;<span class="comment">//这里的模运算只有一个</span></span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>;a*=a;<span class="comment">//这里的模运算没有了</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="矩阵幂"><a href="#矩阵幂" class="headerlink" title="矩阵幂"></a>矩阵幂</h2><p>依然可以按上述方法实现，底数改为矩阵，如 lc.509 斐波那契 那样做，注意到，我们可以构造函数，同样可以重载字符来完成。<br>当指数足够大，(N&gt;300)，我们考虑<strong>Strassen算法</strong>。<br>矩阵原本相乘需要8次乘法：<br>r &#x3D; a * e + b * g ;<br>s &#x3D; a * f  + b * h ;<br>t &#x3D; c * e + d  * g;<br>u &#x3D; c * f + d * h;</p>
+<p>运用strassen提出的Strassen算法，可以将8次乘法降为7次乘法，虽然只是一次乘法，但是其实一次乘法耗时要比加减法多很多。<br><img src="https://img-blog.csdnimg.cn/61d3f26a445f4348bf152bba08dba593.png#pic_center" alt="在这里插入图片描述"></p>
+<p>处理的方法是写成：</p>
+<p>p1 &#x3D; a * ( f - h )<br>p2 &#x3D; ( a + b ) *  h<br>p3 &#x3D; ( c +d ) * e<br>p4 &#x3D; d *  ( g - e )<br>p5 &#x3D; ( a + d ) * ( e + h )<br>p6 &#x3D;  ( b - d ) * ( g + h )<br>p7 &#x3D; ( a - c ) * ( e + f )</p>
+<p>r  &#x3D; p5 + p4 + p6 - p2<br>s &#x3D; p1 + p2<br>t &#x3D; p3 + p4<br>u &#x3D; p5 + p1 - p3 - p7</p>
+<p>复杂度：O( n^lg7 ) ~&#x3D; O( n^2.81 )</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Strassen Algorithm Implementation in C++</span></span><br><span class="line"><span class="comment">Coded By: Seyyed Hossein Hasan Pour MatiKolaee in May 5 2010 .</span></span><br><span class="line"><span class="comment">Mazandaran University of Science and Technology,Babol,Mazandaran,Iran</span></span><br><span class="line"><span class="comment">--------------------------------------------</span></span><br><span class="line"><span class="comment">Email : Master.huricane@gmail.com</span></span><br><span class="line"><span class="comment">YM    : Deathmaster_nemessis@yahoo.com</span></span><br><span class="line"><span class="comment">Updated may 09 2010.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Strassen</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span>** MatrixA, <span class="type">int</span> ** MatrixB, <span class="type">int</span> ** MatrixC)</span></span>;<span class="comment">//Multiplies Two Matrices recrusively.</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ADD</span><span class="params">(<span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> length )</span></span>;<span class="comment">//Adds two Matrices, and places the result in another Matrix</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">SUB</span><span class="params">(<span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> length )</span></span>;<span class="comment">//subtracts two Matrices , and places  the result in another Matrix</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MUL</span><span class="params">(<span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> length )</span></span>;<span class="comment">//Multiplies two matrices in conventional way.</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FillMatrix</span><span class="params">( <span class="type">int</span>** matrix1, <span class="type">int</span>** matrix2, <span class="type">int</span> length)</span></span>;<span class="comment">//Fills Matrices with random numbers.</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintMatrix</span><span class="params">( <span class="type">int</span> **MatrixA, <span class="type">int</span> MatrixSize )</span></span>;<span class="comment">//prints the Matrix content.</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span> MatrixSize = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span>** MatrixA;</span><br><span class="line">    <span class="type">int</span>** MatrixB;</span><br><span class="line">    <span class="type">int</span>** MatrixC;</span><br><span class="line"> </span><br><span class="line">    <span class="type">clock_t</span> startTime_For_Normal_Multipilication ;</span><br><span class="line">    <span class="type">clock_t</span> endTime_For_Normal_Multipilication ;</span><br><span class="line"> </span><br><span class="line">    <span class="type">clock_t</span> startTime_For_Strassen ;</span><br><span class="line">    <span class="type">clock_t</span> endTime_For_Strassen ;</span><br><span class="line"> </span><br><span class="line">    <span class="type">time_t</span> start,end;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;<span class="built_in">setw</span>(<span class="number">45</span>)&lt;&lt;<span class="string">&quot;In the name of GOD&quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl&lt;&lt;<span class="built_in">setw</span>(<span class="number">60</span>)&lt;&lt;<span class="string">&quot;Strassen Algorithm Implementation in C++ &quot;</span></span><br><span class="line">        &lt;&lt;endl&lt;&lt;endl&lt;&lt;<span class="built_in">setw</span>(<span class="number">50</span>)&lt;&lt;<span class="string">&quot;By Seyyed Hossein Hasan Pour&quot;</span></span><br><span class="line">        &lt;&lt;endl&lt;&lt;<span class="built_in">setw</span>(<span class="number">60</span>)&lt;&lt;<span class="string">&quot;Mazandaran University of Science and Technology&quot;</span></span><br><span class="line">        &lt;&lt;endl&lt;&lt;<span class="built_in">setw</span>(<span class="number">40</span>)&lt;&lt;<span class="string">&quot;May 9 2010&quot;</span>;</span><br><span class="line"> </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;\nPlease Enter your Matrix Size(must be in a power of two(eg:32,64,512,..): &quot;</span>;</span><br><span class="line">    cin&gt;&gt;MatrixSize;</span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span> N = MatrixSize;<span class="comment">//for readiblity.</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    MatrixA = <span class="keyword">new</span> <span class="type">int</span> *[MatrixSize];</span><br><span class="line">    MatrixB = <span class="keyword">new</span> <span class="type">int</span> *[MatrixSize];</span><br><span class="line">    MatrixC = <span class="keyword">new</span> <span class="type">int</span> *[MatrixSize];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MatrixSize; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        MatrixA[i] = <span class="keyword">new</span> <span class="type">int</span> [MatrixSize];</span><br><span class="line">        MatrixB[i] = <span class="keyword">new</span> <span class="type">int</span> [MatrixSize];</span><br><span class="line">        MatrixC[i] = <span class="keyword">new</span> <span class="type">int</span> [MatrixSize];</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">FillMatrix</span>(MatrixA,MatrixB,MatrixSize);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">//*******************conventional multiplication test</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;Phase I started:  &quot;</span>&lt;&lt; (startTime_For_Normal_Multipilication = <span class="built_in">clock</span>());</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">MUL</span>(MatrixA,MatrixB,MatrixC,MatrixSize);</span><br><span class="line"> </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;\nPhase I ended: &quot;</span>&lt;&lt; (endTime_For_Normal_Multipilication = <span class="built_in">clock</span>());</span><br><span class="line"> </span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;\nMatrix Result... \n&quot;</span>;</span><br><span class="line">	    <span class="built_in">PrintMatrix</span>(MatrixC,MatrixSize);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">//*******************Strassen multiplication test</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;\nMultiplication started: &quot;</span>&lt;&lt; (startTime_For_Strassen = <span class="built_in">clock</span>());</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">Strassen</span>( N, MatrixA, MatrixB, MatrixC );</span><br><span class="line"> </span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;\nMultiplication: &quot;</span>&lt;&lt;(endTime_For_Strassen = <span class="built_in">clock</span>());</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;\nMatrix Result... \n&quot;</span>;</span><br><span class="line">	<span class="built_in">PrintMatrix</span>(MatrixC,MatrixSize);</span><br><span class="line"> </span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;Matrix size &quot;</span>&lt;&lt;MatrixSize;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;\nNormal mode &quot;</span>&lt;&lt;(endTime_For_Normal_Multipilication - startTime_For_Normal_Multipilication)&lt;&lt;<span class="string">&quot; Clocks..&quot;</span>&lt;&lt;(endTime_For_Normal_Multipilication - startTime_For_Normal_Multipilication)/CLOCKS_PER_SEC&lt;&lt;<span class="string">&quot; Sec&quot;</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;\nStrassen mode &quot;</span>&lt;&lt;(endTime_For_Strassen - startTime_For_Strassen)&lt;&lt;<span class="string">&quot; Clocks..&quot;</span>&lt;&lt;(endTime_For_Strassen - startTime_For_Strassen)/CLOCKS_PER_SEC&lt;&lt;<span class="string">&quot; Sec\n&quot;</span>;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;Pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">in order to be able to create a matrix without any limitaion in c++,</span></span><br><span class="line"><span class="comment">one way is to create it using pointers.</span></span><br><span class="line"><span class="comment">as you see by using a pointer to pointer strategy we can make a multi-</span></span><br><span class="line"><span class="comment">dimensional Matrix of any size . The notation also makes us capable of</span></span><br><span class="line"><span class="comment">creating a matrix with VARIABLE size at runtime ,meaning we can resize</span></span><br><span class="line"><span class="comment">the size of our matrix at runtime , shrink it or increase it , your choice.</span></span><br><span class="line"><span class="comment">what we do is simple , first we make a pointer of pointer variable , this</span></span><br><span class="line"><span class="comment">means that our first pointer will point to another pointer which again</span></span><br><span class="line"><span class="comment">this pointer ,points to sth else(we can make it point to an array) .</span></span><br><span class="line"><span class="comment">int **A;</span></span><br><span class="line"><span class="comment">will declare the variable , we now need to expand it .</span></span><br><span class="line"><span class="comment">now make a pointer based array and allocate the memory dynamicly</span></span><br><span class="line"><span class="comment">A = new int *[desired_array_row];</span></span><br><span class="line"><span class="comment">this gives us a one diminsional pointer based array,now you want a 2D array?</span></span><br><span class="line"><span class="comment">big deal,lets make one.</span></span><br><span class="line"><span class="comment">we use for() to achieve this goal , remember when i said we are going to make</span></span><br><span class="line"><span class="comment">a variable which is a pointer of pointer ? which meant any location pointed to somewhere else</span></span><br><span class="line"><span class="comment">, we made a pointer based array , a one diminsional one , just up there ,</span></span><br><span class="line"><span class="comment">and you know this fatct that an array is consits of individual blocks right?</span></span><br><span class="line"><span class="comment">and the fact that each block can be used just like a solo variable.</span></span><br><span class="line"><span class="comment">so simply if we could write</span></span><br><span class="line"><span class="comment">A = new int *[any_size];</span></span><br><span class="line"><span class="comment">cant we do it to all of our indiviual array blocks which are just like the solo variable ?</span></span><br><span class="line"><span class="comment">so this means that if we could do it with A, and get an array , we can use the same method</span></span><br><span class="line"><span class="comment">to make different arrays for different block of the array we made in first place.</span></span><br><span class="line"><span class="comment">we use for() to iterate through all of the blocks of the previously made array, and</span></span><br><span class="line"><span class="comment">then for each block we create a single array .</span></span><br><span class="line"><span class="comment">for ( int i = 0; i &lt; desired_array_row; i++)</span></span><br><span class="line"><span class="comment">A[i] = new int [desired_column_size];</span></span><br><span class="line"><span class="comment">after this for , we can enjoy our 2D array wich can be access like any ordinary array we know.</span></span><br><span class="line"><span class="comment">just use the conventional notation for accessing array blocks for either reading or writing.( A[i][j])</span></span><br><span class="line"><span class="comment">and remember to free the space we allocated for our 2D array at the end of the program .</span></span><br><span class="line"><span class="comment">we do such a thing this way:</span></span><br><span class="line"><span class="comment">for ( int i = 0; i &lt; your_array_row; i++)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    delete [] A[i];</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">delete[] A;</span></span><br><span class="line"><span class="comment">.using this method you can make any N-diminsional array, you just need to use for with right iteration.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Strassen</span><span class="params">(<span class="type">int</span> N, <span class="type">int</span> **MatrixA, <span class="type">int</span> **MatrixB, <span class="type">int</span> **MatrixC)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">        <span class="type">int</span> HalfSize = N/<span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> newSize = N/<span class="number">2</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> ( N &lt;= <span class="number">64</span> )<span class="comment">//choosing the threshhold is extremely important, try N&lt;=2 to see the result</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">MUL</span>(MatrixA,MatrixB,MatrixC,N);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">			<span class="type">int</span>** A11;</span><br><span class="line">			<span class="type">int</span>** A12;</span><br><span class="line">			<span class="type">int</span>** A21;</span><br><span class="line">			<span class="type">int</span>** A22;</span><br><span class="line"> </span><br><span class="line">			<span class="type">int</span>** B11;</span><br><span class="line">			<span class="type">int</span>** B12;</span><br><span class="line">			<span class="type">int</span>** B21;</span><br><span class="line">			<span class="type">int</span>** B22;</span><br><span class="line"> </span><br><span class="line">			<span class="type">int</span>** C11;</span><br><span class="line">			<span class="type">int</span>** C12;</span><br><span class="line">			<span class="type">int</span>** C21;</span><br><span class="line">			<span class="type">int</span>** C22;</span><br><span class="line"> </span><br><span class="line">			<span class="type">int</span>** M1;</span><br><span class="line">			<span class="type">int</span>** M2;</span><br><span class="line">			<span class="type">int</span>** M3;</span><br><span class="line">			<span class="type">int</span>** M4;</span><br><span class="line">			<span class="type">int</span>** M5;</span><br><span class="line">			<span class="type">int</span>** M6;</span><br><span class="line">			<span class="type">int</span>** M7;</span><br><span class="line">			<span class="type">int</span>** AResult;</span><br><span class="line">			<span class="type">int</span>** BResult;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//making a 1 diminsional pointer based array.</span></span><br><span class="line">			A11 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			A12 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			A21 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			A22 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line"> </span><br><span class="line">			B11 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			B12 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			B21 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			B22 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line"> </span><br><span class="line">			C11 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			C12 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			C21 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			C22 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line"> </span><br><span class="line">			M1 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M2 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M3 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M4 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M5 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M6 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			M7 = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line"> </span><br><span class="line">			AResult = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line">			BResult = <span class="keyword">new</span> <span class="type">int</span> *[newSize];</span><br><span class="line"> </span><br><span class="line">			<span class="type">int</span> newLength = newSize;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//making that 1 diminsional pointer based array , a 2D pointer based array</span></span><br><span class="line">			<span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; newSize; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				A11[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				A12[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				A21[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				A22[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line"> </span><br><span class="line">				B11[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				B12[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				B21[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				B22[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line"> </span><br><span class="line">				C11[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				C12[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				C21[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				C22[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line"> </span><br><span class="line">				M1[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M2[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M3[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M4[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M5[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M6[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				M7[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line"> </span><br><span class="line">				AResult[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line">				BResult[i] = <span class="keyword">new</span> <span class="type">int</span>[newLength];</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//splitting input Matrixes, into 4 submatrices each.</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N / <span class="number">2</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N / <span class="number">2</span>; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    A11[i][j] = MatrixA[i][j];</span><br><span class="line">                    A12[i][j] = MatrixA[i][j + N / <span class="number">2</span>];</span><br><span class="line">                    A21[i][j] = MatrixA[i + N / <span class="number">2</span>][j];</span><br><span class="line">                    A22[i][j] = MatrixA[i + N / <span class="number">2</span>][j + N / <span class="number">2</span>];</span><br><span class="line"> </span><br><span class="line">                    B11[i][j] = MatrixB[i][j];</span><br><span class="line">                    B12[i][j] = MatrixB[i][j + N / <span class="number">2</span>];</span><br><span class="line">                    B21[i][j] = MatrixB[i + N / <span class="number">2</span>][j];</span><br><span class="line">                    B22[i][j] = MatrixB[i + N / <span class="number">2</span>][j + N / <span class="number">2</span>];</span><br><span class="line"> </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//here we calculate M1..M7 matrices .</span></span><br><span class="line">            <span class="comment">//M1[][]</span></span><br><span class="line">            <span class="built_in">ADD</span>( A11,A22,AResult, HalfSize);</span><br><span class="line">            <span class="built_in">ADD</span>( B11,B22,BResult, HalfSize);</span><br><span class="line">            <span class="built_in">Strassen</span>( HalfSize, AResult, BResult, M1 ); <span class="comment">//now that we need to multiply this , we use the strassen itself .</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M2[][]</span></span><br><span class="line">            <span class="built_in">ADD</span>( A21,A22,AResult, HalfSize);              <span class="comment">//M2=(A21+A22)B11</span></span><br><span class="line">            <span class="built_in">Strassen</span>(HalfSize, AResult, B11, M2);       <span class="comment">//Mul(AResult,B11,M2);</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M3[][]</span></span><br><span class="line">            <span class="built_in">SUB</span>( B12,B22,BResult, HalfSize);              <span class="comment">//M3=A11(B12-B22)</span></span><br><span class="line">            <span class="built_in">Strassen</span>(HalfSize, A11, BResult, M3);       <span class="comment">//Mul(A11,BResult,M3);</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M4[][]</span></span><br><span class="line">            <span class="built_in">SUB</span>( B21, B11, BResult, HalfSize);           <span class="comment">//M4=A22(B21-B11)</span></span><br><span class="line">            <span class="built_in">Strassen</span>(HalfSize, A22, BResult, M4);       <span class="comment">//Mul(A22,BResult,M4);</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M5[][]</span></span><br><span class="line">            <span class="built_in">ADD</span>( A11, A12, AResult, HalfSize);           <span class="comment">//M5=(A11+A12)B22</span></span><br><span class="line">            <span class="built_in">Strassen</span>(HalfSize, AResult, B22, M5);       <span class="comment">//Mul(AResult,B22,M5);</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M6[][]</span></span><br><span class="line">            <span class="built_in">SUB</span>( A21, A11, AResult, HalfSize);</span><br><span class="line">            <span class="built_in">ADD</span>( B11, B12, BResult, HalfSize);             <span class="comment">//M6=(A21-A11)(B11+B12)</span></span><br><span class="line">            <span class="built_in">Strassen</span>( HalfSize, AResult, BResult, M6);    <span class="comment">//Mul(AResult,BResult,M6);</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment">//M7[][]</span></span><br><span class="line">            <span class="built_in">SUB</span>(A12, A22, AResult, HalfSize);</span><br><span class="line">            <span class="built_in">ADD</span>(B21, B22, BResult, HalfSize);             <span class="comment">//M7=(A12-A22)(B21+B22)</span></span><br><span class="line">            <span class="built_in">Strassen</span>(HalfSize, AResult, BResult, M7);     <span class="comment">//Mul(AResult,BResult,M7);</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment">//C11 = M1 + M4 - M5 + M7;</span></span><br><span class="line">            <span class="built_in">ADD</span>( M1, M4, AResult, HalfSize);</span><br><span class="line">            <span class="built_in">SUB</span>( M7, M5, BResult, HalfSize);</span><br><span class="line">            <span class="built_in">ADD</span>( AResult, BResult, C11, HalfSize);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//C12 = M3 + M5;</span></span><br><span class="line">            <span class="built_in">ADD</span>( M3, M5, C12, HalfSize);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//C21 = M2 + M4;</span></span><br><span class="line">            <span class="built_in">ADD</span>( M2, M4, C21, HalfSize);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//C22 = M1 + M3 - M2 + M6;</span></span><br><span class="line">            <span class="built_in">ADD</span>( M1, M3, AResult, HalfSize);</span><br><span class="line">            <span class="built_in">SUB</span>( M6, M2, BResult, HalfSize);</span><br><span class="line">            <span class="built_in">ADD</span>( AResult, BResult, C22, HalfSize);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">            <span class="comment">//at this point , we have calculated the c11..c22 matrices, and now we are going to</span></span><br><span class="line">            <span class="comment">//put them together and make a unit matrix which would describe our resulting Matrix.</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N/<span class="number">2</span> ; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span> ; j &lt; N/<span class="number">2</span> ; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    MatrixC[i][j] = C11[i][j];</span><br><span class="line">                    MatrixC[i][j + N / <span class="number">2</span>] = C12[i][j];</span><br><span class="line">                    MatrixC[i + N / <span class="number">2</span>][j] = C21[i][j];</span><br><span class="line">                    MatrixC[i + N / <span class="number">2</span>][j + N / <span class="number">2</span>] = C22[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">// dont forget to free the space we alocated for matrices,</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; newLength; i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">delete</span>[] A11[i];<span class="keyword">delete</span>[] A12[i];<span class="keyword">delete</span>[] A21[i];</span><br><span class="line">				<span class="keyword">delete</span>[] A22[i];</span><br><span class="line"> </span><br><span class="line">				<span class="keyword">delete</span>[] B11[i];<span class="keyword">delete</span>[] B12[i];<span class="keyword">delete</span>[] B21[i];</span><br><span class="line">				<span class="keyword">delete</span>[] B22[i];</span><br><span class="line">				<span class="keyword">delete</span>[] C11[i];<span class="keyword">delete</span>[] C12[i];<span class="keyword">delete</span>[] C21[i];</span><br><span class="line">				<span class="keyword">delete</span>[] C22[i];</span><br><span class="line">				<span class="keyword">delete</span>[] M1[i];<span class="keyword">delete</span>[] M2[i];<span class="keyword">delete</span>[] M3[i];<span class="keyword">delete</span>[] M4[i];</span><br><span class="line">				<span class="keyword">delete</span>[] M5[i];<span class="keyword">delete</span>[] M6[i];<span class="keyword">delete</span>[] M7[i];</span><br><span class="line">				<span class="keyword">delete</span>[] AResult[i];<span class="keyword">delete</span>[] BResult[i] ;</span><br><span class="line">			&#125;</span><br><span class="line">				<span class="keyword">delete</span>[] A11;<span class="keyword">delete</span>[] A12;<span class="keyword">delete</span>[] A21;<span class="keyword">delete</span>[] A22;</span><br><span class="line">				<span class="keyword">delete</span>[] B11;<span class="keyword">delete</span>[] B12;<span class="keyword">delete</span>[] B21;<span class="keyword">delete</span>[] B22;</span><br><span class="line">				<span class="keyword">delete</span>[] C11;<span class="keyword">delete</span>[] C12;<span class="keyword">delete</span>[] C21;<span class="keyword">delete</span>[] C22;</span><br><span class="line">				<span class="keyword">delete</span>[] M1;<span class="keyword">delete</span>[] M2;<span class="keyword">delete</span>[] M3;<span class="keyword">delete</span>[] M4;<span class="keyword">delete</span>[] M5;</span><br><span class="line">				<span class="keyword">delete</span>[] M6;<span class="keyword">delete</span>[] M7;</span><br><span class="line">				<span class="keyword">delete</span>[] AResult;</span><br><span class="line">				<span class="keyword">delete</span>[] BResult ;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        &#125;<span class="comment">//end of else</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ADD</span><span class="params">(<span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> MatrixSize )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; MatrixSize; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> ( <span class="type">int</span> j = <span class="number">0</span>; j &lt; MatrixSize; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            MatrixResult[i][j] =  MatrixA[i][j] + MatrixB[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">SUB</span><span class="params">(<span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> MatrixSize )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; MatrixSize; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> ( <span class="type">int</span> j = <span class="number">0</span>; j &lt; MatrixSize; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            MatrixResult[i][j] =  MatrixA[i][j] - MatrixB[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MUL</span><span class="params">( <span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span>** MatrixResult, <span class="type">int</span> MatrixSize )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;MatrixSize ;i++)</span><br><span class="line">        &#123;</span><br><span class="line">              <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;MatrixSize ;j++)</span><br><span class="line">              &#123;</span><br><span class="line">                   MatrixResult[i][j]=<span class="number">0</span>;</span><br><span class="line">                   <span class="keyword">for</span> (<span class="type">int</span> k=<span class="number">0</span>;k&lt;MatrixSize ;k++)</span><br><span class="line">                   &#123;</span><br><span class="line">                          MatrixResult[i][j]=MatrixResult[i][j]+MatrixA[i][k]*MatrixB[k][j];</span><br><span class="line">                   &#125;</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FillMatrix</span><span class="params">( <span class="type">int</span>** MatrixA, <span class="type">int</span>** MatrixB, <span class="type">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> row = <span class="number">0</span>; row&lt;length; row++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> column = <span class="number">0</span>; column&lt;length; column++)</span><br><span class="line">        &#123;</span><br><span class="line"> </span><br><span class="line">           MatrixB[row][column] = (MatrixA[row][column] = <span class="built_in">rand</span>() %<span class="number">5</span>);</span><br><span class="line">            <span class="comment">//matrix2[row][column] = rand() % 2;//ba hazfe in khat 50% afzayeshe soorat khahim dasht</span></span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintMatrix</span><span class="params">(<span class="type">int</span> **MatrixA,<span class="type">int</span> MatrixSize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	   <span class="keyword">for</span>(<span class="type">int</span> row = <span class="number">0</span>; row&lt;MatrixSize; row++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> column = <span class="number">0</span>; column&lt;MatrixSize; column++)</span><br><span class="line">			&#123;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">				cout&lt;&lt;MatrixA[row][column]&lt;&lt;<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">				<span class="keyword">if</span> ((column+<span class="number">1</span>)%((MatrixSize)) == <span class="number">0</span>)</span><br><span class="line">					cout&lt;&lt;endl;</span><br><span class="line">			&#125;</span><br><span class="line"> </span><br><span class="line">		&#125;</span><br><span class="line">	   cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="tag"># 快速幂</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/01/17/%E5%8D%8A%E6%88%90%E5%93%81/%E7%89%9B%E5%AE%A2%E5%85%A5%E9%97%A8%E9%A2%98%E5%8D%95%EF%BC%9A%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%89%AA%E6%9E%9D/" rel="next" title="牛客题单：搜索与搜索剪枝">
+                <i class="fa fa-chevron-left"></i> 牛客题单：搜索与搜索剪枝
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/01/22/LeetCode%E5%8F%8C%E5%91%A8%E8%B5%9B70/" rel="prev" title="LeetCode 双周赛70">
+                LeetCode 双周赛70 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NTcxOS8zMjE4NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-b"><span class="nav-number">1.1.</span> <span class="nav-text">a*b</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-b-1"><span class="nav-number">1.2.</span> <span class="nav-text">a^b</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%B9%82"><span class="nav-number">2.</span> <span class="nav-text">矩阵幂</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
