@@ -87,7 +87,7 @@
 <meta property="og:description" content="开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 3.7 lc.504 七进制数 C++ 模拟 123456789101112131415161718192021222324class Solution &amp;#123;public:    string convertToBase7(int num) &amp;#123;        int x &#x3D; 0 ;        string">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-03-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-10T14:26:08.621Z">
+<meta property="article:modified_time" content="2022-03-17T06:29:43.038Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="LeetCode">
@@ -382,6 +382,17 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">bestRotation</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length ;</span><br><span class="line">        <span class="type">int</span> cnt[] = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>] ;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt;= i) cnt[<span class="number">0</span>] ++ ;</span><br><span class="line">            <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> i + <span class="number">1</span> , r = (i + <span class="number">1</span> + n - nums[i]) % n;</span><br><span class="line">            cnt[l] ++ ; cnt[r] -- ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mm</span> <span class="operator">=</span> cnt[<span class="number">0</span>] , ans = <span class="number">0</span>, aa = cnt[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            aa += cnt[i] ;</span><br><span class="line">            <span class="keyword">if</span>(aa &gt; mm)&#123;</span><br><span class="line">                mm = aa ;</span><br><span class="line">                ans = i ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
+
+
+<h2 id="3-17-lc-720-词典最长的单词"><a href="#3-17-lc-720-词典最长的单词" class="headerlink" title="3.17 lc.720 词典最长的单词"></a>3.17 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-word-in-dictionary/">lc.720 词典最长的单词</a></h2><ul>
+<li>WA 23&#x2F;59</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">longestWord</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(words.<span class="built_in">begin</span>(), words.<span class="built_in">end</span>()) ;</span><br><span class="line">        string s = <span class="string">&quot;&quot;</span> ;</span><br><span class="line">        <span class="type">int</span> len = words[<span class="number">0</span>].<span class="built_in">size</span>() ;</span><br><span class="line">        <span class="type">int</span> ii = <span class="number">0</span> , bit = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; words.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(words[i].<span class="built_in">size</span>() == len) <span class="keyword">continue</span> ;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(words[i].<span class="built_in">size</span>() == len + <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span>(ii &lt; i)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(words[i][bit] == words[ii][bit])&#123;</span><br><span class="line">                        ii = i ;</span><br><span class="line">                        bit ++ ;</span><br><span class="line">                        len ++ ;</span><br><span class="line">                        s = words[i] ;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> ii ++ ;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>错误用例<code>[&quot;m&quot;,&quot;mo&quot;,&quot;moc&quot;,&quot;moch&quot;,&quot;mocha&quot;,&quot;l&quot;,&quot;la&quot;,&quot;lat&quot;,&quot;latt&quot;,&quot;latte&quot;,&quot;c&quot;,&quot;ca&quot;,&quot;cat&quot;]</code></p>
+<p>错误输出<code>cat</code>,正确输出<code>latte</code>。</p>
+
       
     </div>
     
@@ -415,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/09/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E5%9B%BE%E8%AE%BA2-2%20%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="next" title="洛谷题单 图论2-2 最短路">
-                <i class="fa fa-chevron-left"></i> 洛谷题单 图论2-2 最短路
+              <a href="/2022/03/09/%E9%9A%8F%E7%AC%94/%E5%85%B3%E4%BA%8EBlog/%E6%A6%80%201.0/" rel="next" title="榀 1.0">
+                <i class="fa fa-chevron-left"></i> 榀 1.0
               </a>
             
           </div>
@@ -425,8 +436,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/03/10/%E7%AE%97%E6%B3%95/AcWing/AcWing%20%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" rel="prev" title="AcWing 算法基础笔记">
-                AcWing 算法基础笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/03/09/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E5%9B%BE%E8%AE%BA2-2%20%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="prev" title="洛谷题单 图论2-2 最短路">
+                洛谷题单 图论2-2 最短路 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -531,7 +542,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-lc-504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">3.7 lc.504 七进制数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-lc-798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83"><span class="nav-number">2.</span> <span class="nav-text">3.9 lc.798 得分最高的最小轮调</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-lc-504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">3.7 lc.504 七进制数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-lc-798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83"><span class="nav-number">2.</span> <span class="nav-text">3.9 lc.798 得分最高的最小轮调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-17-lc-720-%E8%AF%8D%E5%85%B8%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="nav-number">3.</span> <span class="nav-text">3.17 lc.720 词典最长的单词</span></a></li></ol></div>
             
 
           </div>
