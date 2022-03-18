@@ -82,14 +82,14 @@
 <meta name="description" content="2.1 进程与线程2.1.1 进程 概念  为了使参与并发执行的每个程序都能独立地运行，必须为之配置一个专门的数据结构，称为进程控制块（PCB）。系统利用PCB来描述进程的基本情况和运行状态，进而控制和管理进程。 相应地，由程序段、相关数据和PCB三部分构成了进程实体（进程映像）。创建进程，实则创建进程实体中的PCB；撤销进程，实则撤销进程的PCB。 注意到，进程映像是静态的，进程是动态的。 进程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="23王道操作系统 C2进程与线程">
-<meta property="og:url" content="https://wangerxzai.github.io/2022/03/17/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/index.html">
-<meta property="og:site_name" content="榀">
+<meta property="og:url" content="https://wangerxzai.github.io/2022/03/17/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/index.html">
+<meta property="og:site_name" content="不学习变傻瓜">
 <meta property="og:description" content="2.1 进程与线程2.1.1 进程 概念  为了使参与并发执行的每个程序都能独立地运行，必须为之配置一个专门的数据结构，称为进程控制块（PCB）。系统利用PCB来描述进程的基本情况和运行状态，进而控制和管理进程。 相应地，由程序段、相关数据和PCB三部分构成了进程实体（进程映像）。创建进程，实则创建进程实体中的PCB；撤销进程，实则撤销进程的PCB。 注意到，进程映像是静态的，进程是动态的。 进程">
 <meta property="og:locale">
 <meta property="og:image" content="https://edu-tiku.cdn.bcebos.com/originalpic/d06f8b811c7488f7bf89a6964400cc76.jpg?authorization=bce-auth-v1/ceae51ce68104d68be6f9ad6f91bceee/2021-11-30T07:09:47Z/630720000//183f03940e4045bec3d63d03a7fd166f83e8fcfc0cc8b8058655c18b8e342754">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20190514/1896205_1557799494147_28E8AE7B7A5D049E36A1E50F9E6E6CDA">
 <meta property="article:published_time" content="2022-03-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-17T14:50:42.058Z">
+<meta property="article:modified_time" content="2022-03-18T09:05:23.719Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="23王道">
 <meta property="article:tag" content="操作系统">
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://wangerxzai.github.io/2022/03/17/考研/23王道操作系统 C2线程与进程/"/>
+  <link rel="canonical" href="https://wangerxzai.github.io/2022/03/17/考研/计算机/23王道操作系统 C2线程与进程/"/>
 
 
 
 
 
-  <title>23王道操作系统 C2进程与线程 | 榀</title>
+  <title>23王道操作系统 C2进程与线程 | 不学习变傻瓜</title>
   
 
 
@@ -162,7 +162,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">榀</span>
+        <span class="site-title">不学习变傻瓜</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/17/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/17/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -268,7 +268,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="榀">
+      <meta itemprop="name" content="不学习变傻瓜">
     </span>
 
     
@@ -640,7 +640,13 @@
 <p>读写操作完成前在等待结果，处于阻塞态，完成后处于就绪态。</p>
 <ul>
 <li>通常用户进程被建立后，<strong>随着进程运行的正常与不正常结束而撤销</strong>。</li>
+<li>C语言编写的程序在使用内存事一般分为三个段：<strong>正文段（代码和赋值数据段）</strong>：存放二进制代码和正文；<strong>数据堆段</strong>：动态分配的存储区；<strong>数据栈段</strong>：临时变量。</li>
 </ul>
+<p>全局赋值变量（正文段）。未赋值的局部变量（栈段）。函数调用实参传递值（栈段）。malloc()要求动态分配的存储区（堆段）。</p>
+<ul>
+<li>系统动态DLL库中的系统线程，被不同的进程调用，它们是<strong>相同</strong>的线程。</li>
+</ul>
+<p>程序代码创建可以对于不同的进程，而同一个系统的进程（线程）可以由系统调用的方法被不同的进程（线程）多次使用。</p>
 
       
     </div>
@@ -677,8 +683,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/17/ENG/%E8%AF%8D%E6%B1%87/2022.3%E8%AF%8D%E6%B1%87/" rel="next" title="2022.3 词汇">
-                <i class="fa fa-chevron-left"></i> 2022.3 词汇
+              <a href="/2022/03/15/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%AF%94%E8%B5%9B/%E8%93%9D%E6%A1%A5%E6%9D%AF%202021%E7%9C%81%E8%B5%9B%E9%A2%98%E5%8D%95/" rel="next" title="蓝桥杯 2021省赛题单">
+                <i class="fa fa-chevron-left"></i> 蓝桥杯 2021省赛题单
               </a>
             
           </div>
@@ -687,8 +693,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/03/17/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-17/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/03/17/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%AF%94%E8%B5%9B/PAT%E5%9B%A2%E9%98%9F%E5%A4%A9%E6%A2%AF%20L1/" rel="prev" title="PAT团队天梯 L1">
+                PAT团队天梯 L1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -771,7 +777,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
