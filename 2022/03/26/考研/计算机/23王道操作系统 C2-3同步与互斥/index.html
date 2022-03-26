@@ -82,7 +82,7 @@
 <meta name="description" content="2.3 同步与互斥2.3.1 同步与互斥基本概念 临界资源  将一次仅允许一个进程使用的资源称为临界资源。对于邻接资源的访问，必须互斥地进行，在每个进程中，访问临界资源的那段代码称为临界区。把临界资源的访问过程分为4部分： （1）进入区。为了进入临界区使用临界资源，在进入区要检查是否可以进入临界区，若能进入，则设置正在访问临界区的标志，以组织其他进程进入。 （2）临界区。进程中访问临界资源的那段代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="23王道操作系统 C2-3 同步与互斥">
-<meta property="og:url" content="https://wangerxzai.github.io/2022/03/25/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/index.html">
+<meta property="og:url" content="https://wangerxzai.github.io/2022/03/26/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/index.html">
 <meta property="og:site_name" content="不学习变傻瓜">
 <meta property="og:description" content="2.3 同步与互斥2.3.1 同步与互斥基本概念 临界资源  将一次仅允许一个进程使用的资源称为临界资源。对于邻接资源的访问，必须互斥地进行，在每个进程中，访问临界资源的那段代码称为临界区。把临界资源的访问过程分为4部分： （1）进入区。为了进入临界区使用临界资源，在进入区要检查是否可以进入临界区，若能进入，则设置正在访问临界区的标志，以组织其他进程进入。 （2）临界区。进程中访问临界资源的那段代">
 <meta property="og:locale">
@@ -90,8 +90,8 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/19cdfc97d76e4c45b104263b7cca7d3f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/5c9ab7ae2e5549f593a9359354f8f50f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/0f8a74442f5847afa12b0123033a6071.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="article:published_time" content="2022-03-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-25T15:37:56.652Z">
+<meta property="article:published_time" content="2022-03-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-26T15:19:04.726Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="23王道">
 <meta property="article:tag" content="操作系统">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://wangerxzai.github.io/2022/03/25/考研/计算机/23王道操作系统 C2-3同步与互斥/"/>
+  <link rel="canonical" href="https://wangerxzai.github.io/2022/03/26/考研/计算机/23王道操作系统 C2-3同步与互斥/"/>
 
 
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/25/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-25T00:00:00+08:00">
-                2022-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
               </time>
             
 
@@ -524,7 +524,108 @@
 
 
 
-<h3 id="2-3-8-习题"><a href="#2-3-8-习题" class="headerlink" title="2.3.8 习题"></a>2.3.8 习题</h3><h3 id="2-3-9-作业"><a href="#2-3-9-作业" class="headerlink" title="2.3.9 作业"></a>2.3.9 作业</h3><ol>
+<h3 id="2-3-8-习题"><a href="#2-3-8-习题" class="headerlink" title="2.3.8 习题"></a>2.3.8 习题</h3><ul>
+<li>不需要信号量就能实现的功能是<strong>进程的并发执行</strong>。</li>
+</ul>
+<p>在多道程序技术中，信号量机制是一种实现同步与互斥的工具。进程执行的前驱关系实际上是指进程的同步关系。</p>
+<ul>
+<li>两个旅行社甲和乙为旅客到某航空公司订机票，形成互斥资源的是<strong>飞机票</strong>。</li>
+</ul>
+<p>一张飞机票只能供一个旅客使用，其他的只是中间资源。</p>
+<ul>
+<li><p><strong>公用队列</strong>属于临界资源。</p>
+</li>
+<li><p>在操作系统中，PV操作是一种<strong>低级进程通信原语</strong>。</p>
+</li>
+<li><p><strong>管程</strong>定义了共享数据结构和各种进程在该数据结构上的全部操作。</p>
+</li>
+<li><p>在用信号量机制实现互斥时，互斥信号量初始值为<strong>1</strong>。</p>
+</li>
+<li><p>在PV操作实现进程同步时，信号量初始值为<strong>由用户决定</strong>。</p>
+</li>
+<li><p>一个进程映像由程序、数据、PCB组成，其中<strong>共享程序段</strong>必须用可重入编码编写。</p>
+</li>
+<li><p>有三个进程共享同一程序段，而每次只允许两个进程进入该程序段，若用PV操作同步机制，则信号量S的取值范围是<strong>2、1、0、-1</strong>。</p>
+</li>
+</ul>
+<p>两个可用，S &#x3D; 2。三个同时申请，一个等待，S &#x3D; -1。</p>
+<ul>
+<li>一个系统中共有5个并发进程涉及某个相同的变量A，变量A的相关临界区是由<strong>5</strong>个临界区构成的。</li>
+</ul>
+<p>临界区：访问临界资源A的代码</p>
+<ul>
+<li>管程中的signal操作和信号量机制中的V操作<strong>不相同</strong>。</li>
+</ul>
+<p>V操作一定++，signal针对条件变量，若不存在因该条件变量而阻塞的进程，则不会++。</p>
+<ul>
+<li><p>对信号量S执行P操作<em><strong>后</strong></em>，使该进程进入资源等待队列的条件是<strong>S.value&lt;0</strong>。</p>
+</li>
+<li><p>若系统有n个进程，则就绪队列中进程的个数最多有<strong>n-1</strong>个；阻塞队列中进程的个数最多有<strong>n</strong>个。</p>
+</li>
+</ul>
+<p>就绪队列，<strong>CPU</strong>中必须有一个运行，最多n-1；阻塞队列，可能出现<strong>死锁</strong>，所以最多n个。</p>
+<ul>
+<li><p>互斥使用缓冲器的信号量初始值为<strong>1</strong>。互斥信号量初始值始终为1 。</p>
+</li>
+<li><p>需要<strong>互斥执行的操作</strong>，二者先后顺序调换，会对结果产生影响。</p>
+</li>
+<li><p>关于TSL(Test and Set Lock)指令实现进程互斥机制相关，正确的是<strong>等待进入临界区的进程不会主动放弃CPU</strong>。</p>
+</li>
+</ul>
+<p>while(TSL(&amp;lock))在关中断状态下执行时，若TSL(&amp;lock)一直为true，不再开中断，则系统可能会因此终止。</p>
+<ul>
+<li><p>若x是管程内的条件变量，则当程序执行x.wait()时所做的工作是<strong>阻塞该进程，并将之插入x的阻塞队列中</strong>。</p>
+</li>
+<li><p>可以实现<em>让权等待</em>的是<strong>信号量方法</strong>。</p>
+</li>
+</ul>
+<p>硬件方法（xx指令）实现进程同步时不能实现让权等待，Peterson算法满足有限等待但不满足让权等待。</p>
+<hr>
+<p><strong>应用题</strong></p>
+<ul>
+<li>有两个并发程序P1，P2，程序代码：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">x = <span class="number">1</span> ;</span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) z = x + y ;</span><br><span class="line"><span class="keyword">else</span> z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">P2</span>()&#123;</span><br><span class="line">x = <span class="number">-1</span> ;</span><br><span class="line">a = x + <span class="number">3</span> ;</span><br><span class="line">x = a + x ;</span><br><span class="line">b = a + x ;</span><br><span class="line">c = b * b ;</span><br><span class="line">print c ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Q：（1）z值的可能（假设每条赋值语句是一个原子操作）。（2）c值的可能（其中x为P1、P2的共享变量）。</p>
+<p>A：</p>
+<p>（1）-2，1，2，3，5，7</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">x = <span class="number">1</span> ; <span class="comment">// null -&gt; z = 3</span></span><br><span class="line"> <span class="comment">// x = -1 ; -&gt; z = -2</span></span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) </span><br><span class="line">	 <span class="comment">// x = 5 ; -&gt; z = 7</span></span><br><span class="line">	 <span class="comment">// x = -1 ; -&gt; z = 1</span></span><br><span class="line">	z = x + y ;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	 <span class="comment">// x = 1 ; -&gt; z = 2</span></span><br><span class="line">	z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一直没想到5怎么来的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">    <span class="comment">// P2: x = -1 </span></span><br><span class="line">    <span class="comment">// P2: a = x + 3 = 2 </span></span><br><span class="line">x = <span class="number">1</span> ;</span><br><span class="line">    <span class="comment">// P2: x = a + x = 2 + 1 = 3</span></span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) </span><br><span class="line">    z = x + y ; <span class="comment">// = 3 + 2 = 5</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">    z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>真心服了。</p>
+<p>（2）考虑到共享变量，互斥资源只有x，所以更改x的插入位置，有以下三种情况，c分别为9，81，25</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P2</span>()&#123;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 9</span></span><br><span class="line">x = <span class="number">-1</span> ;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 81</span></span><br><span class="line">a = x + <span class="number">3</span> ;</span><br><span class="line">x = a + x ;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 25</span></span><br><span class="line">b = a + x ;</span><br><span class="line">c = b * b ;</span><br><span class="line">print c ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在一个仓库中可以存放A和B两种产品，要求：（1）每次<strong>只能存入一种</strong>商品。（需要一个互斥信号量）（2）A量 - B量 &lt; M （3）B量 - A量 &lt; N 。M，N为正整数，用PV操作描述AB入库过程。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span> ;</span><br><span class="line"><span class="type">int</span> na = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> nb = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> m ;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="built_in">goodsA</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        <span class="keyword">if</span>((na - nb &lt; m) &amp;&amp; (nb - na &lt; n)) &#123;</span><br><span class="line">            put A ;</span><br><span class="line">            na ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">goodsB</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        <span class="keyword">if</span>((na - nb &lt; m) &amp;&amp; (nb - na &lt; n)) &#123;</span><br><span class="line">            put B ;</span><br><span class="line">            nb ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ans：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span> ;</span><br><span class="line">semaphore sa = M - <span class="number">1</span> ; <span class="comment">// AB容量差</span></span><br><span class="line">semaphore sb = N - <span class="number">1</span> ; <span class="comment">// BA容量差</span></span><br><span class="line"><span class="built_in">A</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(sa) ;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        put A ;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">        <span class="built_in">V</span>(sb) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">B</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(sb) ;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        put B ;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">        <span class="built_in">V</span>(sa) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>面包师有很多面包，由n名销售人员销售。每名顾客进店后取一个号，并等号，当一名销售人员空闲时，就叫下一个号。设计一个销售人员和顾客同步的算法。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">semaphore FreeSalesman = n ;</span><br><span class="line">semaphore FreeConsumer = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> i = <span class="number">1</span> ;</span><br><span class="line"><span class="type">int</span> j = <span class="number">1</span> ;</span><br><span class="line"><span class="built_in">consumer</span>()&#123;</span><br><span class="line">    <span class="built_in">V</span>(FreeConsumer) ;</span><br><span class="line">    get number i ;</span><br><span class="line">    i ++ ;</span><br><span class="line">    wait ;</span><br><span class="line">    <span class="built_in">P</span>(FreeSalesman) ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">salesman</span>()&#123;</span><br><span class="line">    finish last service <span class="keyword">or</span> free originally ;</span><br><span class="line">    <span class="built_in">V</span>(FreeSalesman) ;</span><br><span class="line">    <span class="built_in">P</span>(FreeConsumer) ;</span><br><span class="line">    serve the consumer j ;</span><br><span class="line">    j ++ ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>某工厂有两个生产车间和一个装配车间。生产车间分别生产AB两种零件，装配车间负责把零件组装成产品。两个生产车间每生产一个零件后，都要分别把它们送到专配车间的货架F1，F2上。F1存放零件A，F2存放零件B，F1和F2的容量均可存放10个零件。装配工人每次从货架上取一个零件A和一个零件B后组装成产品。请用PV进行管理。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">semaphore f1 = <span class="number">10</span> ; <span class="comment">// F1信号量</span></span><br><span class="line">semaphore f2 = <span class="number">10</span> ; <span class="comment">// F2信号量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ProducingDepartments</span>()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-3-9-作业"><a href="#2-3-9-作业" class="headerlink" title="2.3.9 作业"></a>2.3.9 作业</h3><ol>
 <li>用记录型信号量解决以下问题，用类C语言编写进程同步算法。<br>司机  P1    售票员 P2<br>REPEAT     REPEAT<br>启动        关门<br>正常运行     售票<br>到站停      开门<br>UNTIL FALSE   UNTIL FALSE</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> value ;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">process</span> *<span class="title">L</span> ;</span></span><br><span class="line">&#125; semaphore ;</span><br><span class="line"></span><br><span class="line">semaphore s1, s2 ;</span><br><span class="line">s1 = <span class="number">0</span> ; <span class="comment">// 门</span></span><br><span class="line">s2 = <span class="number">0</span> ; <span class="comment">// 车</span></span><br><span class="line">P1()&#123; <span class="comment">// 司机</span></span><br><span class="line">	wait(s1) ; <span class="comment">//-- 检查门是否关好，门状态不是0阻塞</span></span><br><span class="line">	启动 ;</span><br><span class="line">	正常行驶 ;</span><br><span class="line">	到站 ;</span><br><span class="line">	signal(s2) ; <span class="comment">//++ 车停，车状态转为停（1）</span></span><br><span class="line">&#125;</span><br><span class="line">P2()&#123; <span class="comment">// 售票员</span></span><br><span class="line">	关门 ;</span><br><span class="line">	signal(s1) ; <span class="comment">//++ 关门，门状态转为关（1）</span></span><br><span class="line">	售票 ;</span><br><span class="line">	wait(s2) ; <span class="comment">//-- 检查车是否停下，车状态不是0阻塞</span></span><br><span class="line">	开门 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -579,8 +680,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/25/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE01%EF%BC%9AView%20C++%20as%20a%20federation%20of%20languages/" rel="next" title="条款01：View C++ as a federation of languages">
-                <i class="fa fa-chevron-left"></i> 条款01：View C++ as a federation of languages
+              <a href="/2022/03/26/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/" rel="next" title="条款02：Prefer consts, enums, and inlines to">
+                <i class="fa fa-chevron-left"></i> 条款02：Prefer consts, enums, and inlines to
               </a>
             
           </div>
@@ -588,6 +689,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -669,7 +774,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -680,7 +785,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -691,7 +796,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

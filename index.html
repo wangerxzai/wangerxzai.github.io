@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/25/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/03/25/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/" itemprop="url">23王道操作系统 C2-3 同步与互斥</a></h1>
+                <a class="post-title-link" href="/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,130 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-25T00:00:00+08:00">
-                2022-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T16:16:56+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-标准遗传算法的应用"><a href="#1-标准遗传算法的应用" class="headerlink" title="1.标准遗传算法的应用"></a>1.标准遗传算法的应用</h2><p>mermaid direction：TB-从上到下，BT-从下到上，RL-从右到左，LR-从左到右</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line">开始(Start)--&gt;静态分析[Static Analysis];</span><br><span class="line">静态分析--&gt;控制流程图[Flow Chart];</span><br><span class="line">控制流程图--&gt;路径选择[Path Choice];</span><br><span class="line">路径选择--&gt;构造适应度函数[Construct the Fitness Function];</span><br><span class="line">构造适应度函数--&gt;参数编码[Parameter Coding];</span><br><span class="line">参数编码--&gt;遗传算法初始化[Initialization of Genetic Algorithm];</span><br><span class="line">遗传算法初始化--&gt;评估适应度值[Accessment of Fitness];</span><br><span class="line">评估适应度值--&gt;最优解&#123;Get the Optimal Solution or Achieve the Iteration End Condition&#125;;</span><br><span class="line">最优解-- Yes --&gt;输出[Decoding and Output];</span><br><span class="line">输出--&gt;结束(End);</span><br><span class="line">最优解-- No --&gt;遗传操作[Genetic Manipulation including Choice, Crossover and Mutation];</span><br><span class="line">遗传操作--&gt;下一代种群[Generduce Next Generation Populations];</span><br><span class="line">下一代种群--&gt;评估适应度值;</span><br><span class="line">评估适应度值-- use --&gt;驱动模块((Driver Module));</span><br><span class="line">程序插桩[Program Instrumentation]--&gt;参数编码;</span><br><span class="line">程序插桩--&gt;驱动模块;</span><br><span class="line">驱动模块--&gt;被测单元((Tested Units));</span><br><span class="line">被测单元--&gt;桩模块((Instrumentation Module));</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-改进遗传算法的应用"><a href="#2-改进遗传算法的应用" class="headerlink" title="2.改进遗传算法的应用"></a>2.改进遗传算法的应用</h2><h3 id="2-1-改进遗传算子"><a href="#2-1-改进遗传算子" class="headerlink" title="2.1 改进遗传算子"></a>2.1 改进遗传算子</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/26/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/" itemprop="url">23王道操作系统 C2-3 同步与互斥</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
               </time>
             
 
@@ -516,7 +638,108 @@
 
 
 
-<h3 id="2-3-8-习题"><a href="#2-3-8-习题" class="headerlink" title="2.3.8 习题"></a>2.3.8 习题</h3><h3 id="2-3-9-作业"><a href="#2-3-9-作业" class="headerlink" title="2.3.9 作业"></a>2.3.9 作业</h3><ol>
+<h3 id="2-3-8-习题"><a href="#2-3-8-习题" class="headerlink" title="2.3.8 习题"></a>2.3.8 习题</h3><ul>
+<li>不需要信号量就能实现的功能是<strong>进程的并发执行</strong>。</li>
+</ul>
+<p>在多道程序技术中，信号量机制是一种实现同步与互斥的工具。进程执行的前驱关系实际上是指进程的同步关系。</p>
+<ul>
+<li>两个旅行社甲和乙为旅客到某航空公司订机票，形成互斥资源的是<strong>飞机票</strong>。</li>
+</ul>
+<p>一张飞机票只能供一个旅客使用，其他的只是中间资源。</p>
+<ul>
+<li><p><strong>公用队列</strong>属于临界资源。</p>
+</li>
+<li><p>在操作系统中，PV操作是一种<strong>低级进程通信原语</strong>。</p>
+</li>
+<li><p><strong>管程</strong>定义了共享数据结构和各种进程在该数据结构上的全部操作。</p>
+</li>
+<li><p>在用信号量机制实现互斥时，互斥信号量初始值为<strong>1</strong>。</p>
+</li>
+<li><p>在PV操作实现进程同步时，信号量初始值为<strong>由用户决定</strong>。</p>
+</li>
+<li><p>一个进程映像由程序、数据、PCB组成，其中<strong>共享程序段</strong>必须用可重入编码编写。</p>
+</li>
+<li><p>有三个进程共享同一程序段，而每次只允许两个进程进入该程序段，若用PV操作同步机制，则信号量S的取值范围是<strong>2、1、0、-1</strong>。</p>
+</li>
+</ul>
+<p>两个可用，S &#x3D; 2。三个同时申请，一个等待，S &#x3D; -1。</p>
+<ul>
+<li>一个系统中共有5个并发进程涉及某个相同的变量A，变量A的相关临界区是由<strong>5</strong>个临界区构成的。</li>
+</ul>
+<p>临界区：访问临界资源A的代码</p>
+<ul>
+<li>管程中的signal操作和信号量机制中的V操作<strong>不相同</strong>。</li>
+</ul>
+<p>V操作一定++，signal针对条件变量，若不存在因该条件变量而阻塞的进程，则不会++。</p>
+<ul>
+<li><p>对信号量S执行P操作<em><strong>后</strong></em>，使该进程进入资源等待队列的条件是<strong>S.value&lt;0</strong>。</p>
+</li>
+<li><p>若系统有n个进程，则就绪队列中进程的个数最多有<strong>n-1</strong>个；阻塞队列中进程的个数最多有<strong>n</strong>个。</p>
+</li>
+</ul>
+<p>就绪队列，<strong>CPU</strong>中必须有一个运行，最多n-1；阻塞队列，可能出现<strong>死锁</strong>，所以最多n个。</p>
+<ul>
+<li><p>互斥使用缓冲器的信号量初始值为<strong>1</strong>。互斥信号量初始值始终为1 。</p>
+</li>
+<li><p>需要<strong>互斥执行的操作</strong>，二者先后顺序调换，会对结果产生影响。</p>
+</li>
+<li><p>关于TSL(Test and Set Lock)指令实现进程互斥机制相关，正确的是<strong>等待进入临界区的进程不会主动放弃CPU</strong>。</p>
+</li>
+</ul>
+<p>while(TSL(&amp;lock))在关中断状态下执行时，若TSL(&amp;lock)一直为true，不再开中断，则系统可能会因此终止。</p>
+<ul>
+<li><p>若x是管程内的条件变量，则当程序执行x.wait()时所做的工作是<strong>阻塞该进程，并将之插入x的阻塞队列中</strong>。</p>
+</li>
+<li><p>可以实现<em>让权等待</em>的是<strong>信号量方法</strong>。</p>
+</li>
+</ul>
+<p>硬件方法（xx指令）实现进程同步时不能实现让权等待，Peterson算法满足有限等待但不满足让权等待。</p>
+<hr>
+<p><strong>应用题</strong></p>
+<ul>
+<li>有两个并发程序P1，P2，程序代码：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">x = <span class="number">1</span> ;</span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) z = x + y ;</span><br><span class="line"><span class="keyword">else</span> z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">P2</span>()&#123;</span><br><span class="line">x = <span class="number">-1</span> ;</span><br><span class="line">a = x + <span class="number">3</span> ;</span><br><span class="line">x = a + x ;</span><br><span class="line">b = a + x ;</span><br><span class="line">c = b * b ;</span><br><span class="line">print c ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Q：（1）z值的可能（假设每条赋值语句是一个原子操作）。（2）c值的可能（其中x为P1、P2的共享变量）。</p>
+<p>A：</p>
+<p>（1）-2，1，2，3，5，7</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">x = <span class="number">1</span> ; <span class="comment">// null -&gt; z = 3</span></span><br><span class="line"> <span class="comment">// x = -1 ; -&gt; z = -2</span></span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) </span><br><span class="line">	 <span class="comment">// x = 5 ; -&gt; z = 7</span></span><br><span class="line">	 <span class="comment">// x = -1 ; -&gt; z = 1</span></span><br><span class="line">	z = x + y ;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	 <span class="comment">// x = 1 ; -&gt; z = 2</span></span><br><span class="line">	z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一直没想到5怎么来的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P1</span>()&#123;</span><br><span class="line">    <span class="comment">// P2: x = -1 </span></span><br><span class="line">    <span class="comment">// P2: a = x + 3 = 2 </span></span><br><span class="line">x = <span class="number">1</span> ;</span><br><span class="line">    <span class="comment">// P2: x = a + x = 2 + 1 = 3</span></span><br><span class="line">y = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">if</span>(x &gt; <span class="number">0</span>) </span><br><span class="line">    z = x + y ; <span class="comment">// = 3 + 2 = 5</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">    z = x * y ;</span><br><span class="line">print z ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>真心服了。</p>
+<p>（2）考虑到共享变量，互斥资源只有x，所以更改x的插入位置，有以下三种情况，c分别为9，81，25</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P2</span>()&#123;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 9</span></span><br><span class="line">x = <span class="number">-1</span> ;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 81</span></span><br><span class="line">a = x + <span class="number">3</span> ;</span><br><span class="line">x = a + x ;</span><br><span class="line">    <span class="comment">// x = 1 ; -&gt; c = 25</span></span><br><span class="line">b = a + x ;</span><br><span class="line">c = b * b ;</span><br><span class="line">print c ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在一个仓库中可以存放A和B两种产品，要求：（1）每次<strong>只能存入一种</strong>商品。（需要一个互斥信号量）（2）A量 - B量 &lt; M （3）B量 - A量 &lt; N 。M，N为正整数，用PV操作描述AB入库过程。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span> ;</span><br><span class="line"><span class="type">int</span> na = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> nb = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> m ;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="built_in">goodsA</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        <span class="keyword">if</span>((na - nb &lt; m) &amp;&amp; (nb - na &lt; n)) &#123;</span><br><span class="line">            put A ;</span><br><span class="line">            na ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">goodsB</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        <span class="keyword">if</span>((na - nb &lt; m) &amp;&amp; (nb - na &lt; n)) &#123;</span><br><span class="line">            put B ;</span><br><span class="line">            nb ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ans：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span> ;</span><br><span class="line">semaphore sa = M - <span class="number">1</span> ; <span class="comment">// AB容量差</span></span><br><span class="line">semaphore sb = N - <span class="number">1</span> ; <span class="comment">// BA容量差</span></span><br><span class="line"><span class="built_in">A</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(sa) ;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        put A ;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">        <span class="built_in">V</span>(sb) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">B</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">P</span>(sb) ;</span><br><span class="line">        <span class="built_in">P</span>(mutex) ;</span><br><span class="line">        put B ;</span><br><span class="line">        <span class="built_in">V</span>(mutex) ;</span><br><span class="line">        <span class="built_in">V</span>(sa) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>面包师有很多面包，由n名销售人员销售。每名顾客进店后取一个号，并等号，当一名销售人员空闲时，就叫下一个号。设计一个销售人员和顾客同步的算法。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">semaphore FreeSalesman = n ;</span><br><span class="line">semaphore FreeConsumer = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> i = <span class="number">1</span> ;</span><br><span class="line"><span class="type">int</span> j = <span class="number">1</span> ;</span><br><span class="line"><span class="built_in">consumer</span>()&#123;</span><br><span class="line">    <span class="built_in">V</span>(FreeConsumer) ;</span><br><span class="line">    get number i ;</span><br><span class="line">    i ++ ;</span><br><span class="line">    wait ;</span><br><span class="line">    <span class="built_in">P</span>(FreeSalesman) ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">salesman</span>()&#123;</span><br><span class="line">    finish last service <span class="keyword">or</span> free originally ;</span><br><span class="line">    <span class="built_in">V</span>(FreeSalesman) ;</span><br><span class="line">    <span class="built_in">P</span>(FreeConsumer) ;</span><br><span class="line">    serve the consumer j ;</span><br><span class="line">    j ++ ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>某工厂有两个生产车间和一个装配车间。生产车间分别生产AB两种零件，装配车间负责把零件组装成产品。两个生产车间每生产一个零件后，都要分别把它们送到专配车间的货架F1，F2上。F1存放零件A，F2存放零件B，F1和F2的容量均可存放10个零件。装配工人每次从货架上取一个零件A和一个零件B后组装成产品。请用PV进行管理。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">semaphore f1 = <span class="number">10</span> ; <span class="comment">// F1信号量</span></span><br><span class="line">semaphore f2 = <span class="number">10</span> ; <span class="comment">// F2信号量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ProducingDepartments</span>()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-3-9-作业"><a href="#2-3-9-作业" class="headerlink" title="2.3.9 作业"></a>2.3.9 作业</h3><ol>
 <li>用记录型信号量解决以下问题，用类C语言编写进程同步算法。<br>司机  P1    售票员 P2<br>REPEAT     REPEAT<br>启动        关门<br>正常运行     售票<br>到站停      开门<br>UNTIL FALSE   UNTIL FALSE</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> value ;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">process</span> *<span class="title">L</span> ;</span></span><br><span class="line">&#125; semaphore ;</span><br><span class="line"></span><br><span class="line">semaphore s1, s2 ;</span><br><span class="line">s1 = <span class="number">0</span> ; <span class="comment">// 门</span></span><br><span class="line">s2 = <span class="number">0</span> ; <span class="comment">// 车</span></span><br><span class="line">P1()&#123; <span class="comment">// 司机</span></span><br><span class="line">	wait(s1) ; <span class="comment">//-- 检查门是否关好，门状态不是0阻塞</span></span><br><span class="line">	启动 ;</span><br><span class="line">	正常行驶 ;</span><br><span class="line">	到站 ;</span><br><span class="line">	signal(s2) ; <span class="comment">//++ 车停，车状态转为停（1）</span></span><br><span class="line">&#125;</span><br><span class="line">P2()&#123; <span class="comment">// 售票员</span></span><br><span class="line">	关门 ;</span><br><span class="line">	signal(s1) ; <span class="comment">//++ 关门，门状态转为关（1）</span></span><br><span class="line">	售票 ;</span><br><span class="line">	wait(s2) ; <span class="comment">//-- 检查车是否停下，车状态不是0阻塞</span></span><br><span class="line">	开门 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -583,7 +806,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/25/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE01%EF%BC%9AView%20C++%20as%20a%20federation%20of%20languages/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -602,7 +825,160 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/03/25/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE01%EF%BC%9AView%20C++%20as%20a%20federation%20of%20languages/" itemprop="url">条款01：View C++ as a federation of languages</a></h1>
+                <a class="post-title-link" href="/2022/03/26/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/" itemprop="url">条款02：Prefer consts, enums, and inlines to</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这个条款或许改为“以编译器替换预处理器”比较好，因为或许<code>#define</code>不被视为语言的一部分。当你做出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define ASPECT_RATIO 1.653</span><br></pre></td></tr></table></figure>
+
+<p>记号名称 ASPECT_RATIO 也许从未被编译器看见；也许<strong>在编译器开始处理源码之前它就被预处理器移走</strong>了。于是记号 ASPECT_RATIO 有可能没有进入记号表 symbol table 内。因此当运用此常量但获得一个编译错误时，错误信息也许会提到 1.653 而不是 ASPECT_RATIO 。这个问题也可能出现在记号式调试器 symbolic debugger ，原因相同：所使用的名称可能并未进入 symbol table 。</p>
+<p>解决方法是用<code>const</code>替换宏<code>#define</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> AspectRatio = <span class="number">1.653</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>这样就会进入 symbol table 。此外，对浮点常量 floating point constant 而言，使用常量可能比使用<code>#define</code>导致较小量的码，因为预处理器“盲目地将宏名称 ASPECT_RATIO 替换为 1.653 ” ，导致目标码 object code 出现多份 1.653 ，若改用常量绝不会出现相同情况。</p>
+<p>当用<code>const</code>替换<code>#define</code>，注意到两种特殊情况：</p>
+<ol>
+<li><strong>定义常量指针 constant pointers</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/25/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/25/%E5%90%8E%E7%AB%AF/C++/E%20C++/%E6%9D%A1%E6%AC%BE01/" itemprop="url">条款01：View C++ as a federation of languages</a></h1>
         
 
         <div class="post-meta">
@@ -676,7 +1052,7 @@
       
         
           
-            <h2 id="条款01：View-C-as-a-federation-of-languages"><a href="#条款01：View-C-as-a-federation-of-languages" class="headerlink" title="条款01：View C++ as a federation of languages"></a>条款01：View C++ as a federation of languages</h2><p>最简单的方法是把C++视为一个由相关语言组成的联邦而非单一语言，其中主要的次语言（sublanguage）有四个，当从一个次语言移到另一个次语言，守则可能会改变。四个sublanguages：</p>
+            <p>最简单的方法是把C++视为一个由相关语言组成的联邦而非单一语言，其中主要的次语言（sublanguage）有四个，当从一个次语言移到另一个次语言，守则可能会改变。四个sublanguages：</p>
 <ul>
 <li>C</li>
 </ul>
@@ -1501,6 +1877,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/" itemprop="url">EMOTIONAL DAMAGE --《消失的爱人》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
+                2022-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>归功于下午的一杯咖啡，让我半夜不眠观此爽片。</p>
+<p>这段时间猎奇于pegging亚文化，这部电影深深带入完全地被掌控和控制。相比于pegging基于道具的输出，这种由内而外，知行合一的控制欲与执行力令人惊叹。现实中相比起来恐怕后者更多。隔着屏幕我已经臣服在“amazing amy”手工刀下了。</p>
+<p>疯子间的博弈才是真正地舍我其谁，凌晨四点惊得我可以从床上弹起来再敲上两题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/19/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1637,1235 +2157,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/18/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-1%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/18/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-1%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/" itemprop="url">23王道操作系统 C2-1 进程与线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-18T00:00:00+08:00">
-                2022-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2-1-进程与线程"><a href="#2-1-进程与线程" class="headerlink" title="2.1 进程与线程"></a>2.1 进程与线程</h2><h3 id="2-1-1-进程"><a href="#2-1-1-进程" class="headerlink" title="2.1.1 进程"></a>2.1.1 进程</h3><ol>
-<li>概念</li>
-</ol>
-<p>为了使参与并发执行的每个程序都能独立地运行，必须为之配置一个专门的数据结构，称为<strong>进程控制块（PCB）</strong>。系统利用PCB来描述进程的基本情况和运行状态，进而控制和管理进程。</p>
-<p>相应地，由程序段、相关数据和PCB三部分构成了<strong>进程实体（进程映像）</strong>。创建进程，实则创建进程实体中的PCB；撤销进程，实则撤销进程的PCB。</p>
-<p>注意到，进程映像是<strong>静态</strong>的，进程是<strong>动态</strong>的。</p>
-<p>进程比较典型的定义是：1.进程是程序的一次执行过程。2.进程是一个程序及其数据在处理机上顺序执行时所发生的活动。3.进程时具有独立功能的程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。</p>
-<ol start="2">
-<li>特征</li>
-</ol>
-<p><strong>1.动态性</strong>，进程是程序一次的执行，有着创建、活动、暂停、终止等过程，具有一定生命周期，动态地产生、变化和消亡。</p>
-<p><strong>2.并发性</strong>，多个进程实体同存于内存中，能在一段时间内同时运行。</p>
-<p><strong>3.独立性</strong>，指进程实体是一个能独立运行、独立获得资源和独立接受调度的基本单位。凡未建立PBC的程序，都不能作为一个独立的单位参与运行。</p>
-<p><strong>4.异步性</strong>，由于进程的相互制约，使得进程按各自独立、不可预知速度向前推进。异步性会导致结果的不可再现性，为此在操作系统中必须配置相应的进程同步机制。</p>
-<h3 id="2-1-2-进程的状态与转换"><a href="#2-1-2-进程的状态与转换" class="headerlink" title="2.1.2 进程的状态与转换"></a>2.1.2 进程的状态与转换</h3><ol>
-<li>运行态</li>
-</ol>
-<p>进程正在处理机上运行。在单处理机中，每个时刻只有一个进程处于运行态。</p>
-<ol start="2">
-<li>就绪态</li>
-</ol>
-<p>进程获得除处理机外的一切所需西元，一旦得到处理机，便可运行。处于就绪态的进程可能有多个，通常排成队列，称为<strong>就绪队列</strong>。进程得到处理机的时间很短，而且非常频繁，进程实际中是频繁地转换到就绪态的。</p>
-<ol start="3">
-<li>阻塞态，又称等待态</li>
-</ol>
-<p>进程正在等待某一事件而暂停运行，即时处理机空闲，该进程也不能运行。    系统通常将处于阻塞态的进程也排成一个队列，甚至根据阻塞原因的不同，设置多个<strong>阻塞队列</strong>。进程转换到等待态的次数相对较少。</p>
-<p>这三个状态时进程的<strong>基本状态</strong>。</p>
-<ol start="4">
-<li>创建态</li>
-</ol>
-<p>进程正在被创建，尚未转到就绪态。</p>
-<ol start="5">
-<li>结束态</li>
-</ol>
-<p>进程正在从系统中消失，可能是进程正常结束或其他原因退出运行。</p>
-<p>三种<strong>基本状态</strong>之间的转换如下：</p>
-<ul>
-<li><p>就绪态 - 运行态</p>
-</li>
-<li><p>运行态 - 就绪态</p>
-</li>
-</ul>
-<p>处于运行态的进程在时间片用完后，不得不让出处理机，从而进程由运行态转换为就绪态。</p>
-<ul>
-<li>运行态 - 阻塞态</li>
-</ul>
-<p>进程一系统调用的形式请求操作系统提供服务，这是一种特殊的、由运行用户态程序调用操作系统内核过程的形式。</p>
-<ul>
-<li>阻塞态 - 就绪态</li>
-</ul>
-<p>进程等待的事件到来时，如IO操作结束或中断结束。</p>
-<p>一个进程<strong>从运行态到阻塞态是主动的行为</strong>，而<strong>从阻塞态到就绪态是被动的行为</strong>，需要其他相关进程的协助。</p>
-<h3 id="2-1-3-进程的组织"><a href="#2-1-3-进程的组织" class="headerlink" title="2.1.3 进程的组织"></a>2.1.3 进程的组织</h3><p>进程由以下三部分组成，最重要的是<strong>进程控制块（PCB）</strong>。</p>
-<ol>
-<li>进程控制块 PCB</li>
-</ol>
-<p>PCB是进程实体的一部分，是进程存在的<strong>唯一标志</strong>。</p>
-<p>PCB主要包括进程描述信息、进程控制和管理信息、资源分配清单和处理机相关信息等。各部分的主要说明如下：</p>
-<table>
-<thead>
-<tr>
-<th>进程描述信息</th>
-<th>进程控制和管理信息</th>
-<th>资源分配清单</th>
-<th>处理机相关信息</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>进程标识符(PID)</td>
-<td>进程当前状态</td>
-<td>代码段指针</td>
-<td>通用寄存器值</td>
-</tr>
-<tr>
-<td>用户标识符(UID)</td>
-<td>进程优先级</td>
-<td>数据段指针</td>
-<td>地址寄存器值</td>
-</tr>
-<tr>
-<td></td>
-<td>代码运行入口地址</td>
-<td>堆栈段指针</td>
-<td>控制寄存器值</td>
-</tr>
-<tr>
-<td></td>
-<td>程序的外存地址</td>
-<td>文件描述符</td>
-<td>标志寄存器值</td>
-</tr>
-<tr>
-<td></td>
-<td>进入内存时间</td>
-<td>键盘</td>
-<td>状态字</td>
-</tr>
-<tr>
-<td></td>
-<td>处理机占用时间</td>
-<td>鼠标</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>信号量使用</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p><strong>进程描述信息</strong>：PID：标志各个进程，每个进程都有一个唯一的标识号。UID：进程归属的用户，UID主要为共享和保护服务。<strong>进程控制和管理信息</strong>：进程当前状态：描述进程的状态信息，作为处理机分配调度的依据。进程优先级：描述进程抢占处理机的优先级，优先级高的进程可以优先获得处理机。<strong>资源分配清单</strong>：用于说明有关内存地址空间或虚拟地址空间的状况，所打开文件的列表和所使用的输入&#x2F;输出设备信息。<strong>处理机相关信息</strong>：也称<strong>处理机的上下文</strong>，主要指处理机中各寄存器的值。</p>
-<p>同一个系统中，通常存在许多进程的PCB，为方便调度与管理，常用的组织方式是<strong>链接方式</strong>和<strong>索引方式</strong>两种。<strong>链接</strong>将同一状态的PCB链接成一个队列，不同的状态对应不同的队列，也可把阻塞态的队列因阻塞原因不同，排成多个阻塞队列。<strong>索引</strong>将同一状态的进程组织在一个索引表中，索引表的表项指向相应的PCB，不同状态对应不同的索引表。</p>
-<ol start="2">
-<li>程序段</li>
-</ol>
-<p>指能被进程调度程序调度到<strong>CPU执行</strong>的<strong>程序代码段</strong>。注意，程序可被多个进程共享，即<strong>多个进程可以运行同一个程序</strong>。</p>
-<ol start="3">
-<li>数据段</li>
-</ol>
-<p>一个进程的数据段，可以是进程对应的程序加工处理的<strong>原始数据</strong>，也可以是程序执行时产生的<strong>中间或最终结果</strong>。</p>
-<h3 id="2-1-4-进程控制"><a href="#2-1-4-进程控制" class="headerlink" title="2.1.4 进程控制"></a>2.1.4 进程控制</h3><ol>
-<li>进程的创建</li>
-</ol>
-<p>允许一个进程创建另一个进程，此时创建者称为<strong>父进程</strong>，被创建者称为<strong>子进程</strong>。子进程可继承父进程的资源，子进程撤销时应将资源还给父进程。创建过程如下（<strong>创建原语</strong>）：</p>
-<p>（1）为新进程分配一个<strong>唯一的进程标识号</strong>，并申请一个空白<strong>PCB</strong>（PCB数量有限）。<strong>若PCB申请失败，则创建失败</strong>。</p>
-<p>（2）为进程分配其运行所需的<strong>资源</strong>，这些资源或从操作系统获得，或从父进程获得。如果资源不足，不是创建失败，处于<strong>创建态</strong>，等待分配。</p>
-<p>（3）初始化PCB，包括：初始话标志信息，初始话处理机状态信息和初始话处理机控制信息，以及设置进程的优先级。</p>
-<p>（4）若就绪队列能接纳新进程，则新进程插入就绪队列，等待调度运行。</p>
-<ol start="2">
-<li>进程的终止</li>
-</ol>
-<p>引起终止的原因有：1.正常结束。2.异常结束。如存储区越界，保护错，非法指令，特权指令错，运行超时，算术运算错，I&#x2F;O故障等。3.外界干预。指进程应外界的请求而终止运行，如操作员或操作系统干预，父进程请求和父进程终止。</p>
-<p>终止过程如下（<strong>终止原语</strong>）：</p>
-<p>（1）根据被终止进程的<strong>标识符</strong>，检索出该进程的PCB，从中读取该进程的状态。</p>
-<p>（2）若被终止进程处于执行状态，<strong>立即终止该进程的执行</strong>，将处理机资源分配给其他进程。</p>
-<p>（3）若该进程还有子孙进程，则应将<strong>其所有子孙进程终止</strong>。</p>
-<p>（4）将该进程所拥有的<strong>全部资源</strong>，或<strong>归还</strong>给其父进程，或归还给操作系统。</p>
-<p>（5）将该PCB从所在队列（链表）中删除。</p>
-<ol start="3">
-<li>进程的阻塞和唤醒</li>
-</ol>
-<p>阻塞是进程自身的一种主动行为，由于期待的某件事没有发生，进程通过阻塞原语（Block）使自己从运行态转为阻塞态。<strong>阻塞原语</strong>的执行过程如下：</p>
-<p>（1）找到将要<strong>被阻塞进程的标识号对应的PCB</strong>。</p>
-<p>（2）若该进程为运行态，则保护其现场，将其状态<strong>转为阻塞态</strong>，停止运行。</p>
-<p>（3）把该PCB插入相应事件的<strong>等待队列</strong>，将处理机资源调度给其他就绪进程。</p>
-<p>当阻塞进程所期待的事件出现时，有关进程调用唤醒原语（Wakeup），将等待该事件的进程唤醒。唤醒原语的执行过程如下：</p>
-<p>（1）在该事件的<strong>等待队列中找到相应进程的PCB</strong>。</p>
-<p>（2）将其从等待队列中移出，并置其状态为<strong>就绪态</strong>。</p>
-<p>（3）把该PCB插入<strong>就绪队列</strong>，等待调度程序调度。</p>
-<p>Block和Wakeup必须成对使用，否则阻塞进程将会因不能被唤醒永久地处于阻塞状态。</p>
-<h3 id="2-1-5-进程的通信"><a href="#2-1-5-进程的通信" class="headerlink" title="2.1.5 进程的通信"></a>2.1.5 进程的通信</h3><p>进程通信是指进程之间的信息交换。PV操作是低级通信方式，高级通信方式是指<strong>以较高的效率传输大量数据的通信方式</strong>。高级通信方式包括三类：</p>
-<ol>
-<li><strong>共享存储</strong></li>
-</ol>
-<p>在通信的进程之间存在一块可直接访问的共享空间，通过<strong>对这片共享空间进行写&#x2F;读操作</strong>实现进程之间的信息交换。</p>
-<p>共享存储又分为两种：低级方式的共享是<strong>基于数据结构的共享</strong>；高级方式的共享则是<strong>基于存储区的共享</strong>。操作系统只负责为通信进程提供可共享使用的存储空间和同步互斥工具，而数据交换则由用户自己安排读&#x2F;写指令。</p>
-<ol start="2">
-<li>消息传递</li>
-</ol>
-<p>在消息传递系统中，进程间的数据交换<strong>以格式化的信息</strong>（Message）为单位。若通信的进程之间不存在可直接访问的共享空间，则必须<strong>利用操作系统提供的消息方式</strong>实现进程通信。进程通过系统提供的<strong>发送消息</strong>和<strong>接受消息</strong>两个原语进行数据交换。该机制能很好地支持多处理机系统、分布式系统和计算机网络，因此也成为这些领域最主要的通信工具。</p>
-<p>（1）直接通信方式。发送进程直接把消息发送给接收进程，并把它挂在接受进程的消息缓冲队列上，接收进程从消息缓冲队列中取得消息。</p>
-<p>（2）间接通信方式。发送消息到某个中间实体，接受进程从中间实体取得消息。<strong>这种中间实体一般称为信箱</strong>。该通信方式广泛引用于计算机网络中。</p>
-<ol start="3">
-<li>管道通信</li>
-</ol>
-<p>管道通信是消息传递的一种特殊方式。所谓“管道”是指<strong>连接一个读进程和一个写进程以实现它们之间的通信的一个共享文件</strong>，又名pipe文件。向管道（共享文件）提供输入的发送进程（写进程），以字符流形式将大量的数据送入（写）管道；而接受管道输出的接受进程（读进程）则从管道中接受（读）数据。为了协调双方通信，管道机制必须提供以下三方面的协调能力：互斥、同步和确定对方的存在。</p>
-<p>注意：从管道读数据时<strong>一次性操作</strong>，数据一旦被读取，就释放空间以便写入更多数据。管道只能采用半双工通信，即某一时刻只能单项运输。要实现父子进程互动通信，需要定义两个管道。</p>
-<p>管道可以理解为共享存储的优化和发展，共享会因为其他进程在进行写操作导致访问行为阻塞。管道只允许一边写入，另一边读出，只要缓冲区中有数据，进程就能从缓冲区中读出，而不必担心因为其他进程在其中进行写操作而阻塞。</p>
-<h3 id="2-1-6-线程与多线程模式"><a href="#2-1-6-线程与多线程模式" class="headerlink" title="2.1.6 线程与多线程模式"></a>2.1.6 线程与多线程模式</h3><p>引入进程目的是<strong>更好地使多道程序并发执行，提高资源利用率和系统吞吐量</strong>。引入线程目的是<strong>减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能</strong>。</p>
-<ol>
-<li>线程</li>
-</ol>
-<p>“轻量级进程”，是一个基本的CPU执行单元，也是程序执行流的最小单元，由线程ID、程序计数器、寄存器集合和堆栈组成。线程是进程中的一个实体，自己不拥有系统资源，可与同属一个进程的其他线程<strong>共享进程所拥有的全部资源</strong>。<strong>一个线程可以创建和撤销一个线程</strong>，同一进程多个线程之间可以<strong>并发执行</strong>。由于线程之间互相制约，呈现<strong>间断性</strong>。线程有就绪、阻塞和运行三基本态。</p>
-<p>由于进程内部有多个线程，若线程的切换发生在同一个进程内，则只需要很少的时空开销。</p>
-<ol start="2">
-<li>线程与进程的比较</li>
-</ol>
-<p>（1）<strong>调度</strong>。线程切换代价远低于进程。同一进程中，线程的切换不会引起进程切换。但从一个进程切换到另一个进程中的线程时，会引起进程切换。</p>
-<p>（2）<strong>并发性</strong>。在引入线程的操作系统中，不仅进程之间可以并发执行，一个进程中的多个线程之间也可以并发执行，甚至<strong>不同进程</strong>之间的线程也能并发执行，从而使操作系统具有更好的并发性，提高资源利用率和系统吞吐量。</p>
-<p>（3）<strong>拥有资源</strong>。线程不拥有系统资源（除了能保证独立运行的资源），但线程可以访问其隶属进程的系统资源，主要表现在同一进程的所有线程都具有相同的地址空间。</p>
-<p>（4）<strong>独立性</strong>。每个进程都拥有独立的地址空间和资源，除了全局共享变量，不允许其他进程访问。<strong>某进程的线程对其他进程不可见。</strong>同一进程中的不同线程是为了提高并发性及进行相互之间的合作而创建的，它们共享进程的地址空间和资源。</p>
-<p>（5）<strong>系统开销</strong>。在创建和撤销进程时，系统都要为之分配或回收进程控制块PCB及其他资源。操作系统为之付出的开销明显大于创建和撤销线程的开销。此外，由于同一进程内的多个线程共享进程的地址空间，因此这些线程之间的同步与通信非常容易实现，甚至无需操作系统的干预。</p>
-<p>（6）<strong>支持多处理机系统</strong>。对于<strong>单线程进程</strong>，无论有几台处理机，只能在一个处理机上处理。对于<strong>多线程进程</strong>，可以将进程中多个线程分配到多个处理机上执行。</p>
-<ol start="3">
-<li>线程的属性</li>
-</ol>
-<p>多线程操作系统中的<strong>进程已不再是一个基本的执行实体</strong>，但它仍有与执行相关的状态。所谓进程处于“执行”状态，实际上是只该进程中的某线程正在执行。主要属性如下：</p>
-<p>（1）线程是一个轻块实体，不拥有系统资源，但应有一个<strong>唯一的标识符和一个线程控制块</strong>，线程控制块九零线程执行的<strong>寄存器和栈</strong>等现场状态。</p>
-<p>（2）<strong>不同的线程可以执行相同的程序</strong>。</p>
-<p>（3）<strong>同一进程中各个线程共享该进程所拥有的资源</strong>。</p>
-<p>（4）线程是处理机的独立调度单位，多个线程是可以并发执行的。在单CPU的计算机系统中，各线程可以交替地占用CPU；在多CPU的计算机系统中，各线程可占用不同的CPU，若各个CPU为同一个进程内的线程服务，则可以缩短处理时间。</p>
-<p>（5）一个线程被创建后，便开始了它的生命周期，直到终止。</p>
-<ol start="4">
-<li>线程的状态与转换</li>
-</ol>
-<p><strong>执行，就绪与阻塞。</strong></p>
-<ol start="5">
-<li>线程的组织与控制</li>
-</ol>
-<p>（1）<strong>线程控制块</strong></p>
-<p>每个线程配置一个<strong>线程控制块TCB</strong>，用于记录控制和管理线程的信息。通常包括：1 线程标识符；2 一组寄存器，包括程序计数器、状态寄存器和通用寄存器；3 线程运行状态，用于描述线程正处于何种状态；4 优先级；5 线程专有存储区，线程切换时用于保护现场；6 堆栈指针。</p>
-<p>（2）<strong>线程的创建</strong></p>
-<p>用户启动程序时，通常有一个“初始话线程”的线程在执行。<strong>创建新进程</strong>时，需要一个线程创建函数，并提供相应参数。线程创建函数执行完，将<strong>返回一个线程标识符</strong>。</p>
-<p>（3）<strong>线程的终止</strong></p>
-<p>通常线程<strong>被终止后不立即释放它所占有的资源</strong>，只有当进程中的其他线程执行了分离函数后，被终止线程才与资源分离，此时资源才能被其他线程利用。被终止的但未释放资源的线程<strong>仍可被其他线程调用</strong>，以使被终止线程重新恢复运行。</p>
-<ol start="6">
-<li>线程的实现方式</li>
-</ol>
-<p>分两类：用户级线程（ULT）和内核级线程（KLT）。内核级又称为<strong>内核支持的线程</strong>。</p>
-<p>（1）ULT。</p>
-<p>在ULT中，线程管理的工作都由应用程序在用户空间中完成，内核意识不到线程的存在。</p>
-<p>优点：1、线程切换不需要转换到内核空间，<strong>节省了模式切换的开销</strong>。2、调度算法可以是进程专用的，不<strong>同进程可根据自身需要，对自己的线程选择不同的调度算法</strong>。3、用户级线程的实现<strong>与操作系统平台无关</strong>，对线程管理的代码是属于用户程序的一部分。</p>
-<p>缺点：1、系统调用的阻塞问题。2、不能发挥多处理机的优势。</p>
-<p>（2）KLT。</p>
-<p>在操作系统中，无论是系统进程还是用户进程，都在操作系统内核的支持下运行的，与内核紧密相关。</p>
-<p>优点：1、能发挥多处理机的优势，内核能同时调度同一进程中的多个线程并行执行。2、如果进程中一个线程阻塞，内核可以调度该进程或者是其他进程中其他线程占用处理机。3、内核支持线程具有很小的数据结构和堆栈，线程切换快、开销小。4、内核本身也可采用多线程技术，可以提高系统的执行速度和效率。</p>
-<p>缺点：同一进程线程切换，需要从用户态转到核心态进行，系统开销大。</p>
-<p>（3）组合方式</p>
-<p>支持多个KLT建立调度和管理，允许用户程序建立、调度和管理ULT。</p>
-<ul>
-<li>线程库（thread library）</li>
-</ul>
-<p>是为程序提供创建和管理线程的API。实现有两种：</p>
-<p>（1）<strong>在用户空间中提供一个没有内核支持的库</strong>。意味着调用库内一个函数只导致用户空间中的一个本地函数的调用。</p>
-<p>（2）<strong>实现由操作系统直接支持的内核级的一个库</strong>。</p>
-<ol start="7">
-<li>多线程模式</li>
-</ol>
-<p>由于ULT和KLT的连接方式不同，形成三种不同的多线程模型：</p>
-<p>（1）<strong>多对一</strong>。多个ULT映射到一个KLT。优点：线程管理是在用户空间进行的，因而<strong>效率比较高</strong>。缺点：如果一个线程在访问内核时发生阻塞，则整个进程都会被阻塞；在任何时刻，只有一个线程能访问内核，<strong>多个线程不能同时在多个处理机上运行</strong>。</p>
-<p>（2）<strong>一对一</strong>。每个ULT映射到一个KLT。优点：一个线程被阻塞后，允许调度到另一个线程运行，所以并发能力较强。</p>
-<p>（3）<strong>多对多</strong>。n个ULT映射到m个KLT。特点：有上两个模型的优点，克服了上两个模型的缺点。</p>
-<h3 id="2-1-7-习题"><a href="#2-1-7-习题" class="headerlink" title="2.1.7 习题"></a>2.1.7 习题</h3><ul>
-<li><p>一个进程映像是<strong>PCB结构与程序和数据的结合</strong>。</p>
-</li>
-<li><p>进程和程序的根本区别是<strong>静态和动态特点</strong>。</p>
-</li>
-<li><p><strong>进程获得处理器运行时通过调度得到的</strong>。（对）</p>
-</li>
-<li><p>在单处理器系统中，任何时刻都只有一个进程处于运行态。（错）</p>
-</li>
-</ul>
-<p>系统死锁时可能全部进程处于阻塞态，或无进程任务。就是说可能一个都没有。</p>
-<ul>
-<li><p><strong>不管系统是否支持线程，进程都是资源分配的基本单位。</strong>（对）</p>
-</li>
-<li><p>OS为每个用户级线程建立一个TCB。（错）</p>
-</li>
-<li><p>一个进程可以包含多个线程，各线程<strong>共享进程的虚拟地址空间</strong>。</p>
-</li>
-<li><p>进程PA不断地向管道写数据，进程PB从管道中读数据并加工处理，如下图所示。如果采用PV操作来实现进程PA和进程PB间的管道通信，并且保证这两个进程并发执行的正确性，则至少需要（）。A．1个信号量，信号量的初值为0    B．2个信号量，信号量的初值分别为0、1    C．3个信号量，信号量的初值分别为0、0、1    D．4个信号量，信号量的初值分别为0、0、1、1</p>
-</li>
-</ul>
-<p><img src="https://edu-tiku.cdn.bcebos.com/originalpic/d06f8b811c7488f7bf89a6964400cc76.jpg?authorization=bce-auth-v1/ceae51ce68104d68be6f9ad6f91bceee/2021-11-30T07:09:47Z/630720000//183f03940e4045bec3d63d03a7fd166f83e8fcfc0cc8b8058655c18b8e342754">                    </p>
-<p><strong>B</strong>. 两个信号量，1意味着管道不空，0意味着管道空，可用。至少要两个来保证这两个进程并发执行的正确性。</p>
-<ul>
-<li>若 x 是管程内的条件变量，则当进程执行 x.wait()时所做的工作是<strong>阻塞该进程，并将之插入 x 的阻塞队列中</strong>。</li>
-</ul>
-<p>①该进程<strong>需要被挂起或阻塞时</strong>，则调用 x.wait; 将自己插入 x 条件变量的等待队列中，并释放管程，直到 x 条件变化。</p>
-<p>②调用 x.signal，<strong>重新启动一个</strong>因 x 条件而被阻塞或挂起的进程；如果 x 的等待队列是空的，则继续执行原进程。</p>
-<ul>
-<li>处于挂起就绪状态(即静止就绪状态)的进程，可转换为**就绪状态(即活动就绪状态)**。</li>
-</ul>
-<p><img src="https://uploadfiles.nowcoder.com/images/20190514/1896205_1557799494147_28E8AE7B7A5D049E36A1E50F9E6E6CDA"></p>
-<ul>
-<li>在9个生产者、6个消费者共享容量为8的缓冲器的生产者一消费者问题中，互斥使用缓冲器的信号量初始值为(1)</li>
-</ul>
-<p>所谓互斥使用临界资源，是指在同一时间段内只允许一个进程使用此资源，所以初始值都为1。</p>
-<ul>
-<li>不需要信号量就能实现的功能是<strong>进程的并发执行</strong>。</li>
-<li>若信号量S的初值为2，当前值为-1，则表示有__1__个进程等待信号量</li>
-</ul>
-<p>信号量S大于等于零时，指某资源可用数。信号量S小于零时，绝对值指阻塞队列中某资源的等待数。</p>
-<ul>
-<li>不是同步机制应遵循的准则的是<strong>无限等待</strong>。</li>
-</ul>
-<p>同步机制的四个准则是：让权等待、空闲让进、忙则等待、有限等待。</p>
-<ul>
-<li><p>临界区是指并发进程中访问共享变量的<strong>程序段</strong>。</p>
-</li>
-<li><p>系统进程所请求的一次I&#x2F;O操作完成后，将使进程状态<strong>从阻塞态变为就绪态</strong>。</p>
-</li>
-</ul>
-<p>读写操作完成前在等待结果，处于阻塞态，完成后处于就绪态。</p>
-<ul>
-<li>通常用户进程被建立后，<strong>随着进程运行的正常与不正常结束而撤销</strong>。</li>
-<li>C语言编写的程序在使用内存事一般分为三个段：<strong>正文段（代码和赋值数据段）</strong>：存放二进制代码和正文；<strong>数据堆段</strong>：动态分配的存储区；<strong>数据栈段</strong>：临时变量。</li>
-</ul>
-<p>全局赋值变量（正文段）。未赋值的局部变量（栈段）。函数调用实参传递值（栈段）。malloc()要求动态分配的存储区（堆段）。</p>
-<ul>
-<li>系统动态DLL库中的系统线程，被不同的进程调用，它们是<strong>相同</strong>的线程。</li>
-</ul>
-<p>程序代码创建可以对于不同的进程，而同一个系统的进程（线程）可以由系统调用的方法被不同的进程（线程）多次使用。</p>
-<ul>
-<li>在具有通道设备的单处理器系统中实现并发技术后，<strong>各进程在某一时间段内并发执行，CPU与I&#x2F;O设备间并行执行</strong>。</li>
-<li>进程自身决定<strong>运行态到阻塞态</strong>。<strong>运行到就绪</strong>由于进程的时间片用完，“主动”调动程序转向就绪态。<strong>就绪到运行</strong>同样是调度程序决定。<strong>阻塞到就绪</strong>由协作进程决定。</li>
-<li>同一进程或不同进程的线程都可以<strong>并发执行</strong>。</li>
-<li><strong>进程创建原语</strong>完成的工作：向系统申请空闲PCB，为被创建进程分配必要资源；然后将PCB初始化，并将PCB插入就绪队列，最后返回一个进程标志号。</li>
-<li>【2010】导致创建新进程的操作是**用户登录成功、启动程序执行、<del>设备分配</del>**。</li>
-</ul>
-<p>用户登录成功，系统要为此创建一个用户管理的进程。启动程序执行是引起创建进程的典型事件，</p>
-<p>设备分配是通过在系统中设置相应的数据结构实现的，不需要创建进程。</p>
-<ul>
-<li><p>【2010】降低优先级的合理时机是<strong>进程时间片用完</strong>。</p>
-</li>
-<li><p>【2011】支持多线程的系统中，进程P创建的若干线程不能共享的是<strong>进程P中某线程的栈指针</strong>。</p>
-</li>
-</ul>
-<p>进程中某线程的栈指针对其他线程透明，所以不能共享。</p>
-<ul>
-<li>【2014】进程对管道进行读操作和写操作都可能被阻塞。（对）</li>
-<li>【2019】可能被进程唤醒的事件是<strong>1.I&#x2F;O结束 2.某进程退出临界区</strong>。</li>
-</ul>
-<p><strong>当被阻塞进程等待的某资源（不包括处理机）可用时</strong>，进程会被唤醒。<strong>某进程退出临界区后，之前因需要进入该临界区而被阻塞的进程</strong>会被唤醒。</p>
-<ul>
-<li>【2020】<strong>应用程序没有进行内核级线程管理的代码，只有一个到内核级线程的编程接口</strong>，内核为进程及其内部的每个线程维护上下文信息，调度也是在内核中由操作系统完成的。</li>
-<li>【2020】多线程模型中，有一对一、多对一、多对多，“操作系统为每一个用户线程建立一个TCB”（错），只有一对一这样。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/18/%E8%80%83%E7%A0%94/%E8%8B%B1%E8%AF%AD/%E8%8B%B1%E4%B8%802018/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/18/%E8%80%83%E7%A0%94/%E8%8B%B1%E8%AF%AD/%E8%8B%B1%E4%B8%802018/" itemprop="url">英一2018</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-18T00:00:00+08:00">
-                2022-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Use-of-Eng-8-x2F-10"><a href="#Use-of-Eng-8-x2F-10" class="headerlink" title="Use of Eng 8&#x2F;10"></a>Use of Eng 8&#x2F;10</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">oxytocin</td>
-<td align="center">催产素</td>
-</tr>
-<tr>
-<td align="center">hormone</td>
-<td align="center">激素；荷尔蒙</td>
-</tr>
-<tr>
-<td align="center">trigger</td>
-<td align="center">激发，引发</td>
-</tr>
-<tr>
-<td align="center">herding instinct</td>
-<td align="center">群居本能</td>
-</tr>
-<tr>
-<td align="center">prompts</td>
-<td align="center">引起；促使；激励</td>
-</tr>
-<tr>
-<td align="center">spray</td>
-<td align="center">喷，喷洒</td>
-</tr>
-<tr>
-<td align="center">inhale</td>
-<td align="center">吸入（空气、烟雾等）</td>
-</tr>
-<tr>
-<td align="center">exposure</td>
-<td align="center">暴露；（身体）受冻；曝光；报道，宣传</td>
-</tr>
-<tr>
-<td align="center">exposure to</td>
-<td align="center">暴露于…环境；受到…影响</td>
-</tr>
-<tr>
-<td align="center">todller</td>
-<td align="center">学步童</td>
-</tr>
-<tr>
-<td align="center">follow-up</td>
-<td align="center">后续的</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>Trust is a tricky business. 信任是件很玄妙的事。</p>
-</li>
-<li><p><strong>Then</strong> &#x3D;&#x3D; if that is the situation</p>
-</li>
-</ul>
-<p>“既然那样、那样的话”，而<strong>therefore</strong>引出前述内容的逻辑结果。</p>
-<ul>
-<li>When people place their trust in an dividual or an institution, their brains release oxytocin, a hormone that <strong>produces</strong> pleasurable feelings and triggers the herding instinct that prompts human to connect with one another.</li>
-</ul>
-<p>When people place their trust in an dividual or an institution（时间状语从句）,&#x2F; their brains release <u>oxytocin</u>（主干）,&#x2F; a hormone （同位语 oxytocin）that <strong>produces</strong> pleasurable feelings and triggers <u>the herding instinct</u>&#x2F; that prompts human to connect with one another（定语从句修饰the herding instinct）.</p>
-<p>这里表示从无到有的“激发本能”，所以用<strong>produce产生</strong>，而不是<strong>maintain保持</strong>。</p>
-<ul>
-<li>Scientists have found that exposure <strong>to</strong> this hormone puts us in a trusting mood.</li>
-</ul>
-<p><strong>by</strong>，引出动作的<strong>施动者</strong>或<strong>达成动作的方式</strong>。<strong>of</strong>，引出<strong>动作主体</strong>。</p>
-<ul>
-<li>Sixty todllers were each <strong>introduced</strong> to an adult tester holding a plastic container.</li>
-</ul>
-<p>60名学步童被各自<strong>引导</strong>着与一位手持塑料容器的成人测试员<strong>认识</strong>。</p>
-<h2 id="Reading-Text-1"><a href="#Reading-Text-1" class="headerlink" title="Reading Text 1"></a>Reading Text 1</h2><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>go unmentioned</td>
-<td>不被提及</td>
-</tr>
-<tr>
-<td>come for</td>
-<td>（强行）带走</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li>what happens when the robots come for their jobs?</li>
-</ul>
-<p>当机器人来抢他们工作时，会发生什么？</p>
-<p>- </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/17/ENG/%E8%AF%8D%E6%B1%87/2022.3%E8%AF%8D%E6%B1%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/17/ENG/%E8%AF%8D%E6%B1%87/2022.3%E8%AF%8D%E6%B1%87/" itemprop="url">2022.3 词汇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-17T00:00:00+08:00">
-                2022-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <table>
-<thead>
-<tr>
-<th align="center">2022-03-11</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">blend</td>
-<td align="center">混合；融入；混合物</td>
-</tr>
-<tr>
-<td align="center">prolong</td>
-<td align="center">延长</td>
-</tr>
-<tr>
-<td align="center">memorandum</td>
-<td align="center">备忘录</td>
-</tr>
-<tr>
-<td align="center">deed</td>
-<td align="center">行为；转让（财产）</td>
-</tr>
-<tr>
-<td align="center">adequate</td>
-<td align="center">充足的；适当的；能胜任的</td>
-</tr>
-<tr>
-<td align="center">magnify</td>
-<td align="center">夸张；放大</td>
-</tr>
-<tr>
-<td align="center">limp +</td>
-<td align="center">跛行；软的；无力的</td>
-</tr>
-<tr>
-<td align="center">influenza</td>
-<td align="center">流感</td>
-</tr>
-<tr>
-<td align="center">advocate</td>
-<td align="center">拥护；拥护者；律师</td>
-</tr>
-<tr>
-<td align="center">coherent</td>
-<td align="center">连贯的；一致的</td>
-</tr>
-<tr>
-<td align="center">juvenile</td>
-<td align="center">青少年的；未成年人</td>
-</tr>
-<tr>
-<td align="center">porch +</td>
-<td align="center">走廊</td>
-</tr>
-<tr>
-<td align="center">prone +</td>
-<td align="center">易于发生的；有倾向性的；平卧的；俯卧的</td>
-</tr>
-<tr>
-<td align="center">obscure</td>
-<td align="center">难懂的；隐藏；使含混；不重要的</td>
-</tr>
-<tr>
-<td align="center">dioxide</td>
-<td align="center">二氧化物</td>
-</tr>
-<tr>
-<td align="center">lamb</td>
-<td align="center">羔羊</td>
-</tr>
-<tr>
-<td align="center">affiliate +</td>
-<td align="center">隶属；隶属成员</td>
-</tr>
-<tr>
-<td align="center">assign</td>
-<td align="center">分配；归因于</td>
-</tr>
-<tr>
-<td align="center">steak</td>
-<td align="center">肉块；牛排；鱼排</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-12</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">stereotype +</td>
-<td align="center">刻板印象</td>
-</tr>
-<tr>
-<td align="center">drought +</td>
-<td align="center">旱灾</td>
-</tr>
-<tr>
-<td align="center">scenario ++</td>
-<td align="center">剧本；情境</td>
-</tr>
-<tr>
-<td align="center">reckon</td>
-<td align="center">计算；估计；把……当作</td>
-</tr>
-<tr>
-<td align="center">oblige</td>
-<td align="center">（根据法律或者道义）强迫某人做</td>
-</tr>
-<tr>
-<td align="center">ignite</td>
-<td align="center">燃烧；点火</td>
-</tr>
-<tr>
-<td align="center">comrade +++</td>
-<td align="center">同事；战友</td>
-</tr>
-<tr>
-<td align="center">peep +</td>
-<td align="center">偷窥</td>
-</tr>
-<tr>
-<td align="center">monarch</td>
-<td align="center">国王；女王</td>
-</tr>
-<tr>
-<td align="center">bold +</td>
-<td align="center">大胆的</td>
-</tr>
-<tr>
-<td align="center">deduct ++</td>
-<td align="center">扣除；减去</td>
-</tr>
-<tr>
-<td align="center">giggle</td>
-<td align="center">轻笑；傻笑</td>
-</tr>
-<tr>
-<td align="center">bulletin</td>
-<td align="center">公报；简报</td>
-</tr>
-<tr>
-<td align="center">sibling</td>
-<td align="center">兄弟姐妹</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-13</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">specimen +</td>
-<td align="center">标本</td>
-</tr>
-<tr>
-<td align="center">forge +</td>
-<td align="center">创造（强大，不朽地东西）；制造；锻造车间</td>
-</tr>
-<tr>
-<td align="center">deplete +</td>
-<td align="center">耗尽；枯竭</td>
-</tr>
-<tr>
-<td align="center">exceptional</td>
-<td align="center">优越的；罕见的；不寻常的</td>
-</tr>
-<tr>
-<td align="center">spectacular ++</td>
-<td align="center">壮观的</td>
-</tr>
-<tr>
-<td align="center">freelance</td>
-<td align="center">自由职业的</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-14</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">illuminate</td>
-<td align="center">照亮；阐释说明</td>
-</tr>
-<tr>
-<td align="center">frown</td>
-<td align="center">皱眉</td>
-</tr>
-<tr>
-<td align="center">projector</td>
-<td align="center">投影仪</td>
-</tr>
-<tr>
-<td align="center">convict</td>
-<td align="center">给…定罪；囚犯</td>
-</tr>
-<tr>
-<td align="center">expel +</td>
-<td align="center">开除；逐出；排出</td>
-</tr>
-<tr>
-<td align="center">coalition</td>
-<td align="center">联合政府；联盟</td>
-</tr>
-<tr>
-<td align="center">laptop</td>
-<td align="center">便携电脑</td>
-</tr>
-<tr>
-<td align="center">stitch</td>
-<td align="center">缝</td>
-</tr>
-<tr>
-<td align="center">horizontal</td>
-<td align="center">地平线的</td>
-</tr>
-<tr>
-<td align="center">stake +</td>
-<td align="center">股份；赌注；利害关系；以…打赌</td>
-</tr>
-<tr>
-<td align="center">denounce</td>
-<td align="center">谴责；告发</td>
-</tr>
-<tr>
-<td align="center">aggravate</td>
-<td align="center">使严重；激怒</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-16</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">attorney</td>
-<td align="center">律师</td>
-</tr>
-<tr>
-<td align="center">razor</td>
-<td align="center">剃刀</td>
-</tr>
-<tr>
-<td align="center">gracious +</td>
-<td align="center">慈祥的；亲切的；华美的</td>
-</tr>
-<tr>
-<td align="center">cottage</td>
-<td align="center">小屋；小别墅</td>
-</tr>
-<tr>
-<td align="center">console</td>
-<td align="center">慰问；安抚</td>
-</tr>
-<tr>
-<td align="center">illusion</td>
-<td align="center">幻觉；错误的信仰&#x2F;观念</td>
-</tr>
-<tr>
-<td align="center">blur</td>
-<td align="center">变得模糊；污点</td>
-</tr>
-<tr>
-<td align="center">retort +</td>
-<td align="center">反驳；回嘴；蒸馏器</td>
-</tr>
-<tr>
-<td align="center">lawsuit</td>
-<td align="center">诉讼</td>
-</tr>
-<tr>
-<td align="center">toll +</td>
-<td align="center">代价；破坏；收费；不利影响</td>
-</tr>
-<tr>
-<td align="center">pharmacy</td>
-<td align="center">药剂学；药店</td>
-</tr>
-<tr>
-<td align="center">refugee</td>
-<td align="center">难民</td>
-</tr>
-<tr>
-<td align="center">voltage</td>
-<td align="center">电压</td>
-</tr>
-<tr>
-<td align="center">disposition</td>
-<td align="center">性格；气质；排列；部署</td>
-</tr>
-<tr>
-<td align="center">pant +</td>
-<td align="center">气喘；渴望</td>
-</tr>
-<tr>
-<td align="center">pant for</td>
-<td align="center">渴望</td>
-</tr>
-<tr>
-<td align="center">with one’s pant down</td>
-<td align="center">处于尴尬状态</td>
-</tr>
-<tr>
-<td align="center">ashore</td>
-<td align="center">上岸</td>
-</tr>
-<tr>
-<td align="center">archive</td>
-<td align="center">档案</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-17</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">mediaval</td>
-<td align="center">中世纪的</td>
-</tr>
-<tr>
-<td align="center">plagiarism</td>
-<td align="center">剽窃；剽窃作品</td>
-</tr>
-<tr>
-<td align="center">outfit</td>
-<td align="center">全套装备</td>
-</tr>
-<tr>
-<td align="center">prescription</td>
-<td align="center">处方；秘诀</td>
-</tr>
-<tr>
-<td align="center">gallery</td>
-<td align="center">(艺术)陈列馆；画廊</td>
-</tr>
-<tr>
-<td align="center">applaud</td>
-<td align="center">表示赞同；赞扬</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
 
 
@@ -2911,7 +2207,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2922,7 +2218,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2933,7 +2229,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
