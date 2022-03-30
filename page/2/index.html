@@ -249,6 +249,609 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/23/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-2%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/23/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-2%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6/" itemprop="url">23王道操作系统 C2-2 处理机调度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-23T00:00:00+08:00">
+                2022-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2-2-处理机调度"><a href="#2-2-处理机调度" class="headerlink" title="2.2 处理机调度"></a>2.2 处理机调度</h2><h3 id="2-2-1-调度的概念"><a href="#2-2-1-调度的概念" class="headerlink" title="2.2.1 调度的概念"></a>2.2.1 调度的概念</h3><p>调度的层次：</p>
+<p>（1）高级调度（作业调度）。</p>
+<p>（2）中级调度（内存调度）。</p>
+<p>（3）初级调度（进程调度）。</p>
+<h3 id="2-2-2-调度的目标"><a href="#2-2-2-调度的目标" class="headerlink" title="2.2.2 调度的目标"></a>2.2.2 调度的目标</h3><ol>
+<li>CPU利用率</li>
+</ol>
+<p>CPU利用率 &#x3D; CPU有效工作时间 &#x2F; （CPU有效工作时间 - CPU空闲等待时间）</p>
+<ol start="2">
+<li><p>系统吞吐量</p>
+</li>
+<li><p>周转时间</p>
+</li>
+</ol>
+<p>周转 &#x3D; 完成 - 提交 &#x3D; 执行 + 等待。</p>
+<p>带权周转 &#x3D; 周转 &#x2F; 运行。</p>
+<ol start="4">
+<li>等待时间</li>
+</ol>
+<p>等待时间越长，满意度越低。</p>
+<ol start="5">
+<li>响应时间</li>
+</ol>
+<p>指从<strong>用户提交请求</strong>到<strong>系统首次产生响应所用的时间</strong>。</p>
+<h3 id="2-2-3-调度的实现"><a href="#2-2-3-调度的实现" class="headerlink" title="2.2.3 调度的实现"></a>2.2.3 调度的实现</h3><ol>
+<li><strong>调度程序（调度器）</strong></li>
+</ol>
+<p>（1）排队器。</p>
+<p>（2）分配器。</p>
+<p>（3）上下文切换器。</p>
+<p>上下文切换时需要执行大量的load和store指令，load用于把内存中的数据装载到寄存器中，store用于把寄存器中的数据存入内存。load和store可以分为三类指令：1.单一数据传送指令。2.多数据传送指令。3.数据变换指令。</p>
+<ol start="2">
+<li><strong>调度的时机、切换和过程</strong></li>
+</ol>
+<p><strong>不能进行进程的调度和切换的情况</strong>如下：</p>
+<p>（1）在处理机中断的过程中。</p>
+<p>（2）过程在操作系统内核临界区中。</p>
+<p>（3）其他需要完全屏蔽中断的原子操作过程中。</p>
+<p><strong>应该进行进程调度和切换的情况</strong>如下：</p>
+<p>（1）发生引起调度条件且当前进程无法继续运行下去时。</p>
+<p>（2）中断处理结束或自陷处理结束后，返回被中断进程的用户态程序执行现场前。</p>
+<ol start="3">
+<li><strong>进程调度方式</strong></li>
+</ol>
+<p>抢占式与非抢占式。</p>
+<ol start="4">
+<li><p><strong>闲逛进程</strong></p>
+</li>
+<li><p><strong>两种线程调度</strong></p>
+</li>
+</ol>
+<p><strong>用户级线程调度</strong>和<strong>内核级线程调度</strong>。</p>
+<h3 id="2-2-4-典型的调度算法"><a href="#2-2-4-典型的调度算法" class="headerlink" title="2.2.4 典型的调度算法"></a>2.2.4 典型的调度算法</h3><ol>
+<li>FCFS</li>
+</ol>
+<p>先来先服务。算法简单，效率低。长作业有利，短作业不利。有利于CPU繁忙作业，不利于I&#x2F;O繁忙作业。</p>
+<ol start="2">
+<li>SJF</li>
+</ol>
+<p>短作业优先。易发生长作业“饥饿”。</p>
+<ol start="3">
+<li>优先级调度</li>
+</ol>
+<p>根据创建后优先级是否可以改变，分为：<strong>动态优先级</strong>和<strong>静态优先级</strong>。</p>
+<p>一般来说，优先级的设置可以参照：<strong>（1）系统进程 &gt; 用户进程 （2）交互性进程 &gt; 非交互型进程 （3）I&#x2F;O型进程 &gt; 计算型进程。</strong></p>
+<ol start="4">
+<li>高 响应比 优先</li>
+</ol>
+<p>响应比 &#x3D; （等待时间 + 要求服务时间） &#x2F; 要求服务时间。</p>
+<p>中和了FCFS和SJF，同时避免了“饥饿”。</p>
+<ol start="5">
+<li><p>时间片轮转</p>
+</li>
+<li><p>多级队列调度算法</p>
+</li>
+</ol>
+<p>设置多个队列，每个队列实施不同的调度算法。</p>
+<ol start="7">
+<li>多级队列调度反馈算法</li>
+</ol>
+<p>通过动态调整<strong>进程优先级和时间片的大小</strong>，多级反馈算法可以兼顾多方面的系统目标。</p>
+<p><strong>实现思想</strong>如下：（1）设置多个就绪队列，为每个队列赋予不同优先级。（2）赋予各个队列的程序运行时间片大小各不相同。（3）每个队列都采用FCFS。（4）按队列优先级调度，第1级队列空了才会调度第2级队列。</p>
+<p><strong>多级反馈队列</strong>优势如下：（1）终端型作业用户：短作业优先。（2）短批处理作业用户：周转时间较短。（3）长批处理作业用户：经过前面几个队列得到部分执行，不会长期得不到处理。</p>
+<h3 id="2-2-7-习题"><a href="#2-2-7-习题" class="headerlink" title="2.2.7 习题"></a>2.2.7 习题</h3><ul>
+<li><p><strong>FCFS</strong>有利于CPU繁忙的作业，而不适合IO繁忙的作业。</p>
+</li>
+<li><p>进程（线程）调度的有利时机有<strong>1. 运行的进程（线程）运行完毕。2. 运行的进程（线程）所需资源未准备好。3. 运行的进程（线程）时间片用完。4. 运行的进程（线程）自我阻塞。5. 运行的进程（线程）出现错误</strong>。</p>
+</li>
+<li><p>分时系统的时间片固定，因此用户数越多，响应时间越长。（<strong>对</strong>）</p>
+</li>
+<li><p>中断向量地址是中断服务例行程序的入口地址（<strong>错</strong>）</p>
+</li>
+</ul>
+<p>中断向量本身是用于存放中断服务例行程序的入口地址，因此中断向量地址就应是该入口地址的地址。</p>
+<ul>
+<li><p>【2012】若某单处理机多进程系统中有多个就绪态进程，那么错误的是<strong>在进程处于临界区时不能进行处理机调度</strong>。</p>
+</li>
+<li><p>【2013】正在执行P1 P2 P3 ，数据如下表，为了提高资源利用率，合理的进程优先级设置为：<strong>P3 &gt; P2 &gt; P1</strong>。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">进程</th>
+<th align="center">计算时间</th>
+<th align="center">I&#x2F;O时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">P1</td>
+<td align="center">90%</td>
+<td align="center">10%</td>
+</tr>
+<tr>
+<td align="center">P2</td>
+<td align="center">50%</td>
+<td align="center">50%</td>
+</tr>
+<tr>
+<td align="center">P3</td>
+<td align="center">15%</td>
+<td align="center">85%</td>
+</tr>
+</tbody></table>
+<p>为了提高资源利用率，直接按照I&#x2F;O时间排。</p>
+<ul>
+<li>某系统采用<strong>基于优先级的非抢占式进程调度</strong>策略，完成一次进程调度和进程切换的时间为1us，T时刻有进程P1,P2,P3,数据如下表，优先级权值大的进程优先获得CPU，从T时刻开始调度，则系统平均周转时间为<strong>75us</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">进程</th>
+<th align="center">等待时间</th>
+<th align="center">需要的CPU时间</th>
+<th align="center">优先权</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">P1</td>
+<td align="center">30us</td>
+<td align="center">12us</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">P2</td>
+<td align="center">15us</td>
+<td align="center">24us</td>
+<td align="center">30</td>
+</tr>
+<tr>
+<td align="center">P3</td>
+<td align="center">18us</td>
+<td align="center">36us</td>
+<td align="center">20</td>
+</tr>
+</tbody></table>
+<p>按优先级，P2 &#x3D; 1 + 15 + 24 &#x3D; 40 us ，P3 &#x3D; 18 + 1 + 24 + 1 + 36 &#x3D; 80 us ，P1 &#x3D; 30 + 1 + 24 + 1 + 36 + 1 + 12 &#x3D; 105 us。</p>
+<p>平均75us。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/" itemprop="url">EMOTIONAL DAMAGE --《消失的爱人》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
+                2022-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>归功于下午的一杯咖啡，让我半夜不眠观此爽片。</p>
+<p>这段时间猎奇于pegging亚文化，这部电影深深带入完全地被掌控和控制。相比于pegging基于道具的输出，这种由内而外，知行合一的控制欲与执行力令人惊叹。现实中相比起来恐怕后者更多。隔着屏幕我已经臣服在“amazing amy”手工刀下了。</p>
+<p>疯子间的博弈才是真正地舍我其谁，凌晨四点惊得我可以从床上弹起来再敲上两题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E5%90%8E%E7%AB%AF/Java/%E4%BD%9C%E4%B8%9A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/21/%E5%90%8E%E7%AB%AF/Java/%E4%BD%9C%E4%B8%9A3/" itemprop="url">Java及Web开发作业3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
+                2022-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>设计并实现学生成绩系统中学生类，描述学生相关信息。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> No ;</span><br><span class="line">    <span class="keyword">private</span> String name ;</span><br><span class="line">    <span class="keyword">private</span> String sex ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> chineseScore ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> mathsScore ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> engScore ;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getNo</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> No ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNo</span><span class="params">(<span class="type">int</span> No)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.No = No ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getSex</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setSex</span><span class="params">(String sex)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.sex = sex ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getChineseScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> chineseScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setChineseScore</span><span class="params">(<span class="type">int</span> chineseScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.chineseScore = chineseScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMathsScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  mathsScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMathsScore</span><span class="params">(<span class="type">int</span> mathsScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.mathsScore = mathsScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getEngScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> engScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setEngScore</span><span class="params">(<span class="type">int</span> engScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.engScore = engScore ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>设计并实现一个打印机接口，模拟打印。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">paper</span>&#123; <span class="comment">// 纸张接口</span></span><br><span class="line">    String <span class="title function_">size</span><span class="params">()</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// 墨盒接口</span></span><br><span class="line">    String <span class="title function_">color</span><span class="params">()</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A4paper</span> <span class="keyword">implements</span> <span class="title class_">paper</span>&#123; <span class="comment">// a4</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">size</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;a4&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B5paper</span> <span class="keyword">implements</span> <span class="title class_">paper</span>&#123; <span class="comment">// b5</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">size</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;b5&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">colorInk</span> <span class="keyword">implements</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// colorink</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">color</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;彩色墨盒&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">blackInk</span> <span class="keyword">implements</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// blackink</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">color</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;黑色墨盒&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">printer</span>&#123;</span><br><span class="line">    paper paper ;</span><br><span class="line">    inkBox inkBox ;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">printer</span><span class="params">()</span>&#123;&#125; <span class="comment">// 无参构造</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">printer</span><span class="params">(paper paper, inkBox inkBox)</span>&#123; <span class="comment">// 有参构造</span></span><br><span class="line">        <span class="built_in">this</span>.paper = paper ;</span><br><span class="line">        <span class="built_in">this</span>.inkBox = inkBox ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">print</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;print on &quot;</span> + paper.size() + <span class="string">&quot; paper in &quot;</span> + inkBox.color() ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">printerTest</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">printer</span> <span class="variable">printer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">printer</span>(<span class="keyword">new</span> <span class="title class_">A4paper</span>(), <span class="keyword">new</span> <span class="title class_">colorInk</span>()) ;</span><br><span class="line">        System.out.println(printer.print());</span><br><span class="line">        <span class="type">printer</span> <span class="variable">pr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">printer</span>(<span class="keyword">new</span> <span class="title class_">B5paper</span>(), <span class="keyword">new</span> <span class="title class_">blackInk</span>()) ;</span><br><span class="line">        System.out.println(pr.print());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>熟悉String类的属性和方法，并设计实现一个类来调用String类的常见方法。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">stringPrc</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;StringTest&quot;</span> ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="string">&quot;StringTest2&quot;</span> ;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> s.length() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s的长度：&quot;</span> + length);</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span> <span class="variable">s4</span> <span class="operator">=</span> s.charAt(<span class="number">3</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s第四个位置的字符是：&quot;</span> + s4);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> s.substring(<span class="number">2</span>,<span class="number">4</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s的2-4位是：&quot;</span> + s1);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> s.compareTo(ss) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> ss.compareTo(s) ;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">c</span> <span class="operator">=</span> s.equals(ss) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的字符串比较结果是：&quot;</span> + a);</span><br><span class="line">        System.out.println(<span class="string">&quot;ss与s的字符串比较结果是：&quot;</span> + b);</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的逻辑比较结果是：&quot;</span> + c);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">sss</span> <span class="operator">=</span> s.concat(ss) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的拼接结果是：&quot;</span> + sss);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">find1</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;t&#x27;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find2</span> <span class="operator">=</span> s.indexOf(<span class="string">&quot;Test&quot;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find3</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;w&#x27;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find4</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;t&#x27;</span>,<span class="number">2</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find5</span> <span class="operator">=</span> s.lastIndexOf(<span class="string">&#x27;t&#x27;</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找t：&quot;</span> + find1);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找Test：&quot;</span> + find2);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找w：&quot;</span> + find3);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找第二个t：&quot;</span> + find4);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中从后向前查找t：&quot;</span> + find5);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">lows</span> <span class="operator">=</span> s.toLowerCase() ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ups</span> <span class="operator">=</span> s.toUpperCase() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s变大写&quot;</span> + ups);</span><br><span class="line">        System.out.println(<span class="string">&quot;s变小写&quot;</span> + lows);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">sre1</span> <span class="operator">=</span> s.replace(<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;m&#x27;</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;将s替换成m&quot;</span> + sre1);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot; Hello  &quot;</span>) ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> str.trim() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;截取两端所有空格&quot;</span> + str1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/19/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -491,7 +1094,7 @@
       
         
           
-            <h2 id="Use-of-Eng-8-x2F-10"><a href="#Use-of-Eng-8-x2F-10" class="headerlink" title="Use of Eng 8&#x2F;10"></a>Use of Eng 8&#x2F;10</h2><table>
+            <h2 id="UoE-8-x2F-10"><a href="#UoE-8-x2F-10" class="headerlink" title="UoE 8&#x2F;10"></a>UoE 8&#x2F;10</h2><table>
 <thead>
 <tr>
 <th align="center"></th>
@@ -542,10 +1145,6 @@
 <td align="center">follow-up</td>
 <td align="center">后续的</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
 </tbody></table>
 <ul>
 <li><p>Trust is a tricky business. 信任是件很玄妙的事。</p>
@@ -567,7 +1166,7 @@
 <li>Sixty todllers were each <strong>introduced</strong> to an adult tester holding a plastic container.</li>
 </ul>
 <p>60名学步童被各自<strong>引导</strong>着与一位手持塑料容器的成人测试员<strong>认识</strong>。</p>
-<h2 id="Reading-Text-1"><a href="#Reading-Text-1" class="headerlink" title="Reading Text 1"></a>Reading Text 1</h2><table>
+<h2 id="T1-8-x2F-10"><a href="#T1-8-x2F-10" class="headerlink" title="T1 8&#x2F;10"></a>T1 8&#x2F;10</h2><table>
 <thead>
 <tr>
 <th></th>
@@ -583,15 +1182,122 @@
 <td>（强行）带走</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>automate</td>
+<td>使自动化</td>
+</tr>
+<tr>
+<td>disproportionately</td>
+<td>不成比例地</td>
+</tr>
+<tr>
+<td>squeeze</td>
+<td>压榨</td>
+</tr>
+<tr>
+<td>alarmist</td>
+<td>危言耸听的</td>
+</tr>
+<tr>
+<td>upheaval</td>
+<td>剧变，动荡</td>
+</tr>
+<tr>
+<td>Luddite</td>
+<td>卢德分子，反对新技术的人</td>
+</tr>
+<tr>
+<td>loom</td>
+<td>织布机</td>
+</tr>
+<tr>
+<td>go well</td>
+<td>令人满意</td>
+</tr>
+<tr>
+<td>drive down</td>
+<td>压低</td>
+</tr>
+<tr>
+<td>curriculum</td>
+<td>（学校的）全部课程</td>
+</tr>
+<tr>
+<td>evolve to</td>
+<td>逐渐演变</td>
+</tr>
+<tr>
+<td>dynamism</td>
+<td>活力，劲头</td>
+</tr>
+<tr>
+<td>entrepreneurs</td>
+<td>企业家</td>
+</tr>
+<tr>
+<td>drastic</td>
+<td>极端的，严厉的，急剧的</td>
+</tr>
+<tr>
+<td>cope with</td>
+<td>应对</td>
+</tr>
+<tr>
+<td>revive</td>
+<td>恢复</td>
+</tr>
+<tr>
+<td>subsidy</td>
+<td>补贴，补助金</td>
+</tr>
+<tr>
+<td>earned income tax credit</td>
+<td>EITC，所得税抵扣</td>
+</tr>
+<tr>
+<td>wage</td>
+<td>消减</td>
+</tr>
+<tr>
+<td>upend</td>
+<td>颠覆，翻倒</td>
 </tr>
 </tbody></table>
 <ul>
 <li>what happens when the robots come for their jobs?</li>
 </ul>
 <p>当机器人来抢他们工作时，会发生什么？</p>
-<p>- </p>
+<ul>
+<li>with the middle class disproportionately squeezed</li>
+</ul>
+<p>中产阶级尤其不堪负担。</p>
+<ul>
+<li>The rich own the robots, so they will be fine.</li>
+</ul>
+<p>富人拥有机器人，他们（富人）将会很好（不受威胁，从中受益）。富人不是机器人的“取代对象”，而是机器人的“拥有者”，与中产阶级产生对比。</p>
+<ul>
+<li>Entrepreneurs <strong>smoothed the transition</strong> by dreaming up ways to combine labor and machines.</li>
+</ul>
+<p>企业家们通过想出将劳动者和机器相结合的方式实现平稳过渡。</p>
+<h2 id="T2-8-x2F-10"><a href="#T2-8-x2F-10" class="headerlink" title="T2 8&#x2F;10"></a>T2 8&#x2F;10</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Milliennial</td>
+<td>千禧一代</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
           
         
@@ -1057,523 +1763,6 @@
 <li>【2020】<strong>应用程序没有进行内核级线程管理的代码，只有一个到内核级线程的编程接口</strong>，内核为进程及其内部的每个线程维护上下文信息，调度也是在内核中由操作系统完成的。</li>
 <li>【2020】多线程模型中，有一对一、多对一、多对多，“操作系统为每一个用户线程建立一个TCB”（错），只有一对一这样。</li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/17/ENG/%E8%AF%8D%E6%B1%87/2022.3%E8%AF%8D%E6%B1%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/17/ENG/%E8%AF%8D%E6%B1%87/2022.3%E8%AF%8D%E6%B1%87/" itemprop="url">2022.3 词汇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-17T00:00:00+08:00">
-                2022-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <table>
-<thead>
-<tr>
-<th align="center">2022-03-11</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">blend</td>
-<td align="center">混合；融入；混合物</td>
-</tr>
-<tr>
-<td align="center">prolong</td>
-<td align="center">延长</td>
-</tr>
-<tr>
-<td align="center">memorandum</td>
-<td align="center">备忘录</td>
-</tr>
-<tr>
-<td align="center">deed</td>
-<td align="center">行为；转让（财产）</td>
-</tr>
-<tr>
-<td align="center">adequate</td>
-<td align="center">充足的；适当的；能胜任的</td>
-</tr>
-<tr>
-<td align="center">magnify</td>
-<td align="center">夸张；放大</td>
-</tr>
-<tr>
-<td align="center">limp +</td>
-<td align="center">跛行；软的；无力的</td>
-</tr>
-<tr>
-<td align="center">influenza</td>
-<td align="center">流感</td>
-</tr>
-<tr>
-<td align="center">advocate</td>
-<td align="center">拥护；拥护者；律师</td>
-</tr>
-<tr>
-<td align="center">coherent</td>
-<td align="center">连贯的；一致的</td>
-</tr>
-<tr>
-<td align="center">juvenile</td>
-<td align="center">青少年的；未成年人</td>
-</tr>
-<tr>
-<td align="center">porch +</td>
-<td align="center">走廊</td>
-</tr>
-<tr>
-<td align="center">prone +</td>
-<td align="center">易于发生的；有倾向性的；平卧的；俯卧的</td>
-</tr>
-<tr>
-<td align="center">obscure</td>
-<td align="center">难懂的；隐藏；使含混；不重要的</td>
-</tr>
-<tr>
-<td align="center">dioxide</td>
-<td align="center">二氧化物</td>
-</tr>
-<tr>
-<td align="center">lamb</td>
-<td align="center">羔羊</td>
-</tr>
-<tr>
-<td align="center">affiliate +</td>
-<td align="center">隶属；隶属成员</td>
-</tr>
-<tr>
-<td align="center">assign</td>
-<td align="center">分配；归因于</td>
-</tr>
-<tr>
-<td align="center">steak</td>
-<td align="center">肉块；牛排；鱼排</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-12</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">stereotype +</td>
-<td align="center">刻板印象</td>
-</tr>
-<tr>
-<td align="center">drought +</td>
-<td align="center">旱灾</td>
-</tr>
-<tr>
-<td align="center">scenario ++</td>
-<td align="center">剧本；情境</td>
-</tr>
-<tr>
-<td align="center">reckon</td>
-<td align="center">计算；估计；把……当作</td>
-</tr>
-<tr>
-<td align="center">oblige</td>
-<td align="center">（根据法律或者道义）强迫某人做</td>
-</tr>
-<tr>
-<td align="center">ignite</td>
-<td align="center">燃烧；点火</td>
-</tr>
-<tr>
-<td align="center">comrade +++</td>
-<td align="center">同事；战友</td>
-</tr>
-<tr>
-<td align="center">peep +</td>
-<td align="center">偷窥</td>
-</tr>
-<tr>
-<td align="center">monarch</td>
-<td align="center">国王；女王</td>
-</tr>
-<tr>
-<td align="center">bold +</td>
-<td align="center">大胆的</td>
-</tr>
-<tr>
-<td align="center">deduct ++</td>
-<td align="center">扣除；减去</td>
-</tr>
-<tr>
-<td align="center">giggle</td>
-<td align="center">轻笑；傻笑</td>
-</tr>
-<tr>
-<td align="center">bulletin</td>
-<td align="center">公报；简报</td>
-</tr>
-<tr>
-<td align="center">sibling</td>
-<td align="center">兄弟姐妹</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-13</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">specimen +</td>
-<td align="center">标本</td>
-</tr>
-<tr>
-<td align="center">forge +</td>
-<td align="center">创造（强大，不朽地东西）；制造；锻造车间</td>
-</tr>
-<tr>
-<td align="center">deplete +</td>
-<td align="center">耗尽；枯竭</td>
-</tr>
-<tr>
-<td align="center">exceptional</td>
-<td align="center">优越的；罕见的；不寻常的</td>
-</tr>
-<tr>
-<td align="center">spectacular ++</td>
-<td align="center">壮观的</td>
-</tr>
-<tr>
-<td align="center">freelance</td>
-<td align="center">自由职业的</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-14</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">illuminate</td>
-<td align="center">照亮；阐释说明</td>
-</tr>
-<tr>
-<td align="center">frown</td>
-<td align="center">皱眉</td>
-</tr>
-<tr>
-<td align="center">projector</td>
-<td align="center">投影仪</td>
-</tr>
-<tr>
-<td align="center">convict</td>
-<td align="center">给…定罪；囚犯</td>
-</tr>
-<tr>
-<td align="center">expel +</td>
-<td align="center">开除；逐出；排出</td>
-</tr>
-<tr>
-<td align="center">coalition</td>
-<td align="center">联合政府；联盟</td>
-</tr>
-<tr>
-<td align="center">laptop</td>
-<td align="center">便携电脑</td>
-</tr>
-<tr>
-<td align="center">stitch</td>
-<td align="center">缝</td>
-</tr>
-<tr>
-<td align="center">horizontal</td>
-<td align="center">地平线的</td>
-</tr>
-<tr>
-<td align="center">stake +</td>
-<td align="center">股份；赌注；利害关系；以…打赌</td>
-</tr>
-<tr>
-<td align="center">denounce</td>
-<td align="center">谴责；告发</td>
-</tr>
-<tr>
-<td align="center">aggravate</td>
-<td align="center">使严重；激怒</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-16</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">attorney</td>
-<td align="center">律师</td>
-</tr>
-<tr>
-<td align="center">razor</td>
-<td align="center">剃刀</td>
-</tr>
-<tr>
-<td align="center">gracious +</td>
-<td align="center">慈祥的；亲切的；华美的</td>
-</tr>
-<tr>
-<td align="center">cottage</td>
-<td align="center">小屋；小别墅</td>
-</tr>
-<tr>
-<td align="center">console</td>
-<td align="center">慰问；安抚</td>
-</tr>
-<tr>
-<td align="center">illusion</td>
-<td align="center">幻觉；错误的信仰&#x2F;观念</td>
-</tr>
-<tr>
-<td align="center">blur</td>
-<td align="center">变得模糊；污点</td>
-</tr>
-<tr>
-<td align="center">retort +</td>
-<td align="center">反驳；回嘴；蒸馏器</td>
-</tr>
-<tr>
-<td align="center">lawsuit</td>
-<td align="center">诉讼</td>
-</tr>
-<tr>
-<td align="center">toll +</td>
-<td align="center">代价；破坏；收费；不利影响</td>
-</tr>
-<tr>
-<td align="center">pharmacy</td>
-<td align="center">药剂学；药店</td>
-</tr>
-<tr>
-<td align="center">refugee</td>
-<td align="center">难民</td>
-</tr>
-<tr>
-<td align="center">voltage</td>
-<td align="center">电压</td>
-</tr>
-<tr>
-<td align="center">disposition</td>
-<td align="center">性格；气质；排列；部署</td>
-</tr>
-<tr>
-<td align="center">pant +</td>
-<td align="center">气喘；渴望</td>
-</tr>
-<tr>
-<td align="center">pant for</td>
-<td align="center">渴望</td>
-</tr>
-<tr>
-<td align="center">with one’s pant down</td>
-<td align="center">处于尴尬状态</td>
-</tr>
-<tr>
-<td align="center">ashore</td>
-<td align="center">上岸</td>
-</tr>
-<tr>
-<td align="center">archive</td>
-<td align="center">档案</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">2022-03-17</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">mediaval</td>
-<td align="center">中世纪的</td>
-</tr>
-<tr>
-<td align="center">plagiarism</td>
-<td align="center">剽窃；剽窃作品</td>
-</tr>
-<tr>
-<td align="center">outfit</td>
-<td align="center">全套装备</td>
-</tr>
-<tr>
-<td align="center">prescription</td>
-<td align="center">处方；秘诀</td>
-</tr>
-<tr>
-<td align="center">gallery</td>
-<td align="center">(艺术)陈列馆；画廊</td>
-</tr>
-<tr>
-<td align="center">applaud</td>
-<td align="center">表示赞同；赞扬</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
 
           
         
@@ -2401,420 +2590,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/12/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/12/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A1/" itemprop="url">数据库 作业一</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-12T00:00:00+08:00">
-                2022-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第一章，绪论。</p>
-<p><img src="https://img-blog.csdnimg.cn/926ad69ba10f48dc8e9e4af6d7f73285.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题1"></p>
-<p><img src="https://img-blog.csdnimg.cn/ba60462bf8f549e6a4bf55db921c3ae8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题2"></p>
-<p><img src="https://img-blog.csdnimg.cn/2113cd6ea9b844eeabece255153f7760.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题3"></p>
-<p><img src="https://img-blog.csdnimg.cn/858116c6dd5a46e09a80a52e8bc44b46.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题4"></p>
-<p><img src="https://img-blog.csdnimg.cn/622eb2610fba4baa97a13b1394ebbdef.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题5"></p>
-<p><img src="https://img-blog.csdnimg.cn/c3b8bf50f5334ca195b91fb722e78601.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题6"></p>
-<p><img src="https://img-blog.csdnimg.cn/19094fed06a64a50847d8ec35d2c1fe0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题7"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/12/ENG/%E9%98%85%E8%AF%BB/2022.3%E9%98%85%E8%AF%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/12/ENG/%E9%98%85%E8%AF%BB/2022.3%E9%98%85%E8%AF%BB/" itemprop="url">2022.3 阅读</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-12T00:00:00+08:00">
-                2022-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2022-03-11"><a href="#2022-03-11" class="headerlink" title="2022-03-11"></a>2022-03-11</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">lock out</td>
-<td align="center">把……关在门外</td>
-</tr>
-<tr>
-<td align="center">drought</td>
-<td align="center">旱灾</td>
-</tr>
-<tr>
-<td align="center">resiliency</td>
-<td align="center">弹回（弹力）</td>
-</tr>
-<tr>
-<td align="center">convergency</td>
-<td align="center">趋同</td>
-</tr>
-<tr>
-<td align="center">trait</td>
-<td align="center">特征</td>
-</tr>
-<tr>
-<td align="center">niche</td>
-<td align="center">小众市场；商机；凹洞；生态位</td>
-</tr>
-<tr>
-<td align="center">cave a niche</td>
-<td align="center">为自己创造一个稳固的位置</td>
-</tr>
-<tr>
-<td align="center">body plan</td>
-<td align="center">身体构造</td>
-</tr>
-<tr>
-<td align="center">dexterous</td>
-<td align="center">（双手）灵巧的</td>
-</tr>
-<tr>
-<td align="center">thumb</td>
-<td align="center">（大）拇指；拦车</td>
-</tr>
-<tr>
-<td align="center">twid one’s thumbs</td>
-<td align="center">无所事事</td>
-</tr>
-<tr>
-<td align="center">stick&#x2F;stand out like a sore thumb</td>
-<td align="center">扎眼；碍眼</td>
-</tr>
-<tr>
-<td align="center">under thumb</td>
-<td align="center">在……控制下</td>
-</tr>
-<tr>
-<td align="center">sophisticated</td>
-<td align="center">（机器）精密的；（方法）复杂的；善于社交的；老于世故的</td>
-</tr>
-<tr>
-<td align="center">scenario</td>
-<td align="center">设想；方案；（电影etc）剧情梗概</td>
-</tr>
-<tr>
-<td align="center">wipe out</td>
-<td align="center">彻底销毁；消失</td>
-</tr>
-<tr>
-<td align="center">stereotype</td>
-<td align="center">固定模式；老套</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p>Convergence is an evolutionary process （主干）&#x2F; by which two unrelated organisms end up （定语从句）&#x2F; developing similar traits in order to succeed （非谓语动词）&#x2F; in a particular environment or fill a particular niche（介词短语）.</p>
-<p>When non-avian dinosaurs went extinct 66 million years ago, mammals rose to fill many of their vacant <strong>niches</strong>. If humans were to disappear, it’s possible that birds, the only surviving dinosaurs, could fill our roles as the smartest and handiest land animals. </p>
-<p>在6600万年前非翼类恐龙灭绝后，哺乳动物的出现填补了它们空缺的<strong>生态位</strong>。如果人类消失，那么鸟类，这个唯一存活下来的恐龙物种，很有可能作为最聪明及最灵巧的陆地动物填补我们的作用。</p>
-<p>niche 壁龛，经济学上规模尚小的“缝隙市场”。文中是指生物为了获得生存资源而占据的一个特定最小单位。</p>
-<h2 id="2022-03-12"><a href="#2022-03-12" class="headerlink" title="2022-03-12"></a>2022-03-12</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">solitude</td>
-<td align="center">独居</td>
-</tr>
-<tr>
-<td align="center">overarching</td>
-<td align="center">包罗万象的</td>
-</tr>
-<tr>
-<td align="center">spark creativity</td>
-<td align="center">激发创造力</td>
-</tr>
-<tr>
-<td align="center">spirituality</td>
-<td align="center">灵性；精神性</td>
-</tr>
-<tr>
-<td align="center">be exposed to</td>
-<td align="center">处于……的作用下，曝光于，接触，面临</td>
-</tr>
-<tr>
-<td align="center">notably</td>
-<td align="center">显著地</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p><strong>On the flip side</strong>, being forced to socialize or not being able to choose “self-determined solitude” makes poeple unhappy.</p>
-<p>另一方面，被要求社交或者没法选择“独立自主”使人不开心。</p>
-<h2 id="2022-03-16"><a href="#2022-03-16" class="headerlink" title="2022-03-16"></a>2022-03-16</h2><p>I’m the phoenix rising from the ashes.</p>
-<p>The sobering aspect of Allen’s book is that we have no one else to blame for our present condition except ourselves.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2865,7 +2640,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2876,7 +2651,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2887,7 +2662,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -249,6 +249,578 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/30/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-4%E6%AD%BB%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/30/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-4%E6%AD%BB%E9%94%81/" itemprop="url">23王道操作系统 C2-4死锁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T00:00:00+08:00">
+                2022-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2-4-1-死锁概念"><a href="#2-4-1-死锁概念" class="headerlink" title="2.4.1 死锁概念"></a>2.4.1 死锁概念</h2><ol>
+<li>死锁定义</li>
+</ol>
+<p>指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。</p>
+<p><img src="https://img-blog.csdnimg.cn/d21f06a79d0e487289982291ee2a4514.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="2">
+<li>死锁产生的原因</li>
+</ol>
+<p>（1）<strong>系统资源的竞争。</strong></p>
+<p>通常系统中拥有的不可剥夺资源，其数量无法满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。<strong>只有不可剥夺资源可能发生死锁</strong>，可剥夺资源不会发生死锁。</p>
+<p>（2）<strong>进程推进顺序非法。</strong></p>
+<p>进程在运行过程中，<strong>请求和释放资源顺序不当</strong>会导致死锁，<strong>信号量使用不当</strong>也会造成死锁。</p>
+<p>（3）<strong>死锁产生的必要条件。</strong></p>
+<p>死锁的发生<strong>必须同时满足</strong>4个条件：<strong>1. 互斥条件</strong>：一段时间内某个资源仅为一个进程占有。<strong>2. 不剥夺条件</strong>：只能由获得该资源的进程自己释放（只能是主动释放）。<strong>3. 请求并保持条件</strong>：进程已经保持了至少一个资源，又提出新的资源请求，而请求进程被阻塞，但对自己已获得的资源保持不放。<strong>4. 循环等待条件</strong>：存在一个循环等待链，链中每个进程已获得的资源同时被链中下一个进程所请求。</p>
+<p>资源分配图含圈而系统又不一定死锁的原因是：同类资源数大于1 。但若系统中每类资源都只有一个资源，则资源分配图就变成了系统出现死锁的<strong>充分必要条件</strong>。</p>
+<ol start="3">
+<li>死锁处理策略</li>
+</ol>
+<p>（1）死锁预防。（2）避免死锁。（3）死锁的检测和解除。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>资源分配策略</th>
+<th>各种可能模式</th>
+<th>主要优点</th>
+<th>主要缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>死锁预防</strong></td>
+<td>保守，宁可资源闲置</td>
+<td>一次请求所有资源，资源剥夺，资源按需分配</td>
+<td>适用于突发式处理的进程，不必进行剥夺</td>
+<td>效率低，进程初始化时间延长；剥夺次数过多；不便灵活申请新资源</td>
+</tr>
+<tr>
+<td><strong>死锁避免</strong></td>
+<td>是“预防”和“检测”的折中（在运行时判断是否可能死锁）</td>
+<td>寻找可能的安全允许顺序</td>
+<td>不必进行剥夺</td>
+<td>必须知道将来的资源需求；进程不能被长时间阻塞</td>
+</tr>
+<tr>
+<td><strong>死锁检测</strong></td>
+<td>宽松，只要允许就分配资源</td>
+<td>定期检查死锁是否已经发生</td>
+<td>不延长进程初始化时间，允许对死锁进行现场处理</td>
+<td>通过剥夺解除死锁，造成损失</td>
+</tr>
+</tbody></table>
+<h2 id="2-4-2-死锁预防"><a href="#2-4-2-死锁预防" class="headerlink" title="2.4.2 死锁预防"></a>2.4.2 死锁预防</h2><p>防止死锁的发生只需破坏死锁产生的四个条件之一即可。</p>
+<ol>
+<li>破坏互斥条件</li>
+</ol>
+<p>但有些资源根本不能同时访问。所以，破坏互斥条件而预防死锁的方法<strong>不太可行</strong>，而且在有的场合应该保护这种互斥性。</p>
+<p><img src="https://img-blog.csdnimg.cn/ff94fcf935244f3881322d0435e6b2b9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="2">
+<li>破坏不剥夺条件</li>
+</ol>
+<p>意味着，一个进程已占有的资源会被暂时释放，或者说是被剥夺，或从而破坏了不剥夺条件。</p>
+<p>该策略实现起来比较复杂，释放已获得的资源可能造成前一阶段工作的失效，反复地申请和释放资源会增加系统开销，降低系统吞吐量。这种方法常用于<strong>状态易于保存和恢复的资源</strong>，如CPU寄存器及内存资源，一般不能用于打印机之类的资源。</p>
+<p><img src="https://img-blog.csdnimg.cn/8566c8a419834e17872a80ea6e4ecd78.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="3">
+<li>破坏请求并保持条件</li>
+</ol>
+<p>采用<strong>预先静态分配</strong>方法，即进程在运行前一次申请完它所需要的全部资源，在它资源未满足时，不把它投入运行。一旦进程运行，不再提出其他资源请求，这样可以保证系统不会发生死锁。</p>
+<p>这种方式实现简单，但是<strong>系统资源被严重浪费</strong>，其中有些资源可能仅在运行初期或快结束才使用，甚至不使用。而且会导致<strong>饥饿</strong>现象。</p>
+<p><img src="https://img-blog.csdnimg.cn/dd04eb5cba2f48cf8fc4d51f1334feeb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="4">
+<li>破坏循环等待条件</li>
+</ol>
+<p>采用顺序资源分配法。首先给系统中的资源编号，规定每个进程必须按照编号递增的顺序请求资源，同类资源一次申请完。</p>
+<p>问题在于，编号必须相对稳定，这<strong>限制了新类型设备的增加</strong>；尽管在为资源编号时已考虑到大多数作业实际使用这些资源的顺序，但也经常会发生<strong>作业使用资源的顺序与系统规定顺序不同的情况，造成资源的浪费</strong>。也会<strong>给用户编程带来麻烦</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/2dc39892e80742cda61da6c01ed38710.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<h2 id="2-4-3-死锁避免"><a href="#2-4-3-死锁避免" class="headerlink" title="2.4.3 死锁避免"></a>2.4.3 死锁避免</h2><p>同样属于事先预防策略。在<strong>资源动态分配</strong>过程中，防止系统进入不安全状态，以避免发生死锁。</p>
+<ol>
+<li>系统安全状态</li>
+</ol>
+<p>允许进程动态地申请资源，但资源在进行资源分配之前，应先计算此次分配的安全性。</p>
+<p>所谓<strong>安全状态</strong>，是指系统能按某种进程推进顺序为每个进程分配其所需资源，直至满足每个进程Pi对资源的最大需求，使每个进程都可以顺序完成。此时Pn称为安全序列。若系统中找不到一个安全序列，则称系统处于不安全状态。</p>
+<p><img src="https://img-blog.csdnimg.cn/a448279a0ad04d13a9ef8481f4e7a235.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>2.<strong>银行家算法</strong></p>
+<p>在银行中，客户申请贷款的数量是有限的，每个客户在第一次申请贷款时要声明完成该项目所需的最大资金量，在满足所有贷款要求时，客户应及时归还。银行家在客户申请的贷款数量不超过自己拥有的最大值时，都应尽量满足客户的需要。在这样的描述中，银行家就好比操作系统，资金就是资源，客户就相当于要申请资源的进程。<br>银行家算法是一种最有代表性的避免死锁的算法。在避免死锁方法中允许进程动态地申请资源，但系统在进行资源分配之前，应先计算此次分配资源的安全性，若分配不会导致系统进入不安全状态，则分配，否则等待。为实现银行家算法，系统必须设置若干数据结构。</p>
+<p><strong>（1）数据结构描述</strong></p>
+<ol>
+<li><strong>可利用资源向量 Available</strong>。这是一个含有 m 个元素的数组，其中的每一个元素代表<strong>一类可利用的资源数目</strong>，其初始值是系统中所配置的该类全部可用资源的数目，其数值随该类资源的分配和回收而动态地改变。如果 Available[j] &#x3D; K，则表示系统中现Rj类资源K个。</li>
+<li><strong>最大需求矩阵Max</strong>。这是一个n*m的矩阵，它定义了系统中n个进程中的每个进程对m类资源的<strong>最大需求</strong>。如果Max[i,j] &#x3D; K，则表示进程i需要Rj 类资源的最大数目为K。</li>
+<li><strong>分配矩阵 Allocation</strong>。这也是一个n*m的矩阵，它定义了系统中每一类资源当前<strong>已分配</strong>给每一进程的<strong>资源数</strong>。如果 Allocation[i,jl &#x3D; K，则表示进程i当前己分得Rj类资源的数目为K。</li>
+<li><strong>需求矩阵Need</strong>。这也是一个n*m的矩阵，用以表示每一个进程<strong>尚需</strong>的<strong>各类资源数</strong>。如果Need[i,j] &#x3D; K，则表示进程i还需要Rj类资源K个方能完成其任务。</li>
+</ol>
+<p>述三个矩阵间存在下述关系:<br> 　　　　　　　　　　　　　　Need[i,j] &#x3D; Max[i,j] - allocation[i, j]</p>
+<p><strong>（2）银行家算法描述</strong></p>
+<p>设 Request是进程Pi的请求向量，如果 Requesti[j] &#x3D; K，表示进程Pi需要K个Rj类型的资源。当Pi发出资源请求后，系统按下述步骤进行检査:<br>　　1) 如果 <strong>Requesti[j] ≤ Need[i,j]</strong> 便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。<br>　　2) 如果 <strong>Requesti[j] ≤ Available[j]</strong> ，便转向步骤(3)；否则，表示尚无足够资源，Pi须等待。<br>　　3) 系统试探着把资源分配给进程Pi，并修改下面数据结构中的数值<br>　　　　<strong>Available[j] &#x3D; Available[j] - Requesti[j];</strong><br>　　　　　　　　　　　　　　<strong>Allocation[i,j] &#x3D; Allocation[i,j] + Requesti[j];</strong><br>　　　　　　　　　　　　　　<strong>Need[i,j] &#x3D; Need[i,j] - Requesti[j];</strong><br>　　4) 系统执行安全性算法，检查此次资源分配后系统是否处于安全状态。若安全，才正式将资源分配给进程Pi，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程Pi等待。</p>
+<p><strong>（3）安全性算法</strong></p>
+<p>系统所执行的安全性算法可描述如下:<br>　　1) 设置两个向量：<br>　　①工作向量Work，它表示<strong>系统中剩余的各类资源可用数目</strong>，它含有m个元素，在执行安全算法开始时，Work &#x3D; Available；<br>　　　　　　　　　　　　②Finish，它表示<strong>系统是否有足够的资源分配给进程，使之运行完成</strong>。开始时先做 Finish[i] &#x3D; false；当有足够资源分配给进程时，再令Finish[i] &#x3D; true。</p>
+<p>　　2) 从进程集合中找到一个能满足下述条件的进程<br>　　① Finish[i] &#x3D; false; &#x2F;&#x2F; 该行不在安全序列中<br>　　　　　　　　　　　　② Need[i,j] ≤ Work[j]; &#x2F;&#x2F; 该行小于等于work向量</p>
+<p>　　若找到，执行步骤(3)，否则，执行步骤(4)。</p>
+<p>　　2) 当进程Pi获得资源后，可顺利执行，直至完成，并释放出分配给它的资源，故应执行:<br>　　　　　　　　Work[j] &#x3D; Work[j] + Allocation[i,j];<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Finish[i] &#x3D; true; &#x2F;&#x2F; 进入安全队列<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　go to step 2; (goto语句不推荐使用) &#x2F;&#x2F; 返回步骤2</p>
+<ol start="4">
+<li>如果所有进程的 Finish[i] &#x3D;true都满足，则表示系统处于安全状态；否则，系统处于不安全状态。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/734adea69e984523aa3ffbbc7bb53c95.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>安全性算法的C实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> resourceNum 3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> processNum  5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//系统可用（剩余）资源</span></span><br><span class="line"><span class="type">int</span> available[resourceNum]=&#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">//进程的最大需求</span></span><br><span class="line"><span class="type">int</span> maxRequest[processNum][resourceNum]=&#123;&#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">3</span>&#125;,&#123;<span class="number">3</span>,<span class="number">2</span>,<span class="number">2</span>&#125;,&#123;<span class="number">9</span>,<span class="number">0</span>,<span class="number">2</span>&#125;,&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>&#125;,&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//进程已经占有（分配）资源</span></span><br><span class="line"><span class="type">int</span> allocation[processNum][resourceNum]=&#123;&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">3</span>,<span class="number">0</span>,<span class="number">2</span>&#125;,&#123;<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">2</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//进程还需要资源</span></span><br><span class="line"><span class="type">int</span> need[processNum][resourceNum]=&#123;&#123;<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>&#125;,&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>&#125;,&#123;<span class="number">6</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//是否安全</span></span><br><span class="line"><span class="type">bool</span> Finish[processNum];</span><br><span class="line"><span class="comment">//安全序列号</span></span><br><span class="line"><span class="type">int</span> safeSeries[processNum]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">//进程请求资源量</span></span><br><span class="line"><span class="type">int</span> request[resourceNum];</span><br><span class="line"><span class="comment">//资源数量计数</span></span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出系统信息</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">showInfo</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n------------------------------------------------------------------------------------\n&quot;</span>);  </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;当前系统各类资源剩余：&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,available[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n当前系统资源情况：\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; PID\t Max\t\tAllocation\t Need\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; processNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; P%d\t&quot;</span>,i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,maxRequest[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,allocation[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,need[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印安全检查信息</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">SafeInfo</span><span class="params">(<span class="type">int</span> *work, <span class="type">int</span> i)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; P%d\t&quot;</span>,i);</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,work[j]);</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,allocation[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,need[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,allocation[i][j]+work[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断一个进程的资源是否全为零</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isAllZero</span><span class="params">(<span class="type">int</span> kang)</span></span><br><span class="line">&#123;</span><br><span class="line">	num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(need[kang][i] == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			num ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(num == resourceNum)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//安全检查</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">isSafe</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//int resourceNumFinish = 0;</span></span><br><span class="line">	<span class="type">int</span> safeIndex = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> allFinish = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> work[resourceNum] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="type">int</span> r = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> pNum = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//预分配为了保护available[]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++)</span><br><span class="line">	&#123;		</span><br><span class="line">        work[i] = available[i];	</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//把未完成进程置为false</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; processNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">bool</span> result = isAllZero(i);</span><br><span class="line">		<span class="keyword">if</span>(result == <span class="literal">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			Finish[i] = <span class="literal">true</span>;</span><br><span class="line">			allFinish++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			Finish[i] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//预分配开始</span></span><br><span class="line">    <span class="keyword">while</span>(allFinish != processNum)</span><br><span class="line">	&#123;</span><br><span class="line">		num = <span class="number">0</span>;	</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(need[r][i] &lt;= work[i] &amp;&amp; Finish[r] == <span class="literal">false</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				num ++;</span><br><span class="line">			&#125;			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(num == resourceNum)</span><br><span class="line">		&#123;		</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++ )</span><br><span class="line">			&#123;</span><br><span class="line">				work[i] = work[i] + allocation[r][i];</span><br><span class="line">			&#125;</span><br><span class="line">			allFinish ++;</span><br><span class="line">			SafeInfo(work,r);</span><br><span class="line">			safeSeries[safeIndex] = r;</span><br><span class="line">			safeIndex ++;</span><br><span class="line">			Finish[r] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		r ++;<span class="comment">//该式必须在此处	</span></span><br><span class="line">		<span class="keyword">if</span>(r &gt;= processNum)</span><br><span class="line">		&#123;</span><br><span class="line">			r = r % processNum;</span><br><span class="line">			<span class="keyword">if</span>(temp == allFinish)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">break</span>;	</span><br><span class="line">			&#125;</span><br><span class="line">			temp = allFinish;</span><br><span class="line">		&#125;		</span><br><span class="line">		pNum = allFinish;</span><br><span class="line">    &#125;	</span><br><span class="line">	<span class="comment">//判断系统是否安全</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; processNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(Finish[i] == <span class="literal">false</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n当前系统不安全！\n\n&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//打印安全序列</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n当前系统安全！\n\n安全序列为：&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; processNum; i++)</span><br><span class="line">	&#123;	</span><br><span class="line">		<span class="type">bool</span> result = isAllZero(i);</span><br><span class="line">		<span class="keyword">if</span>(result == <span class="literal">true</span>)</span><br><span class="line">		&#123;		</span><br><span class="line">			pNum --;</span><br><span class="line">		&#125;	</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; pNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,safeSeries[i]);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> curProcess = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">-1</span>;</span><br><span class="line">       showInfo(); </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n系统安全情况分析\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot; PID\t Work\t\tAllocation\t Need\t\tWork+Allocation\n&quot;</span>);</span><br><span class="line">	<span class="type">bool</span> isStart = isSafe();</span><br><span class="line">	<span class="comment">//用户输入或者预设系统资源分配合理才能继续进行进程分配工作</span></span><br><span class="line">    <span class="keyword">while</span>(isStart)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//限制用户输入，以防用户输入大于进程数量的数字，以及输入其他字符（乱输是不允许的）</span></span><br><span class="line">      	<span class="keyword">do</span></span><br><span class="line">		&#123; </span><br><span class="line">			<span class="keyword">if</span>(curProcess &gt;= processNum || a == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;\n请不要输入超出进程数量的值或者其他字符：\n&quot;</span>);</span><br><span class="line">				<span class="keyword">while</span>(getchar() != <span class="string">&#x27;\n&#x27;</span>)&#123;&#125;;<span class="comment">//清空缓冲区	</span></span><br><span class="line">				a = <span class="number">-1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n------------------------------------------------------------------------------------\n&quot;</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n输入要分配的进程：&quot;</span>);</span><br><span class="line">			a = <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;curProcess);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">while</span>(curProcess &gt;= processNum || a == <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//限制用户输入，此处只接受数字，以防用户输入其他字符（乱输是不允许的）</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">do</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(a == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">&quot;\n请不要输入除数字以外的其他字符，请重新输入：\n&quot;</span>);</span><br><span class="line">					<span class="keyword">while</span>(getchar() != <span class="string">&#x27;\n&#x27;</span>)&#123;&#125;;<span class="comment">//清空缓冲区	</span></span><br><span class="line">					a = <span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;请输入要分配给进程 P%d 的第 %d 类资源：&quot;</span>,curProcess,i+<span class="number">1</span>);</span><br><span class="line">				a = <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;request[i]);</span><br><span class="line">			&#125;<span class="keyword">while</span>( a == <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//判断用户输入的分配是否合理，如果合理，开始进行预分配</span></span><br><span class="line">		num  = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(request[i] &lt;= need[curProcess][i] &amp;&amp; request[i] &lt;= available[i])</span><br><span class="line">			&#123;</span><br><span class="line">				num ++;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;\n发生错误！可能原因如下：\n(1)您请求分配的资源可能大于该进程的某些资源的最大需要！\n(2)系统所剩的资源已经不足了！\n&quot;</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num == resourceNum)</span><br><span class="line">		&#123;	</span><br><span class="line">			num = <span class="number">0</span>;	</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//分配资源</span></span><br><span class="line">                available[j] = available[j] - request[j];</span><br><span class="line">                allocation[curProcess][j] = allocation[curProcess][j] + request[j];</span><br><span class="line">                need[curProcess][j] = need[curProcess][j] - request[j];</span><br><span class="line">				<span class="comment">//记录分配以后，是否该进程需要值为0了</span></span><br><span class="line">				<span class="keyword">if</span>(need[curProcess][j] == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					num ++;</span><br><span class="line">				&#125;</span><br><span class="line">            &#125;</span><br><span class="line">			<span class="comment">//如果分配以后出现该进程对所有资源的需求为0了，即刻释放该进程占用资源（视为完成）</span></span><br><span class="line">			<span class="keyword">if</span>(num == resourceNum)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//释放已完成资源</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; resourceNum; i++ )</span><br><span class="line">				&#123;</span><br><span class="line">					available[i] = available[i] + allocation[curProcess][i];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;\n\n本次分配进程 P%d 完成,该进程占用资源全部释放完毕！\n&quot;</span>,curProcess);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//资源分配可以不用一次性满足进程需求</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;\n\n本次分配进程 P%d 未完成！\n&quot;</span>,curProcess);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			showInfo();</span><br><span class="line">           	<span class="built_in">printf</span>(<span class="string">&quot;\n系统安全情况分析\n&quot;</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot; PID\t Work\t\tAllocation\t Need\t\tWork+Allocation\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">//预分配完成以后，判断该系统是否安全，若安全，则可继续进行分配，若不安全，将已经分配的资源换回来</span></span><br><span class="line">            <span class="keyword">if</span>(!isSafe())</span><br><span class="line">			&#123; 	        </span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; resourceNum; j++)</span><br><span class="line">				&#123;</span><br><span class="line">					available[j] = available[j] + request[j];</span><br><span class="line">					allocation[curProcess][j] = allocation[curProcess][j] - request[j];</span><br><span class="line">					need[curProcess][j] = need[curProcess][j] +request[j];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;资源不足，等待中...\n\n分配失败！\n&quot;</span>);				</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-4-4-死锁检测和解除"><a href="#2-4-4-死锁检测和解除" class="headerlink" title="2.4.4 死锁检测和解除"></a>2.4.4 死锁检测和解除</h2><ol>
+<li>资源分配图</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/629c3f72516741b3a43c003ced9003cf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="2">
+<li>死锁定理</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/583b6c7aacf0472dadad588e3433cac6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="3">
+<li>死锁解除</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/1d214cb989a9414dae96f1fd0b89bd50.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<h2 id="2-4-6-习题"><a href="#2-4-6-习题" class="headerlink" title="2.4.6 习题"></a>2.4.6 习题</h2><ul>
+<li>可能导致死锁的是<strong>多个进程竞争资源出现了循环等待</strong>。</li>
+</ul>
+<p><strong>一个</strong>进程进入死循环，会导致进程的饥饿。</p>
+<ul>
+<li>系统产生死锁的可能原因是<strong>独占资源分配不当</strong>。</li>
+</ul>
+<p>系统资源不足，导致的是饥饿。</p>
+<ul>
+<li>某系统中有三个并发进程都需要四个同类资源，则该系统必然不会发生死锁的最少资源是<strong>10</strong>。</li>
+</ul>
+<p>如果是9，存在情况：三个进程各有三个同类资源，死锁。为10时，至少有一个资源有4个资源，完成并释放。</p>
+<ul>
+<li>两个并发进程，运行结果是<strong>程序不能正确运行，结果不确定</strong>。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x, y, z, t, u ;</span><br><span class="line">P1()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        x = <span class="number">1</span> ;</span><br><span class="line">        y = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">if</span>(x &gt;= <span class="number">1</span>) y = y + <span class="number">1</span> ;</span><br><span class="line">        z = y ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">P2()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        x = <span class="number">0</span> ;</span><br><span class="line">        t = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">if</span>(x &lt;= <span class="number">1</span>) t = t + <span class="number">2</span> ;</span><br><span class="line">        u = t ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>x 始终 小于等于1 ，P2始终可以运行，不会死锁。最后因为执行顺序不同，可能有三种结果。</p>
+<ul>
+<li>S1采用死锁避免，S2采用死锁检测，正确的是<strong>S1需要进程运行所需的资源总量信息，而S2不需要；S1不会给可能导致死锁的进程分配资源，而S2会</strong>。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/28/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/28/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" itemprop="url">密码学第二章 数的格式：C中大数的表示</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T00:00:00+08:00">
+                2022-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/28/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/28/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-28/" itemprop="url">随笔22/3/28</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T00:00:00+08:00">
+                2022-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>已经到了三月的尾巴，这个月有太多失误与烦恼。失恋了，因为工作失误丢了学委的工作，损失了近一千块钱，因为不吃早点胃病变得更加严重，上吐下泻，身上一些不详的症状更加明显了。母亲最近的状况也不好，甚至不敢多问。</p>
+<p>灾厄，灾厄。已经很努力地去调整了，把人丢在了自习室里，可是生活中还是有太多的麻烦事找上头来。一切都可以熬过去，是呵，可是熬过去迎接自己的又是什么。最近算法做得少，一些基础的算法看着也变得陌生，做王道操作系统实在花费了太多的时间，是否该通过做BLOG来加深印象，的确记忆更加深刻，但是投入产出是否成正比。4月初的蓝桥杯到现在才做了一年的真题，各个平台上的题单都是仅仅开了头，还想去尝试9月的CSP认证，距离目标实在有些遥远。</p>
+<p>上个星期一套英一的真题都没做完，更别说CET6和听力。每天的时间莫名地消失，可是晚上九点多回到宿舍人完全处于颓废的状态，很难打起精神来再去多做些什么。</p>
+<p>美团赛也开始开摆了，漫无边际没头没脑的数据收集令人抓狂，甚至书和电影也看得不多，每天时间浪费在哪里了，总觉得自己所视太高而力气不足，恐怕得丢掉一些负重，才能跑得更远。失望而恐慌。</p>
+<p>又在贩卖焦虑，实在没有意思。欠缺的东西实在太多，生活慢慢丢掉了色彩。</p>
+<p>坚持住吧，既然已经选择了这条道路，再停下步伐只会失去更多。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/27/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -429,7 +1001,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" itemprop="url">基于遗传算法的测试用例自动生成方法综述--赫彦文</a></h1>
         
 
         <div class="post-meta">
@@ -441,7 +1013,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T16:16:56+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
                 2022-03-26
               </time>
             
@@ -451,6 +1023,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1584,609 +2178,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/23/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-2%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/23/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-2%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6/" itemprop="url">23王道操作系统 C2-2 处理机调度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-23T00:00:00+08:00">
-                2022-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">考研</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2-2-处理机调度"><a href="#2-2-处理机调度" class="headerlink" title="2.2 处理机调度"></a>2.2 处理机调度</h2><h3 id="2-2-1-调度的概念"><a href="#2-2-1-调度的概念" class="headerlink" title="2.2.1 调度的概念"></a>2.2.1 调度的概念</h3><p>调度的层次：</p>
-<p>（1）高级调度（作业调度）。</p>
-<p>（2）中级调度（内存调度）。</p>
-<p>（3）初级调度（进程调度）。</p>
-<h3 id="2-2-2-调度的目标"><a href="#2-2-2-调度的目标" class="headerlink" title="2.2.2 调度的目标"></a>2.2.2 调度的目标</h3><ol>
-<li>CPU利用率</li>
-</ol>
-<p>CPU利用率 &#x3D; CPU有效工作时间 &#x2F; （CPU有效工作时间 - CPU空闲等待时间）</p>
-<ol start="2">
-<li><p>系统吞吐量</p>
-</li>
-<li><p>周转时间</p>
-</li>
-</ol>
-<p>周转 &#x3D; 完成 - 提交 &#x3D; 执行 + 等待。</p>
-<p>带权周转 &#x3D; 周转 &#x2F; 运行。</p>
-<ol start="4">
-<li>等待时间</li>
-</ol>
-<p>等待时间越长，满意度越低。</p>
-<ol start="5">
-<li>响应时间</li>
-</ol>
-<p>指从<strong>用户提交请求</strong>到<strong>系统首次产生响应所用的时间</strong>。</p>
-<h3 id="2-2-3-调度的实现"><a href="#2-2-3-调度的实现" class="headerlink" title="2.2.3 调度的实现"></a>2.2.3 调度的实现</h3><ol>
-<li><strong>调度程序（调度器）</strong></li>
-</ol>
-<p>（1）排队器。</p>
-<p>（2）分配器。</p>
-<p>（3）上下文切换器。</p>
-<p>上下文切换时需要执行大量的load和store指令，load用于把内存中的数据装载到寄存器中，store用于把寄存器中的数据存入内存。load和store可以分为三类指令：1.单一数据传送指令。2.多数据传送指令。3.数据变换指令。</p>
-<ol start="2">
-<li><strong>调度的时机、切换和过程</strong></li>
-</ol>
-<p><strong>不能进行进程的调度和切换的情况</strong>如下：</p>
-<p>（1）在处理机中断的过程中。</p>
-<p>（2）过程在操作系统内核临界区中。</p>
-<p>（3）其他需要完全屏蔽中断的原子操作过程中。</p>
-<p><strong>应该进行进程调度和切换的情况</strong>如下：</p>
-<p>（1）发生引起调度条件且当前进程无法继续运行下去时。</p>
-<p>（2）中断处理结束或自陷处理结束后，返回被中断进程的用户态程序执行现场前。</p>
-<ol start="3">
-<li><strong>进程调度方式</strong></li>
-</ol>
-<p>抢占式与非抢占式。</p>
-<ol start="4">
-<li><p><strong>闲逛进程</strong></p>
-</li>
-<li><p><strong>两种线程调度</strong></p>
-</li>
-</ol>
-<p><strong>用户级线程调度</strong>和<strong>内核级线程调度</strong>。</p>
-<h3 id="2-2-4-典型的调度算法"><a href="#2-2-4-典型的调度算法" class="headerlink" title="2.2.4 典型的调度算法"></a>2.2.4 典型的调度算法</h3><ol>
-<li>FCFS</li>
-</ol>
-<p>先来先服务。算法简单，效率低。长作业有利，短作业不利。有利于CPU繁忙作业，不利于I&#x2F;O繁忙作业。</p>
-<ol start="2">
-<li>SJF</li>
-</ol>
-<p>短作业优先。易发生长作业“饥饿”。</p>
-<ol start="3">
-<li>优先级调度</li>
-</ol>
-<p>根据创建后优先级是否可以改变，分为：<strong>动态优先级</strong>和<strong>静态优先级</strong>。</p>
-<p>一般来说，优先级的设置可以参照：<strong>（1）系统进程 &gt; 用户进程 （2）交互性进程 &gt; 非交互型进程 （3）I&#x2F;O型进程 &gt; 计算型进程。</strong></p>
-<ol start="4">
-<li>高 响应比 优先</li>
-</ol>
-<p>响应比 &#x3D; （等待时间 + 要求服务时间） &#x2F; 要求服务时间。</p>
-<p>中和了FCFS和SJF，同时避免了“饥饿”。</p>
-<ol start="5">
-<li><p>时间片轮转</p>
-</li>
-<li><p>多级队列调度算法</p>
-</li>
-</ol>
-<p>设置多个队列，每个队列实施不同的调度算法。</p>
-<ol start="7">
-<li>多级队列调度反馈算法</li>
-</ol>
-<p>通过动态调整<strong>进程优先级和时间片的大小</strong>，多级反馈算法可以兼顾多方面的系统目标。</p>
-<p><strong>实现思想</strong>如下：（1）设置多个就绪队列，为每个队列赋予不同优先级。（2）赋予各个队列的程序运行时间片大小各不相同。（3）每个队列都采用FCFS。（4）按队列优先级调度，第1级队列空了才会调度第2级队列。</p>
-<p><strong>多级反馈队列</strong>优势如下：（1）终端型作业用户：短作业优先。（2）短批处理作业用户：周转时间较短。（3）长批处理作业用户：经过前面几个队列得到部分执行，不会长期得不到处理。</p>
-<h3 id="2-2-7-习题"><a href="#2-2-7-习题" class="headerlink" title="2.2.7 习题"></a>2.2.7 习题</h3><ul>
-<li><p><strong>FCFS</strong>有利于CPU繁忙的作业，而不适合IO繁忙的作业。</p>
-</li>
-<li><p>进程（线程）调度的有利时机有<strong>1. 运行的进程（线程）运行完毕。2. 运行的进程（线程）所需资源未准备好。3. 运行的进程（线程）时间片用完。4. 运行的进程（线程）自我阻塞。5. 运行的进程（线程）出现错误</strong>。</p>
-</li>
-<li><p>分时系统的时间片固定，因此用户数越多，响应时间越长。（<strong>对</strong>）</p>
-</li>
-<li><p>中断向量地址是中断服务例行程序的入口地址（<strong>错</strong>）</p>
-</li>
-</ul>
-<p>中断向量本身是用于存放中断服务例行程序的入口地址，因此中断向量地址就应是该入口地址的地址。</p>
-<ul>
-<li><p>【2012】若某单处理机多进程系统中有多个就绪态进程，那么错误的是<strong>在进程处于临界区时不能进行处理机调度</strong>。</p>
-</li>
-<li><p>【2013】正在执行P1 P2 P3 ，数据如下表，为了提高资源利用率，合理的进程优先级设置为：<strong>P3 &gt; P2 &gt; P1</strong>。</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">进程</th>
-<th align="center">计算时间</th>
-<th align="center">I&#x2F;O时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">P1</td>
-<td align="center">90%</td>
-<td align="center">10%</td>
-</tr>
-<tr>
-<td align="center">P2</td>
-<td align="center">50%</td>
-<td align="center">50%</td>
-</tr>
-<tr>
-<td align="center">P3</td>
-<td align="center">15%</td>
-<td align="center">85%</td>
-</tr>
-</tbody></table>
-<p>为了提高资源利用率，直接按照I&#x2F;O时间排。</p>
-<ul>
-<li>某系统采用<strong>基于优先级的非抢占式进程调度</strong>策略，完成一次进程调度和进程切换的时间为1us，T时刻有进程P1,P2,P3,数据如下表，优先级权值大的进程优先获得CPU，从T时刻开始调度，则系统平均周转时间为<strong>75us</strong>。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">进程</th>
-<th align="center">等待时间</th>
-<th align="center">需要的CPU时间</th>
-<th align="center">优先权</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">P1</td>
-<td align="center">30us</td>
-<td align="center">12us</td>
-<td align="center">10</td>
-</tr>
-<tr>
-<td align="center">P2</td>
-<td align="center">15us</td>
-<td align="center">24us</td>
-<td align="center">30</td>
-</tr>
-<tr>
-<td align="center">P3</td>
-<td align="center">18us</td>
-<td align="center">36us</td>
-<td align="center">20</td>
-</tr>
-</tbody></table>
-<p>按优先级，P2 &#x3D; 1 + 15 + 24 &#x3D; 40 us ，P3 &#x3D; 18 + 1 + 24 + 1 + 36 &#x3D; 80 us ，P1 &#x3D; 30 + 1 + 24 + 1 + 36 + 1 + 12 &#x3D; 105 us。</p>
-<p>平均75us。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E5%90%8E%E7%AB%AF/Java/%E4%BD%9C%E4%B8%9A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/21/%E5%90%8E%E7%AB%AF/Java/%E4%BD%9C%E4%B8%9A3/" itemprop="url">Java及Web开发作业3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
-                2022-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>设计并实现学生成绩系统中学生类，描述学生相关信息。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> No ;</span><br><span class="line">    <span class="keyword">private</span> String name ;</span><br><span class="line">    <span class="keyword">private</span> String sex ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> chineseScore ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> mathsScore ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> engScore ;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getNo</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> No ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNo</span><span class="params">(<span class="type">int</span> No)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.No = No ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getSex</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setSex</span><span class="params">(String sex)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.sex = sex ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getChineseScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> chineseScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setChineseScore</span><span class="params">(<span class="type">int</span> chineseScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.chineseScore = chineseScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMathsScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  mathsScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMathsScore</span><span class="params">(<span class="type">int</span> mathsScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.mathsScore = mathsScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getEngScore</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> engScore ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setEngScore</span><span class="params">(<span class="type">int</span> engScore)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.engScore = engScore ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>设计并实现一个打印机接口，模拟打印。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">paper</span>&#123; <span class="comment">// 纸张接口</span></span><br><span class="line">    String <span class="title function_">size</span><span class="params">()</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// 墨盒接口</span></span><br><span class="line">    String <span class="title function_">color</span><span class="params">()</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A4paper</span> <span class="keyword">implements</span> <span class="title class_">paper</span>&#123; <span class="comment">// a4</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">size</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;a4&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B5paper</span> <span class="keyword">implements</span> <span class="title class_">paper</span>&#123; <span class="comment">// b5</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">size</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;b5&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">colorInk</span> <span class="keyword">implements</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// colorink</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">color</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;彩色墨盒&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">blackInk</span> <span class="keyword">implements</span> <span class="title class_">inkBox</span>&#123; <span class="comment">// blackink</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">color</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;黑色墨盒&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">printer</span>&#123;</span><br><span class="line">    paper paper ;</span><br><span class="line">    inkBox inkBox ;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">printer</span><span class="params">()</span>&#123;&#125; <span class="comment">// 无参构造</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">printer</span><span class="params">(paper paper, inkBox inkBox)</span>&#123; <span class="comment">// 有参构造</span></span><br><span class="line">        <span class="built_in">this</span>.paper = paper ;</span><br><span class="line">        <span class="built_in">this</span>.inkBox = inkBox ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">print</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;print on &quot;</span> + paper.size() + <span class="string">&quot; paper in &quot;</span> + inkBox.color() ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">printerTest</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">printer</span> <span class="variable">printer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">printer</span>(<span class="keyword">new</span> <span class="title class_">A4paper</span>(), <span class="keyword">new</span> <span class="title class_">colorInk</span>()) ;</span><br><span class="line">        System.out.println(printer.print());</span><br><span class="line">        <span class="type">printer</span> <span class="variable">pr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">printer</span>(<span class="keyword">new</span> <span class="title class_">B5paper</span>(), <span class="keyword">new</span> <span class="title class_">blackInk</span>()) ;</span><br><span class="line">        System.out.println(pr.print());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>熟悉String类的属性和方法，并设计实现一个类来调用String类的常见方法。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">stringPrc</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;StringTest&quot;</span> ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="string">&quot;StringTest2&quot;</span> ;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> s.length() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s的长度：&quot;</span> + length);</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span> <span class="variable">s4</span> <span class="operator">=</span> s.charAt(<span class="number">3</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s第四个位置的字符是：&quot;</span> + s4);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> s.substring(<span class="number">2</span>,<span class="number">4</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s的2-4位是：&quot;</span> + s1);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> s.compareTo(ss) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> ss.compareTo(s) ;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">c</span> <span class="operator">=</span> s.equals(ss) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的字符串比较结果是：&quot;</span> + a);</span><br><span class="line">        System.out.println(<span class="string">&quot;ss与s的字符串比较结果是：&quot;</span> + b);</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的逻辑比较结果是：&quot;</span> + c);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">sss</span> <span class="operator">=</span> s.concat(ss) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s与ss的拼接结果是：&quot;</span> + sss);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">find1</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;t&#x27;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find2</span> <span class="operator">=</span> s.indexOf(<span class="string">&quot;Test&quot;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find3</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;w&#x27;</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find4</span> <span class="operator">=</span> s.indexOf(<span class="string">&#x27;t&#x27;</span>,<span class="number">2</span>) ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">find5</span> <span class="operator">=</span> s.lastIndexOf(<span class="string">&#x27;t&#x27;</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找t：&quot;</span> + find1);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找Test：&quot;</span> + find2);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找w：&quot;</span> + find3);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中查找第二个t：&quot;</span> + find4);</span><br><span class="line">        System.out.println(<span class="string">&quot;s中从后向前查找t：&quot;</span> + find5);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">lows</span> <span class="operator">=</span> s.toLowerCase() ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ups</span> <span class="operator">=</span> s.toUpperCase() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;s变大写&quot;</span> + ups);</span><br><span class="line">        System.out.println(<span class="string">&quot;s变小写&quot;</span> + lows);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">sre1</span> <span class="operator">=</span> s.replace(<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;m&#x27;</span>) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;将s替换成m&quot;</span> + sre1);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot; Hello  &quot;</span>) ;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> str.trim() ;</span><br><span class="line">        System.out.println(<span class="string">&quot;截取两端所有空格&quot;</span> + str1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/" itemprop="url">EMOTIONAL DAMAGE --《消失的爱人》</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
-                2022-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>归功于下午的一杯咖啡，让我半夜不眠观此爽片。</p>
-<p>这段时间猎奇于pegging亚文化，这部电影深深带入完全地被掌控和控制。相比于pegging基于道具的输出，这种由内而外，知行合一的控制欲与执行力令人惊叹。现实中相比起来恐怕后者更多。隔着屏幕我已经臣服在“amazing amy”手工刀下了。</p>
-<p>疯子间的博弈才是真正地舍我其谁，凌晨四点惊得我可以从床上弹起来再敲上两题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2237,7 +2228,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2248,7 +2239,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2259,7 +2250,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
