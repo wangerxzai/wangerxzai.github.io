@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="两人向一个账户存款问题问题描述：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。 1234567891011121314151617181920212223242526272829303132333435363738394">
+<meta name="description" content="两人向一个账户存款问题 问题描述：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。 1234567891011121314151617181920212223242526272829303132333435363738">
 <meta property="og:type" content="article">
 <meta property="og:title" content="同步互斥经典问题">
 <meta property="og:url" content="https://wangerxzai.github.io/2022/03/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="不学习变傻瓜">
-<meta property="og:description" content="两人向一个账户存款问题问题描述：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。 1234567891011121314151617181920212223242526272829303132333435363738394">
+<meta property="og:description" content="两人向一个账户存款问题 问题描述：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。 1234567891011121314151617181920212223242526272829303132333435363738">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-03-23T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-03-24T03:11:35.331Z">
@@ -135,7 +135,11 @@
 
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -341,11 +345,12 @@
       
 
       
-        <h2 id="两人向一个账户存款问题"><a href="#两人向一个账户存款问题" class="headerlink" title="两人向一个账户存款问题"></a>两人向一个账户存款问题</h2><p><strong>问题描述</strong>：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。</p>
+        <h2 id="两人向一个账户存款问题">两人向一个账户存款问题</h2>
+<p><strong>问题描述</strong>：妈妈和孩子共享一个账户count，初始账户余额为100，妈妈进程程往count中存款100，孩子进程往count中存款200。count是临界资源，妈妈进程和孩子进程要互斥使用count。编写一个实现妈妈和孩子进程互斥的代码。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">mother</span><span class="params">(LPVOID lpParameter)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">child</span><span class="params">(LPVOID lpParameter)</span></span>;</span><br><span class="line"></span><br><span class="line">HANDLE mutex;  <span class="comment">//API函数返回信号量句柄</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> count=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"></span><br><span class="line">       HANDLE hThread[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">       DWORD motherID; <span class="comment">//妈妈线程的标识符</span></span><br><span class="line"></span><br><span class="line">    DWORD childID; <span class="comment">//孩子线程的标识符</span></span><br><span class="line"></span><br><span class="line">       mutex = <span class="built_in">CreateSemaphore</span>(<span class="literal">NULL</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="literal">NULL</span>);  <span class="comment">//缺省安全属性，初始资源为1，最大并发数为1，创建匿名信号量</span></span><br><span class="line"></span><br><span class="line">    hThread[<span class="number">0</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, mother, <span class="number">0</span>, <span class="number">0</span>, &amp;motherID);</span><br><span class="line"></span><br><span class="line">    hThread[<span class="number">1</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, child, <span class="number">0</span>, <span class="number">0</span>, &amp;childID);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="built_in">WaitForMultipleObjects</span>(<span class="number">2</span>, hThread, <span class="literal">true</span>, INFINITE);  <span class="comment">//用于等待多个线程,2是线程个数，hThread是句柄数组的指针</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;count=:%d\n&quot;</span>,count);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">mother</span><span class="params">(LPVOID lpParameter)</span>  <span class="comment">//LPVOID是一个void* 数据类型</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">WaitForSingleObject</span>(mutex,INFINITE);  <span class="comment">//INFINITE为无限时间量</span></span><br><span class="line"></span><br><span class="line">       n=count;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">Sleep</span>(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">       n=n+<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">       count=n;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">ReleaseSemaphore</span>(mutex, <span class="number">1</span>, <span class="literal">NULL</span>);  <span class="comment">//信号量资源数加一</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">child</span><span class="params">(LPVOID lpParameter)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> m;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">WaitForSingleObject</span>(mutex,INFINITE);</span><br><span class="line"></span><br><span class="line">       m=count;</span><br><span class="line"></span><br><span class="line">       m=m+<span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">Sleep</span>(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">       count=m;</span><br><span class="line"></span><br><span class="line">       <span class="built_in">ReleaseSemaphore</span>(mutex, <span class="number">1</span>, <span class="literal">NULL</span>);  <span class="comment">//信号量资源数加一</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>DWORD</code>，宏定义：<code>typedef unsigned long DWORD</code>。double word，每个word为两个字节的长度，DWORD双字即为4个字节，每个字节8位，共32位。</p>
-<p><code>WINAPI</code>，是_stdcall，是C&#x2F;C++调用约定的一种，意思是函数的参数被从右到左推送到堆栈上，被调用函数在返回之前从堆栈中谈出这些参数。注明WINAPI的函数和不注明是系统和不是系统函数的区别。写的库函数是WINAPI声明的，调用时的声明也要是WINAPI。</p>
+<p><code>DWORD</code>，宏定义：<code>typedef unsigned long DWORD</code>。double
+word，每个word为两个字节的长度，DWORD双字即为4个字节，每个字节8位，共32位。</p>
+<p><code>WINAPI</code>，是_stdcall，是C/C++调用约定的一种，意思是函数的参数被从右到左推送到堆栈上，被调用函数在返回之前从堆栈中谈出这些参数。注明WINAPI的函数和不注明是系统和不是系统函数的区别。写的库函数是WINAPI声明的，调用时的声明也要是WINAPI。</p>
 <p><code>HANDLE</code>，</p>
 
       
@@ -465,7 +470,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -476,7 +481,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -487,7 +492,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -753,6 +758,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

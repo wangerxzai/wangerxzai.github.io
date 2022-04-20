@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="设计并实现使用switch语法的应用程序。   int类型switch  12345678910111213141516171819202122232425262728293031package homework02;import java.util.Scanner;class Switch1 &amp;#123; &#x2F;&#x2F;int类型switch    public static void main(Str">
+<meta name="description" content="设计并实现使用switch语法的应用程序。   int类型switch  12345678910111213141516171819202122232425262728293031package homework02;import java.util.Scanner;class Switch1 &amp;#123; &#x2F;&#x2F;int类型switch    public static void ma">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java及Web开发作业2-3.9">
 <meta property="og:url" content="https://wangerxzai.github.io/2022/03/13/%E5%90%8E%E7%AB%AF/Java/%E4%BD%9C%E4%B8%9A2/index.html">
 <meta property="og:site_name" content="不学习变傻瓜">
-<meta property="og:description" content="设计并实现使用switch语法的应用程序。   int类型switch  12345678910111213141516171819202122232425262728293031package homework02;import java.util.Scanner;class Switch1 &amp;#123; &#x2F;&#x2F;int类型switch    public static void main(Str">
+<meta property="og:description" content="设计并实现使用switch语法的应用程序。   int类型switch  12345678910111213141516171819202122232425262728293031package homework02;import java.util.Scanner;class Switch1 &amp;#123; &#x2F;&#x2F;int类型switch    public static void ma">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-03-12T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-03-15T11:13:07.152Z">
@@ -135,7 +135,11 @@
 
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -341,64 +345,47 @@
       
 
       
-        <ol>
+        <ol type="1">
 <li>设计并实现使用switch语法的应用程序。</li>
 </ol>
 <ul>
 <li>int类型switch</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Switch1</span> &#123; <span class="comment">//int类型switch</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in) ;</span><br><span class="line">        System.out.print(<span class="string">&quot;请输入 x (1&lt;=x&lt;=5) 的值:&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> in.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;计算 2 * x 的值为：&quot;</span>);</span><br><span class="line">        <span class="keyword">switch</span> (i)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                System.out.println(<span class="number">2</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                System.out.println(<span class="number">4</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                System.out.println(<span class="number">6</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                System.out.println(<span class="number">8</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                System.out.println(<span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 <ul>
 <li>枚举(Enum)类型switch</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Switch2</span>&#123; <span class="comment">//枚举(Enum)类型switch</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">enum</span> <span class="title class_">E</span> &#123;</span><br><span class="line">        A, B, C, D</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">E</span> <span class="variable">e</span> <span class="operator">=</span> E.B ;</span><br><span class="line">        <span class="keyword">switch</span> (e)&#123;</span><br><span class="line">            <span class="keyword">case</span> A:</span><br><span class="line">                System.out.println(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> B:</span><br><span class="line">                System.out.println(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> C:</span><br><span class="line">                System.out.println(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> D:</span><br><span class="line">                System.out.println(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println( <span class="number">0</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>String类型switch</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Switch3</span>&#123; <span class="comment">//String类型switch</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in) ;</span><br><span class="line">        System.out.print(<span class="string">&quot;输入一个char(A or B or C):&quot;</span>);</span><br><span class="line">        <span class="type">char</span> <span class="variable">s</span> <span class="operator">=</span> in.next().charAt(<span class="number">0</span>) ;</span><br><span class="line">        <span class="keyword">switch</span> (s)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span> :</span><br><span class="line">                System.out.println(<span class="string">&quot;A&quot;</span>) ;</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span> :</span><br><span class="line">                System.out.println(<span class="string">&quot;B&quot;</span>) ;</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;C&#x27;</span> :</span><br><span class="line">                System.out.println(<span class="string">&quot;C&quot;</span>) ;</span><br><span class="line">                <span class="keyword">break</span> ;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="number">0</span>) ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>用不同的循环语句实现1…30的整数求积。</li>
+<ol start="2" type="1">
+<li>用不同的循环语句实现1...30的整数求积。</li>
 </ol>
 <ul>
 <li>for</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Factorial</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">BigDecimal</span> <span class="variable">ans</span> <span class="operator">=</span> BigDecimal.valueOf(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ; i &lt;= <span class="number">30</span> ; i ++)&#123;</span><br><span class="line">            BigDecimal temi ;</span><br><span class="line">            temi = <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(i);</span><br><span class="line">            ans = ans.multiply(temi) ;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>while</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Factorial</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">BigDecimal</span> <span class="variable">ans</span> <span class="operator">=</span> BigDecimal.valueOf(<span class="number">1</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ;</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= <span class="number">30</span>)&#123;</span><br><span class="line">            BigDecimal temi ;</span><br><span class="line">            temi = <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(i);</span><br><span class="line">            ans = ans.multiply(temi) ;</span><br><span class="line">            i ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>设计并实现使用if…else和三目运算两种方法等效输出不同的结果。</li>
+<ol start="3" type="1">
+<li>设计并实现使用if...else和三目运算两种方法等效输出不同的结果。</li>
 </ol>
 <ul>
 <li>if…else</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ifelse</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;1 + 1 == 3&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;判断是否正确，输入yes或者no:&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> in.next() ;</span><br><span class="line">        <span class="keyword">if</span>(Objects.equals(s, <span class="string">&quot;no&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;you are right!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(Objects.equals(s, <span class="string">&quot;yes&quot;</span> +</span><br><span class="line">                <span class="string">&quot;&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;you are wrong!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;ERROR&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>三目运算</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ifelse</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in) ;</span><br><span class="line">        System.out.println(<span class="string">&quot;1 + 1 == 3&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;判断是否正确，输入yes或者no:&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> in.next() ;</span><br><span class="line">        String x ;</span><br><span class="line">        x = (Objects.equals(s, <span class="string">&quot;no&quot;</span>)) ? <span class="string">&quot;you are right&quot;</span> : <span class="string">&quot;you are wrong&quot;</span> ;</span><br><span class="line">        System.out.println(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>设计并实现利用移位运算符进行除法运算（如1&#x2F;2）。</li>
+<ol start="4" type="1">
+<li>设计并实现利用移位运算符进行除法运算（如1/2）。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> homework02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">bitcal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in) ;</span><br><span class="line">        System.out.print(<span class="string">&quot;输入一个int类型x：&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> in.nextInt() ;</span><br><span class="line">        <span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> x &gt;&gt; <span class="number">1</span> ;</span><br><span class="line">        System.out.println(<span class="string">&quot;x / 2 = &quot;</span> + y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -423,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/12/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A1/" rel="next" title="数据库 作业一">
-                <i class="fa fa-chevron-left"></i> 数据库 作业一
+              <a href="/2022/03/13/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-13/" rel="next" title="随笔22/3/13">
+                <i class="fa fa-chevron-left"></i> 随笔22/3/13
               </a>
             
           </div>
@@ -433,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/03/13/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-13/" rel="prev" title="随笔22/3/13">
-                随笔22/3/13 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/03/15/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%AF%94%E8%B5%9B/%E8%93%9D%E6%A1%A5%E6%9D%AF%202021%E7%9C%81%E8%B5%9B%E9%A2%98%E5%8D%95/" rel="prev" title="蓝桥杯 2021省赛题单">
+                蓝桥杯 2021省赛题单 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -508,7 +495,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -519,7 +506,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -530,7 +517,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -780,6 +767,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

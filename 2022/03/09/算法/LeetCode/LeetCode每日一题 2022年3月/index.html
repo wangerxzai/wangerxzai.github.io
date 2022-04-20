@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 3.7 lc.504 七进制数 C++ 模拟 123456789101112131415161718192021222324class Solution &amp;#123;public:    string convertToBase7(int num) &amp;#123;        int x &#x3D; 0 ;        string">
+<meta name="description" content="开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 ## 3.7 lc.504 七进制数 - C++ 模拟 123456789101112131415161718192021222324class Solution &amp;#123;public:    string convertToBase7(int num) &amp;#123;        int x &#x3D; 0 ;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode每日一题 2022年3月">
 <meta property="og:url" content="https://wangerxzai.github.io/2022/03/09/%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%202022%E5%B9%B43%E6%9C%88/index.html">
 <meta property="og:site_name" content="不学习变傻瓜">
-<meta property="og:description" content="开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 3.7 lc.504 七进制数 C++ 模拟 123456789101112131415161718192021222324class Solution &amp;#123;public:    string convertToBase7(int num) &amp;#123;        int x &#x3D; 0 ;        string">
+<meta property="og:description" content="开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 ## 3.7 lc.504 七进制数 - C++ 模拟 123456789101112131415161718192021222324class Solution &amp;#123;public:    string convertToBase7(int num) &amp;#123;        int x &#x3D; 0 ;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-03-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-03-17T06:29:43.038Z">
@@ -138,7 +138,11 @@
 
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -344,35 +348,37 @@
       
 
       
-        <p>开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。</p>
-<h2 id="3-7-lc-504-七进制数"><a href="#3-7-lc-504-七进制数" class="headerlink" title="3.7 lc.504 七进制数"></a>3.7 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/base-7/">lc.504 七进制数</a></h2><ul>
-<li><p>C++ 模拟</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">convertToBase7</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="number">0</span> ;</span><br><span class="line">        string ans = <span class="string">&quot;&quot;</span> ;</span><br><span class="line">        <span class="keyword">if</span>(num &lt; <span class="number">0</span>) ans += <span class="string">&#x27;-&#x27;</span> ;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">0</span>)&#123;</span><br><span class="line">            ans = <span class="string">&#x27;0&#x27;</span> ;</span><br><span class="line">            <span class="keyword">return</span> ans ;</span><br><span class="line">        &#125;</span><br><span class="line">        num = <span class="built_in">abs</span>(num) ;</span><br><span class="line">        <span class="keyword">while</span>(num &gt;= <span class="built_in">pow</span>(<span class="number">7</span>,x))&#123;</span><br><span class="line">            x ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            x -- ;</span><br><span class="line">            <span class="type">int</span> tmp = <span class="built_in">pow</span>(<span class="number">7</span>,x) ;</span><br><span class="line">            <span class="type">int</span> c = num / tmp ;</span><br><span class="line">            ans += <span class="string">&#x27;0&#x27;</span> + c ;</span><br><span class="line">            num -= c * tmp ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java 反向模拟</p>
-</li>
+        <p>开始学 Java 了，每天写完 C++版的之后再写一个 JAVA版的。 ## 3.7 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/base-7/">lc.504 七进制数</a> -
+C++ 模拟 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">convertToBase7</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="number">0</span> ;</span><br><span class="line">        string ans = <span class="string">&quot;&quot;</span> ;</span><br><span class="line">        <span class="keyword">if</span>(num &lt; <span class="number">0</span>) ans += <span class="string">&#x27;-&#x27;</span> ;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">0</span>)&#123;</span><br><span class="line">            ans = <span class="string">&#x27;0&#x27;</span> ;</span><br><span class="line">            <span class="keyword">return</span> ans ;</span><br><span class="line">        &#125;</span><br><span class="line">        num = <span class="built_in">abs</span>(num) ;</span><br><span class="line">        <span class="keyword">while</span>(num &gt;= <span class="built_in">pow</span>(<span class="number">7</span>,x))&#123;</span><br><span class="line">            x ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            x -- ;</span><br><span class="line">            <span class="type">int</span> tmp = <span class="built_in">pow</span>(<span class="number">7</span>,x) ;</span><br><span class="line">            <span class="type">int</span> c = num / tmp ;</span><br><span class="line">            ans += <span class="string">&#x27;0&#x27;</span> + c ;</span><br><span class="line">            num -= c * tmp ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Java 反向模拟</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">convertToBase7</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;0&quot;</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">bb</span> <span class="operator">=</span> num &lt; <span class="number">0</span> ; <span class="comment">// 保存判断结果</span></span><br><span class="line">        num = Math.abs(num) ;</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>() ;</span><br><span class="line">        <span class="keyword">while</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            ss.append(num % <span class="number">7</span>) ;</span><br><span class="line">            num /= <span class="number">7</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(bb)&#123;</span><br><span class="line">            ss.append(<span class="string">&#x27;-&#x27;</span>) ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ss.reverse().toString() ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>String</strong>对象一旦创建，其值是<strong>不能修改</strong>的，如果要修改，会<strong>重新开辟内存空间</strong>来存储修改之后的对象；而StringBuffer和StringBuilder对象的值是可以被修改的；<br><strong>StringBuffer</strong>几乎所有的方法都使用synchronized实现了同步，<strong>线程比较安全</strong>，在多线程系统中可以保证数据同步，但是<strong>效率比较低</strong>；而<strong>StringBuilder</strong> 没有实现同步，<strong>线程不安全</strong>，在多线程系统中不能使用 StringBuilder，但是<strong>效率比较高</strong>。<br>如果我们在实际开发过程中需要对字符串进行<strong>频繁</strong>的修改，不要使用String，否则会造成内存空间的浪费；当需要考虑线程<strong>安全</strong>的场景下使用 StringBuffer，如果不需要考虑线程安全，追求<strong>效率</strong>的场景下可以使用 StringBuilder。</p>
-<h2 id="3-9-lc-798-得分最高的最小轮调"><a href="#3-9-lc-798-得分最高的最小轮调" class="headerlink" title="3.9 lc.798 得分最高的最小轮调"></a>3.9 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/">lc.798 得分最高的最小轮调</a></h2><ul>
+<p><strong>String</strong>对象一旦创建，其值是<strong>不能修改</strong>的，如果要修改，会<strong>重新开辟内存空间</strong>来存储修改之后的对象；而StringBuffer和StringBuilder对象的值是可以被修改的；
+<strong>StringBuffer</strong>几乎所有的方法都使用synchronized实现了同步，<strong>线程比较安全</strong>，在多线程系统中可以保证数据同步，但是<strong>效率比较低</strong>；而<strong>StringBuilder</strong>
+没有实现同步，<strong>线程不安全</strong>，在多线程系统中不能使用
+StringBuilder，但是<strong>效率比较高</strong>。
+如果我们在实际开发过程中需要对字符串进行<strong>频繁</strong>的修改，不要使用String，否则会造成内存空间的浪费；当需要考虑线程<strong>安全</strong>的场景下使用
+StringBuffer，如果不需要考虑线程安全，追求<strong>效率</strong>的场景下可以使用
+StringBuilder。</p>
+<h2 id="lc.798-得分最高的最小轮调">3.9 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/">lc.798
+得分最高的最小轮调</a></h2>
+<ul>
 <li>C++ 差分</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">bestRotation</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>(), ans = <span class="number">0</span>, high = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="type">int</span> st = (i - nums[i] + <span class="number">1</span> + n) % n, en = i + <span class="number">1</span>;</span><br><span class="line">            cnt[st] --, cnt[en] ++;</span><br><span class="line">            <span class="keyword">if</span> (st &lt; en) cnt[<span class="number">0</span>] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((sum += cnt[i]) &gt; high) &#123;</span><br><span class="line">                high = sum;</span><br><span class="line">                ans = i;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>跟着题解的指示，我先去做了差分+前缀和的medium，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/corporate-flight-bookings/">lc.1109</a></p>
 <ul>
 <li>c++ 超时</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">corpFlightBookings</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; bookings, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n,<span class="number">0</span>)</span> </span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; bookings.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = bookings[i][<span class="number">0</span>] ; j &lt;= bookings[i][<span class="number">1</span>] ; j ++)&#123;</span><br><span class="line">                ans[j - <span class="number">1</span>] += bookings[i][<span class="number">2</span>] ; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>理解一下差分的做法，数组记录所有位置上的增减变化，最后通过前缀和得到所有位置上的值。</p>
 <p>在具体题目里要注意左右位置具体的下标。</p>
 <ul>
 <li>差分+前缀和</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">corpFlightBookings</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; bookings, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n,<span class="number">0</span>)</span> </span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; bookings.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="type">int</span> l = bookings[i][<span class="number">0</span>] , r = bookings[i][<span class="number">1</span>] , w = bookings[i][<span class="number">2</span>] ;</span><br><span class="line">            ans[l - <span class="number">1</span>] += w ;</span><br><span class="line">            <span class="keyword">if</span>(r &lt; n) ans[r] -= w ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            ans[i] += ans[i - <span class="number">1</span>] ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>所以对于lc.798，数组不断向左转，对于每一个数字我们能得到它开始起效果的轮调，以及不起效果的轮调。分别++与–。</p>
+<p>所以对于lc.798，数组不断向左转，对于每一个数字我们能得到它开始起效果的轮调，以及不起效果的轮调。分别++与--。</p>
 <p>start位置在<code>(i - 0 + 1 + n - num[i])%n</code>,其中<code>i-0</code>意味着转到头，<code>+1</code>意味着从头转到尾部，<code>n-num[i]</code>意味着从尾部转到num[i]的前一位置，<code>%n</code>是避免越界。</p>
 <p>end位置就在结尾处，即转了<code>i+1</code>次后，<code>cnt[i+1]</code>。当然这样做是有一点越界的，虽然这题没有太高的要求。</p>
 <p>注意判断一下<code>cnt[0]</code>。</p>
@@ -380,17 +386,13 @@
 <li>Java</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">bestRotation</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length ;</span><br><span class="line">        <span class="type">int</span> cnt[] = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>] ;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt;= i) cnt[<span class="number">0</span>] ++ ;</span><br><span class="line">            <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> i + <span class="number">1</span> , r = (i + <span class="number">1</span> + n - nums[i]) % n;</span><br><span class="line">            cnt[l] ++ ; cnt[r] -- ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mm</span> <span class="operator">=</span> cnt[<span class="number">0</span>] , ans = <span class="number">0</span>, aa = cnt[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            aa += cnt[i] ;</span><br><span class="line">            <span class="keyword">if</span>(aa &gt; mm)&#123;</span><br><span class="line">                mm = aa ;</span><br><span class="line">                ans = i ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="3-17-lc-720-词典最长的单词"><a href="#3-17-lc-720-词典最长的单词" class="headerlink" title="3.17 lc.720 词典最长的单词"></a>3.17 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-word-in-dictionary/">lc.720 词典最长的单词</a></h2><ul>
-<li>WA 23&#x2F;59</li>
+<h2 id="lc.720-词典最长的单词">3.17 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-word-in-dictionary/">lc.720
+词典最长的单词</a></h2>
+<ul>
+<li>WA 23/59</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">longestWord</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(words.<span class="built_in">begin</span>(), words.<span class="built_in">end</span>()) ;</span><br><span class="line">        string s = <span class="string">&quot;&quot;</span> ;</span><br><span class="line">        <span class="type">int</span> len = words[<span class="number">0</span>].<span class="built_in">size</span>() ;</span><br><span class="line">        <span class="type">int</span> ii = <span class="number">0</span> , bit = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; words.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(words[i].<span class="built_in">size</span>() == len) <span class="keyword">continue</span> ;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(words[i].<span class="built_in">size</span>() == len + <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span>(ii &lt; i)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(words[i][bit] == words[ii][bit])&#123;</span><br><span class="line">                        ii = i ;</span><br><span class="line">                        bit ++ ;</span><br><span class="line">                        len ++ ;</span><br><span class="line">                        s = words[i] ;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> ii ++ ;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>错误用例<code>[&quot;m&quot;,&quot;mo&quot;,&quot;moc&quot;,&quot;moch&quot;,&quot;mocha&quot;,&quot;l&quot;,&quot;la&quot;,&quot;lat&quot;,&quot;latt&quot;,&quot;latte&quot;,&quot;c&quot;,&quot;ca&quot;,&quot;cat&quot;]</code></p>
+<p>错误用例<code>["m","mo","moc","moch","mocha","l","la","lat","latt","latte","c","ca","cat"]</code></p>
 <p>错误输出<code>cat</code>,正确输出<code>latte</code>。</p>
 
       
@@ -426,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/08/%E5%89%8D%E7%AB%AF/Git+Hexo%E6%90%AD%E5%BB%BABlog/" rel="next" title="基于Git + Hexo 搭建个人 Blog">
-                <i class="fa fa-chevron-left"></i> 基于Git + Hexo 搭建个人 Blog
+              <a href="/2022/03/09/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E5%9B%BE%E8%AE%BA2-2%20%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="next" title="洛谷题单 图论2-2 最短路">
+                <i class="fa fa-chevron-left"></i> 洛谷题单 图论2-2 最短路
               </a>
             
           </div>
@@ -436,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/03/09/%E9%9A%8F%E7%AC%94/%E5%85%B3%E4%BA%8EBlog/%E6%A6%80%201.0/" rel="prev" title="榀 1.0">
-                榀 1.0 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/03/10/%E7%AE%97%E6%B3%95/AcWing/AcWing%20%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" rel="prev" title="AcWing 算法基础笔记">
+                AcWing 算法基础笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -520,7 +522,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -531,7 +533,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -542,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -575,7 +577,9 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-lc-504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">3.7 lc.504 七进制数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-lc-798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83"><span class="nav-number">2.</span> <span class="nav-text">3.9 lc.798 得分最高的最小轮调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-17-lc-720-%E8%AF%8D%E5%85%B8%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="nav-number">3.</span> <span class="nav-text">3.17 lc.720 词典最长的单词</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83"><span class="nav-number">1.</span> <span class="nav-text">3.9 lc.798
+得分最高的最小轮调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.720-%E8%AF%8D%E5%85%B8%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="nav-number">2.</span> <span class="nav-text">3.17 lc.720
+词典最长的单词</span></a></li></ol></div>
             
 
           </div>
@@ -808,6 +812,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
