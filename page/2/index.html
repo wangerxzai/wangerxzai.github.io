@@ -253,168 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/27/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/27/%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/" itemprop="url">洛谷题单 算法1-7 搜索</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-27T00:00:00+08:00">
-                2022-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="p1219-usaco1.5八皇后-checker-challenge"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1219">P1219 [USACO1.5]八皇后
-Checker Challenge</a></h2>
-<ul>
-<li>36</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">15</span> ;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="type">bool</span> col[N], d[N], ud[N] ;</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ans[N] ; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt &lt; <span class="number">3</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">				cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span> ;</span><br><span class="line">			&#125; cout &lt;&lt; endl ;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt ++ ;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!col[i] &amp;&amp; !d[n - i + x] &amp;&amp; !ud[x + i])&#123;</span><br><span class="line">			col[i] = d[n - i + x] = ud[x + i] = <span class="literal">true</span> ;</span><br><span class="line">			ans[x] = i + <span class="number">1</span> ;</span><br><span class="line">			<span class="built_in">dfs</span>(x + <span class="number">1</span>) ;</span><br><span class="line">			col[i] = d[n - i + x] = ud[x + i] = <span class="literal">false</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n ;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>) ;</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl ;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>直接考虑用全排列的思路做，从测试点来从<code>n == 9</code>开始就出现问题了。</p>
-<p><img src="https://img-blog.csdnimg.cn/8f3eb8bf67bb481e9f837ebd584394a5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
-<ul>
-<li>100</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">50</span>;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="type">bool</span> col[N], d[N], ud[N] ;</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ans[N] ; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &gt;= n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt &lt; <span class="number">3</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">				cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span> ;</span><br><span class="line">			&#125; cout &lt;&lt; endl ;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt ++ ;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!col[i] &amp;&amp; !d[n - x + i] &amp;&amp; !ud[x + i])&#123;</span><br><span class="line">			col[i] = d[n - x + i] = ud[x + i] = <span class="literal">true</span> ;</span><br><span class="line">			ans[x] = i + <span class="number">1</span> ;</span><br><span class="line">			<span class="built_in">dfs</span>(x + <span class="number">1</span>) ;</span><br><span class="line">			col[i] = d[n - x + i] = ud[x + i] = <span class="literal">false</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n ;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>) ;</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl ;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数组开小了。无语。</p>
-<h2 id="p2392-kkksc03考前临时抱佛脚"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2392">P2392
-kkksc03考前临时抱佛脚</a></h2>
-<ul>
-<li>贪心 0</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">25</span> ;</span><br><span class="line"><span class="type">int</span> s1, s2, s3, s4 ;</span><br><span class="line"><span class="type">int</span> a[N], b[N], c[N], d[N] ;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ax = <span class="number">0</span>, ay = <span class="number">0</span>, bx = <span class="number">0</span>, by = <span class="number">0</span>, cx = <span class="number">0</span>, cy = <span class="number">0</span>, dx = <span class="number">0</span>, dy = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; s1 &gt;&gt; s2 &gt;&gt; s3 &gt;&gt; s4 ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s1 ; i ++)&#123; </span><br><span class="line">		cin &gt;&gt; a[i] ;</span><br><span class="line">		<span class="keyword">if</span>(ax &lt; ay) ax += a[i] ;</span><br><span class="line">		<span class="keyword">else</span> ay += a[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(ax, ay) ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s2 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; b[i] ;</span><br><span class="line">		<span class="keyword">if</span>(bx &lt; by) bx += b[i] ;</span><br><span class="line">		<span class="keyword">else</span> by += b[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(bx, by);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s3 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; c[i] ;</span><br><span class="line">		<span class="keyword">if</span>(cx &lt; cy) cx += c[i] ;</span><br><span class="line">		<span class="keyword">else</span> cy += c[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(cx, cy) ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s4 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; d[i] ;</span><br><span class="line">		<span class="keyword">if</span>(dx &lt; dy) dx += d[i] ;</span><br><span class="line">		<span class="keyword">else</span> dy += d[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(dx, dy) ;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; ans ;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>贪心WA了，在仔细思考后发现，在这样一个例子：目前的左脑为2，右脑为20，依次给出两个时间20，100，那么依照贪心算法，左脑就会变成22，右脑变成120；实际上的解应该是左脑102，右脑40。由于贪心只考虑眼前的大小值，会失去全局的统筹安排。</p>
-<p>所以考虑用DP - 01背包去解决这个问题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2057,7 +1895,7 @@ us ，P1 = 30 + 1 + 24 + 1 + 36 + 1 + 12 = 105 us。</p>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/19/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2076,7 +1914,7 @@ us ，P1 = 30 + 1 + 24 + 1 + 36 + 1 + 12 = 105 us。</p>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/03/21/%E9%9A%8F%E7%AC%94/%E4%B9%A6%E5%BD%B1%E9%9F%B3%E7%AC%94%E8%AE%B0/%E6%B6%88%E5%A4%B1%E7%9A%84%E7%88%B1%E4%BA%BA/" itemprop="url">EMOTIONAL DAMAGE --《消失的爱人》</a></h1>
+                <a class="post-title-link" href="/2022/03/19/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A2/" itemprop="url">数据库 作业二</a></h1>
         
 
         <div class="post-meta">
@@ -2088,8 +1926,8 @@ us ，P1 = 30 + 1 + 24 + 1 + 36 + 1 + 12 = 105 us。</p>
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-21T00:00:00+08:00">
-                2022-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-19T00:00:00+08:00">
+                2022-03-19
               </time>
             
 
@@ -2111,8 +1949,8 @@ us ，P1 = 30 + 1 + 24 + 1 + 36 + 1 + 12 = 105 us。</p>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -2150,10 +1988,380 @@ us ，P1 = 30 + 1 + 24 + 1 + 36 + 1 + 12 = 105 us。</p>
       
         
           
-            <p>归功于下午的一杯咖啡，让我半夜不眠观此爽片。</p>
-<p>这段时间猎奇于pegging亚文化，这部电影深深带入完全地被掌控和控制。相比于pegging基于道具的输出，这种由内而外，知行合一的控制欲与执行力令人惊叹。现实中相比起来恐怕后者更多。隔着屏幕我已经臣服在“amazing
-amy”手工刀下了。</p>
-<p>疯子间的博弈才是真正地舍我其谁，凌晨四点惊得我可以从床上弹起来再敲上两题。</p>
+            <p>第二章，关系数据库。</p>
+<figure>
+<img src="https://img-blog.csdnimg.cn/f7a04b52aa634b798cbece136c620dc0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="1">
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/3c6bb4a646d648f9a95d0510a7ef5078.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="2">
+<figcaption aria-hidden="true">2</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/a179297821364bce9039baa55862b4c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="3">
+<figcaption aria-hidden="true">3</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/e521d0bb1231460a93927ecc317ced50.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="4">
+<figcaption aria-hidden="true">4</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/3f602462cb4f4cb786b0a800330e71c8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="5">
+<figcaption aria-hidden="true">5</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/09c8a89f07c640eea380870746614269.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="6">
+<figcaption aria-hidden="true">6</figcaption>
+</figure>
+<figure>
+<img src="https://img-blog.csdnimg.cn/a6f2f18f824d476294f6107d11b6a04c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="7">
+<figcaption aria-hidden="true">7</figcaption>
+</figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/18/%E8%80%83%E7%A0%94/%E8%8B%B1%E8%AF%AD/%E8%8B%B1%E4%B8%802018/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/18/%E8%80%83%E7%A0%94/%E8%8B%B1%E8%AF%AD/%E8%8B%B1%E4%B8%802018/" itemprop="url">英一2018</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-18T00:00:00+08:00">
+                2022-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="uoe-810">UoE 8/10</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">oxytocin</td>
+<td style="text-align: center;">催产素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">hormone</td>
+<td style="text-align: center;">激素；荷尔蒙</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">trigger</td>
+<td style="text-align: center;">激发，引发</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">herding instinct</td>
+<td style="text-align: center;">群居本能</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">prompts</td>
+<td style="text-align: center;">引起；促使；激励</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">spray</td>
+<td style="text-align: center;">喷，喷洒</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">inhale</td>
+<td style="text-align: center;">吸入（空气、烟雾等）</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">exposure</td>
+<td style="text-align: center;">暴露；（身体）受冻；曝光；报道，宣传</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">exposure to</td>
+<td style="text-align: center;">暴露于…环境；受到…影响</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">todller</td>
+<td style="text-align: center;">学步童</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">follow-up</td>
+<td style="text-align: center;">后续的</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Trust is a tricky business. 信任是件很玄妙的事。</p></li>
+<li><p><strong>Then</strong> == if that is the situation</p></li>
+</ul>
+<p>"既然那样、那样的话"，而<strong>therefore</strong>引出前述内容的逻辑结果。</p>
+<ul>
+<li>When people place their trust in an dividual or an institution,
+their brains release oxytocin, a hormone that <strong>produces</strong>
+pleasurable feelings and triggers the herding instinct that prompts
+human to connect with one another.</li>
+</ul>
+<p>When people place their trust in an dividual or an
+institution（时间状语从句）,/ their brains release
+<u>oxytocin</u>（主干）,/ a hormone （同位语 oxytocin）that
+<strong>produces</strong> pleasurable feelings and triggers <u>the
+herding instinct</u>/ that prompts human to connect with one
+another（定语从句修饰the herding instinct）.</p>
+<p>这里表示从无到有的“激发本能”，所以用<strong>produce产生</strong>，而不是<strong>maintain保持</strong>。</p>
+<ul>
+<li>Scientists have found that exposure <strong>to</strong> this hormone
+puts us in a trusting mood.</li>
+</ul>
+<p><strong>by</strong>，引出动作的<strong>施动者</strong>或<strong>达成动作的方式</strong>。<strong>of</strong>，引出<strong>动作主体</strong>。</p>
+<ul>
+<li>Sixty todllers were each <strong>introduced</strong> to an adult
+tester holding a plastic container.</li>
+</ul>
+<p>60名学步童被各自<strong>引导</strong>着与一位手持塑料容器的成人测试员<strong>认识</strong>。</p>
+<h2 id="t1-810">T1 8/10</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td>go unmentioned</td>
+<td>不被提及</td>
+</tr>
+<tr class="even">
+<td>come for</td>
+<td>（强行）带走</td>
+</tr>
+<tr class="odd">
+<td>automate</td>
+<td>使自动化</td>
+</tr>
+<tr class="even">
+<td>disproportionately</td>
+<td>不成比例地</td>
+</tr>
+<tr class="odd">
+<td>squeeze</td>
+<td>压榨</td>
+</tr>
+<tr class="even">
+<td>alarmist</td>
+<td>危言耸听的</td>
+</tr>
+<tr class="odd">
+<td>upheaval</td>
+<td>剧变，动荡</td>
+</tr>
+<tr class="even">
+<td>Luddite</td>
+<td>卢德分子，反对新技术的人</td>
+</tr>
+<tr class="odd">
+<td>loom</td>
+<td>织布机</td>
+</tr>
+<tr class="even">
+<td>go well</td>
+<td>令人满意</td>
+</tr>
+<tr class="odd">
+<td>drive down</td>
+<td>压低</td>
+</tr>
+<tr class="even">
+<td>curriculum</td>
+<td>（学校的）全部课程</td>
+</tr>
+<tr class="odd">
+<td>evolve to</td>
+<td>逐渐演变</td>
+</tr>
+<tr class="even">
+<td>dynamism</td>
+<td>活力，劲头</td>
+</tr>
+<tr class="odd">
+<td>entrepreneurs</td>
+<td>企业家</td>
+</tr>
+<tr class="even">
+<td>drastic</td>
+<td>极端的，严厉的，急剧的</td>
+</tr>
+<tr class="odd">
+<td>cope with</td>
+<td>应对</td>
+</tr>
+<tr class="even">
+<td>revive</td>
+<td>恢复</td>
+</tr>
+<tr class="odd">
+<td>subsidy</td>
+<td>补贴，补助金</td>
+</tr>
+<tr class="even">
+<td>earned income tax credit</td>
+<td>EITC，所得税抵扣</td>
+</tr>
+<tr class="odd">
+<td>wage</td>
+<td>消减</td>
+</tr>
+<tr class="even">
+<td>upend</td>
+<td>颠覆，翻倒</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>what happens when the robots come for their jobs?</li>
+</ul>
+<p>当机器人来抢他们工作时，会发生什么？</p>
+<ul>
+<li>with the middle class disproportionately squeezed</li>
+</ul>
+<p>中产阶级尤其不堪负担。</p>
+<ul>
+<li>The rich own the robots, so they will be fine.</li>
+</ul>
+<p>富人拥有机器人，他们（富人）将会很好（不受威胁，从中受益）。富人不是机器人的“取代对象”，而是机器人的“拥有者”，与中产阶级产生对比。</p>
+<ul>
+<li>Entrepreneurs <strong>smoothed the transition</strong> by dreaming
+up ways to combine labor and machines.</li>
+</ul>
+<p>企业家们通过想出将劳动者和机器相结合的方式实现平稳过渡。</p>
+<h2 id="t2-810">T2 8/10</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td>Milliennial</td>
+<td>千禧一代</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
           
         
@@ -2193,7 +2401,7 @@ amy”手工刀下了。</p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
 
 
@@ -2239,7 +2447,7 @@ amy”手工刀下了。</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2250,7 +2458,7 @@ amy”手工刀下了。</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2261,7 +2469,7 @@ amy”手工刀下了。</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
