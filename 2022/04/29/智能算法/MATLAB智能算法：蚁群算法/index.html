@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="蚁群算法,路径规划,TSP,非线性整数规划," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MATLAB智能算法：蚁群算法 蚁群算法 参考《MATLAB》智能算法，温正，清华大学出版社 蚁群算法基本原理 由Marco Dorigo于1992年在他的博士论文中提出，其灵感来源于蚂蚁在寻找食物过程中发现路径的行为。 蚁群优化算法是模拟蚂蚁觅食的原理，设计出的一种群集智能算法。蚂蚁在觅食过程中能够在其经过的路径上留下一种称之为信息素的物质，并在觅食过程中能够感知这种质的强度，并指导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB 蚁群算法">
+<meta property="og:url" content="https://wangerxzai.github.io/2022/04/29/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/MATLAB%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%EF%BC%9A%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="不学习变傻瓜">
+<meta property="og:description" content="MATLAB智能算法：蚁群算法 蚁群算法 参考《MATLAB》智能算法，温正，清华大学出版社 蚁群算法基本原理 由Marco Dorigo于1992年在他的博士论文中提出，其灵感来源于蚂蚁在寻找食物过程中发现路径的行为。 蚁群优化算法是模拟蚂蚁觅食的原理，设计出的一种群集智能算法。蚂蚁在觅食过程中能够在其经过的路径上留下一种称之为信息素的物质，并在觅食过程中能够感知这种质的强度，并指导">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6ffc861569b242aca814cd7e853bd1aa.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/54518a0a410645de95fb132fb71a92a2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5cda16ed47694ddca04e3a17c7e1e38a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/06604733e4894c1986e78228516b8a49.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/16d35054b3274b2f87a21396112ecb19.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/62c46f31ebbb440abd179ee4454ca8ce.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a2b6438e921a4c5a972297c62c20aba7.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ff88c860ed8b489d8ad190d0469be90d.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/225deec5f2cf4145a4bef4a371c403c3.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f5d49de55f294d8882b502e68007dbd3.png#pic_center">
+<meta property="article:published_time" content="2022-04-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-30T02:50:05.555Z">
+<meta property="article:author" content="wanger">
+<meta property="article:tag" content="蚁群算法">
+<meta property="article:tag" content="路径规划">
+<meta property="article:tag" content="TSP">
+<meta property="article:tag" content="非线性整数规划">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/6ffc861569b242aca814cd7e853bd1aa.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wangerxzai.github.io/2022/04/29/智能算法/MATLAB智能算法：蚁群算法/"/>
+
+
+
+
+
+  <title>MATLAB 蚁群算法 | 不学习变傻瓜</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">不学习变傻瓜</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding by Wanger</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/04/29/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/MATLAB%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%EF%BC%9A%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MATLAB 蚁群算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">
+                2022-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">智能算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="matlab智能算法蚁群算法">MATLAB智能算法：蚁群算法</h2>
+<h3 id="蚁群算法">蚁群算法</h3>
+<p><em>参考《MATLAB》智能算法，温正，清华大学出版社</em></p>
+<h4 id="蚁群算法基本原理">蚁群算法基本原理</h4>
+<p>由Marco
+Dorigo于1992年在他的博士论文中提出，其灵感来源于蚂蚁在寻找食物过程中发现路径的行为。
+蚁群优化算法是模拟蚂蚁觅食的原理，设计出的一种群集智能算法。蚂蚁在觅食过程中能够在其经过的路径上留下一种称之为信息素的物质，并在觅食过程中能够感知这种质的强度，并指导自己行动方向，他们总是朝着该物质强度高的方向移动，因此大量蚂蚁组成的集体觅食就表现为一种对信息素的正反馈现象。
+某一条路径越短，路径上经过的蚂蚁越多。其信息素遗留的也就越多，信息素的浓度也就越高，蚂蚁选择这条路径的几率也就越高。由此构成的正反馈过程，从而逐渐的逼近最优路径，找到最优路径。</p>
+<p>蚂蚁觅食的运行轨迹模式如图所示，蚂蚁以信息素作为媒介而间接进行信息交流，判断洞穴到食物地点的最佳路径。</p>
+<p><img src="https://img-blog.csdnimg.cn/6ffc861569b242aca814cd7e853bd1aa.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>当蚂蚁从食物源走到蚁穴，或者从蚁穴走到食物源时，都会在经过的路径上释放信息素，从而形成了一条含有信息素的路径，蚂蚁可以感觉出路径上信息素浓度的大小,并且以较高的概率选择信息素浓度较高的路径。</p>
+<p>人工蚂蚁的搜索主要包括3种智能行为：</p>
+<ol type="1">
+<li><p><strong>蚂蚁利用信息素进行相互通信。</strong></p>
+<p>蚂蚁在所选择的路径上会释放一种信息素的物质，当其他蚂蚁进行路径选择时，会根据路径上的信息素浓度进行选择，这样信息素就成为蚂蚁之间进行通信的媒介。</p></li>
+<li><p><strong>蚂蚁的记忆行为。</strong></p>
+<p>一只蚂蚁搜索过的路径在下次搜索时就不再被该蚂蚁选择，因此在蚁群算法中建立禁忌表进行模拟。</p></li>
+<li><p><strong>蚂蚁的集群活动。</strong></p>
+<p>通过一只蚂蚁的运动很难达到事物源，但整个蚁群进行搜索就完全不同。当某些路径上通过的蚂蚁越来越多时，路径上留下的信息素数量也就越多，导致信息素强度增大,蚂蚁选择该路径的概率随之增加,从而进一步增加该路径的作息素强度，而通过的蚂蚁比较少的路径上的信息素会随着时间的推移而挥发，从而变得越来越少。</p></li>
+</ol>
+<p>介绍5种主要蚁群算法的过程：</p>
+<ol type="1">
+<li><strong>蚂蚁系统</strong></li>
+</ol>
+<p>初始时刻，m只蚂蚁随机放置于城市中，各路径上的信息素相同。设<span class="math inline">\(T_0\)</span>为信息素的初始值，可以设其值为m /
+<span class="math inline">\(L_m\)</span>，<span class="math inline">\(L_m\)</span>是由最近启发式方法构造的路径长度。
+其次，对于蚂蚁k，按照随机比例规则选择下一步要转移的城市，选择概率为：
+<span class="math display">\[
+p^k_{ij}(t) = \begin{cases}
+\frac {[T_{ij}(t)]^\alpha [\eta_{ij}(t)]^\beta}
+{\sum_{s\epsilon a_k}{[T_{is}(t)]^\alpha [\eta_{is}(t)]^\beta}}, &amp;
+j\epsilon a_k \\
+0, &amp; 其他情况
+\end{cases}
+\]</span> 其中，<span class="math inline">\(T_{ij}\)</span>为边（i，j）上的信息素；<span class="math inline">\(\eta_{ij} = \frac {1} {d_{ij}}\)</span>
+为从城市i转移到城市j的启发式因子；<span class="math inline">\(a_k\)</span>为蚂蚁k下一步被允许访问的城市集合。</p>
+<p>为了不让蚂蚁选择已经访问过的城市，采用禁忌表<span class="math inline">\(ta_k\)</span>来记录蚂蚁k当前走过的城市。经过t时刻，所有蚂蚁都完成一次周游，计算每只蚂蚁走过的路径长度，并保存最短的路径长度，同时，更新各边的信息素。首先是信息素挥发，其次是蚂蚁在它们所在的边上释放信息素，其公式为：
+<span class="math display">\[
+T_{ij} = (1-\rho)T_{ij}
+\]</span></p>
+<p>其中，<span class="math inline">\(\rho\)</span>为信息素挥发系数，且<span class="math inline">\(0&lt;\rho\leq1\)</span>。</p>
+<p><span class="math display">\[
+T_{ij} = T_{ij} + \sum_{k=1}^{m}{▲T_{ij}^k}
+\]</span> 其中，<span class="math inline">\(▲T_{ij}^k\)</span>
+是第k只蚂蚁向它经过的边释放的信息素，定义为 <span class="math display">\[
+▲T_{ij}^k = \begin{cases}
+\frac{1}{d_{ij}}, &amp; \text{如果边（i，j）在路径}T^k\text{上} \\
+0, &amp; \text{其他情况}
+\end{cases}
+\]</span>
+根据上式可知，蚂蚁构建的路径长度越小，则路径上各条边就会得到更多的信息素，则在以后的迭代种就更有可能被其他蚂蚁选择。蚂蚁完成一次循环后，清空禁忌表，重新回到初始城市，准备下一次的行动。</p>
+<p>蚂蚁系统解决小规模TSP问题时性能较好，但当测试问题规模增大，性能下降严重。</p>
+<ol start="2" type="1">
+<li><strong>精英蚂蚁系统</strong></li>
+</ol>
+<p>设计思想为，对算法每次循环后给予最优路径额外的信息素量，找出这个解的蚂蚁称为精英蚂蚁。</p>
+<p>将这条最优路径记为<span class="math inline">\(T^{bs}\)</span>。针对路径<span class="math inline">\(T^{bs}\)</span>的额外强化是通过向<span class="math inline">\(T^{bs}\)</span>中的每一条边增加<span class="math inline">\(e/L^{bs}\)</span>大小的信息素得到。其中e是一个参数，它定义了给予路径<span class="math inline">\(T^{bs}\)</span>的权重大小。这样相应的信息素的更新公式为：
+<span class="math display">\[
+T_{ij}(t+1) = (1-\rho)T_{ij}(t) + \sum_{k=1}^m{▲T_{ij}^k(t)} +
+e▲T_{ij}^{bs}(t)
+\]</span>
+文献指出，使用精英策略并选取一个适当的e值将使蚁群算法不但可以得到更好的解，而且能在更少的迭代次数下得到一些更好的解。</p>
+<ol start="3" type="1">
+<li><strong>最大最小蚂蚁系统</strong></li>
+</ol>
+<p>该系统是目前解决TSP问题最好的蚂蚁算法方案之一。其在蚂蚁系统基础上作了以下改进：</p>
+<ul>
+<li>将各条路径可能的外激素浓度限值在<span class="math inline">\([T_{min},T_{max}]\)</span>，超出这个范围的值被强制设置为端点值。这样做有效避免过早收敛于局部最优解，避免了某条路径上的信息素量远大于其他路径。</li>
+<li>信息素的初始值被设定在其取值范围的上界。</li>
+<li>强调对最优解的利用。每次迭代结束后，只有最优解所属路径上的信息被更新，从而更好地利用了历史信息。</li>
+</ul>
+<p>信息素更新公式为： <span class="math display">\[
+T_{ij}(t+1) = (1-\rho)T_{ij}(t)  + ▲T_{ij}^{best}(t), \rho \epsilon(0,1)
+\]</span></p>
+<p>文献指出，逐渐增加全局最优解的使用频率，会使该算法获得更好的性能。</p>
+<ol start="4" type="1">
+<li><strong>基于排序的蚁群算法</strong></li>
+</ol>
+<p>改进思想为：每次迭代结束后，将蚂蚁所走路径按照从小到大顺序排序，算法根据路径长度赋予不同权重，路径长度越短权重越大。</p>
+<p>信息素更新公式为： <span class="math display">\[
+T_{ij}(t+1) = (1-\rho)T_{ij}(t) + \sum_{r=1}^{w-1}{(w-r)*▲T_{ij}^{r}(t)}
++ w * ▲T_{ij}^{gb}(t), \rho \epsilon(0,1)
+\]</span></p>
+<ol start="5" type="1">
+<li><strong>蚁群系统</strong></li>
+</ol>
+<p>与蚂蚁不同的地方在于以下三个方面：</p>
+<p>（1） 除了全局信息素更新规则外，还采用了局部信息素更新规则。</p>
+<p>（2）信息素挥发和释放动作只在至今最优路径的边上执行，即每次迭代后只有至今最优蚂蚁被允许释放信息素。</p>
+<p>（3）采用不同的路径选择规则，能更好地利用蚂蚁所积累的搜素经验。</p>
+<p>路径选择规则的公式为： <span class="math display">\[
+j = \begin{cases}
+argmax(T_{il}[\eta_{il}(t)])^\beta, &amp; q\leq q_{0} \\
+J, &amp; 其他情况
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+p^k_{ij}(t) = \begin{cases}
+\frac {[T_{ij}(t)]^\alpha [\eta_{ij}(t)]^\beta}
+{\sum_{s\epsilon a_k}{[T_{is}(t)]^\alpha [\eta_{is}(t)]^\beta}}, &amp;
+j\epsilon a_k \\
+0, &amp; 其他情况
+\end{cases}
+\]</span></p>
+<p>其中，q是均匀分布在区间[0,1]中的一个随机变量；<span class="math inline">\(q_0(0\leq q_{0} \leq
+1)\)</span>是一个参数；J是根据以上公式给出的概率分布所产生的一个随机变量（<span class="math inline">\(\alpha = 1\)</span>）。</p>
+<p>蚁群系统全局信息素更新规则为： <span class="math display">\[
+T_{ij} = (1-\rho)T_{ij}  + \rho▲T_{ij}^{bs}, (i,j)\epsilon T^{bs}
+\]</span></p>
+<p><span class="math display">\[
+▲T_{ij}^{bs} = 1 / C^{bs}
+\]</span></p>
+<p>蚁群系统的局部信息素更新规则方式定义如下：</p>
+<p>在路径构建过程中，蚂蚁每经过一条边（i，j），都将立刻调用这条规则更新该边上的信息素，即
+<span class="math display">\[
+T_{ij} = (1-\rho)T_{ij}+ \xi T_{0}
+\]</span> 其中，<span class="math inline">\(\xi\)</span>和<span class="math inline">\(T_{0}\)</span>是两个参数，<span class="math inline">\(\xi \epsilon (0,1)\)</span>，<span class="math inline">\(T_{0}\)</span>是信息量的初始值。局部更新的作用在于，蚂蚁每一次经过边（i，j），该边的信息素<span class="math inline">\(T_{ij}\)</span>将会减少，从而使得其他蚂蚁选中该边的概率相对减少。</p>
+<h4 id="自适应蚁群算法">自适应蚁群算法</h4>
+<p>当问题规模较大时，由于信息量挥发系数的存在，使那些从未被搜索过的路移信息量减小到接近于0．从而降低了算法在这些路径上的搜索能力，反之，当某条路经中信息量较大时，这些路径中的信息量增大，搜索过的路径再次被选择的机会就会变得更大。</p>
+<p>搜索过的路径被再次选择的机会变大，会影响算法的全局搜索能力，此时通过固定地变化挥发系数虽然可以提高全局搜索能力，但却使算法的收敛速度降低。</p>
+<p>自适应蚁群算法提出一种自适应的改变T值的方法,将信息素更新的公式为:
+<span class="math display">\[
+\begin{cases}
+T_{ij}(t+1) = (1-\rho)^{1+\varphi(m)}T_{ij} + ▲T_{ij}, &amp; T \geq
+T_{max}
+\\
+T_{ij}(t+1) = (1-\rho)^{1-\varphi(m)}T_{ij} + ▲T_{ij}, &amp; T &lt;
+T_{max}
+\end{cases}
+\]</span> 其中，<span class="math inline">\(\varphi_m\)</span>为收敛次数m/c，是一个与收敛次数m成正比的函数，收敛次数m越多<span class="math inline">\(\varphi_m\)</span>的取值越大（c为常数）。</p>
+<p>算法伪代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Begin </span><br><span class="line">初始化</span><br><span class="line"><span class="built_in">While</span> (不满足算法终止条件)&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = l ; i く m ; i ++)&#123; <span class="comment">// 将蚂蚁随机放置在 m 个城市上</span></span><br><span class="line">		<span class="keyword">for</span> ( j =<span class="number">0</span>; j く n ; j ++)&#123; <span class="comment">// 对 n 个蚂蚁进行循环</span></span><br><span class="line">			<span class="keyword">for</span>( i =<span class="number">0</span>; i く m - <span class="number">1</span> ; i ++)&#123; </span><br><span class="line">				蚂蚁 i 以概率 <span class="built_in">pi</span>(t) 选择下一个城市</span><br><span class="line">			&#125;</span><br><span class="line">			求出最佳结果</span><br><span class="line">			将最佳结果赋予蚂蚁 i </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (最佳结果等于 n 个循环以前的最佳结果)&#123;</span><br><span class="line">			根据公式计算</span><br><span class="line">			进行下一个循环 </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">输出最佳结果</span><br></pre></td></tr></table></figure>
+<h4 id="蚁群算法的实现">蚁群算法的实现</h4>
+<p>设定目标函数为： <span class="math display">\[
+f = -(x_1^4+3x_2^4-0.2cos(3\pi x1)-0.4cos(4\pi x2)+0.6)
+\]</span> 搜索目标函数极大值。用matlab实现。</p>
+<p><img src="https://img-blog.csdnimg.cn/54518a0a410645de95fb132fb71a92a2.png"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">clear all</span><br><span class="line">clc</span><br><span class="line"><span class="comment">%%初始化%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line">Ant=<span class="number">300</span>;  <span class="comment">%蚂蚁数量</span></span><br><span class="line">Times=<span class="number">80</span>;  <span class="comment">%蚂蚁移动次数</span></span><br><span class="line">Rou=<span class="number">0.9</span>;  <span class="comment">%信息素挥发系数</span></span><br><span class="line">P0=<span class="number">0.2</span>;  <span class="comment">%转移概率常数</span></span><br><span class="line">Lower_1=<span class="number">-1</span>;  <span class="comment">%设置搜索范围</span></span><br><span class="line">Upper_1=<span class="number">1</span>;</span><br><span class="line">Lower_2=<span class="number">-1</span>;</span><br><span class="line">Upper_2=<span class="number">1</span>;</span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Ant</span><br><span class="line">    X(<span class="built_in">i</span>,<span class="number">1</span>)=(Lower_1+(Upper_1-Lower_1)*<span class="built_in">rand</span>);  <span class="comment">%随机设置蚂蚁的初值位置</span></span><br><span class="line">    X(<span class="built_in">i</span>,<span class="number">2</span>)=(Lower_2+(Upper_2-Lower_2)*<span class="built_in">rand</span>);</span><br><span class="line">    Tau(<span class="built_in">i</span>)=F(X(<span class="built_in">i</span>,<span class="number">1</span>),X(<span class="built_in">i</span>,<span class="number">2</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">step=<span class="number">0.05</span>;</span><br><span class="line">f=<span class="string">&#x27;-(x.^4+3*y.^4-0.2*cos(3*pi*x)-0.4*cos(4*pi*y)+0.6)&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[x,y]=<span class="built_in">meshgrid</span>(Lower_1:step:Upper_1,Lower_2:step:Upper_2);</span><br><span class="line">z=eval(f);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">mesh(x,y,z);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">plot3</span>(X(:,<span class="number">1</span>),X(:,<span class="number">2</span>),Tau,<span class="string">&#x27;k*&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line">text(<span class="number">0.1</span>,<span class="number">0.8</span>,<span class="number">-0.1</span>,<span class="string">&#x27;蚂蚁的初始分布位置&#x27;</span>);</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>);ylabel(<span class="string">&#x27;y&#x27;</span>);zlabel(<span class="string">&#x27;f(x,y)&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> T=<span class="number">1</span>:Times</span><br><span class="line">    lamda=<span class="number">1</span>/T;</span><br><span class="line">    [Tau_Best(T),BestIndex]=<span class="built_in">max</span>(Tau);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Ant</span><br><span class="line">        P(T,<span class="built_in">i</span>)=(Tau(BestIndex)-Tau(<span class="built_in">i</span>))/Tau(BestIndex);  <span class="comment">%计算状态转移概率</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Ant</span><br><span class="line">        <span class="keyword">if</span> P(T,<span class="built_in">i</span>)&lt;P0  <span class="comment">%局部搜索</span></span><br><span class="line">            temp1=X(<span class="built_in">i</span>,<span class="number">1</span>)+(<span class="number">2</span>*<span class="built_in">rand</span><span class="number">-1</span>)*lamda;</span><br><span class="line">            temp2=X(<span class="built_in">i</span>,<span class="number">2</span>)+(<span class="number">2</span>*<span class="built_in">rand</span><span class="number">-1</span>)*lamda;</span><br><span class="line">        <span class="keyword">else</span>  <span class="comment">%全局搜索</span></span><br><span class="line">            temp1=X(<span class="built_in">i</span>,<span class="number">1</span>)+(Upper_1-Lower_1)*(<span class="built_in">rand</span><span class="number">-0.5</span>);</span><br><span class="line">            temp2=X(<span class="built_in">i</span>,<span class="number">2</span>)+(Upper_2-Lower_2)*(<span class="built_in">rand</span><span class="number">-0.5</span>);</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">%越界处理</span></span><br><span class="line">        <span class="keyword">if</span> temp1&lt;Lower_1</span><br><span class="line">            temp1=Lower_1;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> temp1&gt;Upper_1</span><br><span class="line">            temp1=Upper_1;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> temp2&lt;Lower_2</span><br><span class="line">            temp2=Lower_2;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> temp2&gt;Upper_2</span><br><span class="line">            temp2=Upper_2;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">%%%</span></span><br><span class="line">        <span class="keyword">if</span> F(temp1,temp2)&gt;F(X(<span class="built_in">i</span>,<span class="number">1</span>),X(<span class="built_in">i</span>,<span class="number">2</span>))  <span class="comment">%判断蚂蚁是否移动</span></span><br><span class="line">            X(<span class="built_in">i</span>,<span class="number">1</span>)=temp1;</span><br><span class="line">            X(<span class="built_in">i</span>,<span class="number">2</span>)=temp2;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Ant</span><br><span class="line">        Tau(<span class="built_in">i</span>)=(<span class="number">1</span>-Rou)*Tau(<span class="built_in">i</span>)+F(X(<span class="built_in">i</span>,<span class="number">1</span>),X(<span class="built_in">i</span>,<span class="number">2</span>));  <span class="comment">%更新信息量</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">mesh(x,y,z);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line">x=X(:,<span class="number">1</span>);</span><br><span class="line">y=X(:,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">plot3</span>(x,y,eval(f),<span class="string">&#x27;k*&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line">text(<span class="number">0.1</span>,<span class="number">0.8</span>,<span class="number">-0.1</span>,<span class="string">&#x27;蚂蚁的最终分布位置&#x27;</span>);</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>);ylabel(<span class="string">&#x27;y&#x27;</span>);zlabel(<span class="string">&#x27;f(x,y)&#x27;</span>);</span><br><span class="line"> </span><br><span class="line">[max_value,max_index]=<span class="built_in">max</span>(Tau);</span><br><span class="line">maxX=X(max_index,<span class="number">1</span>);</span><br><span class="line">maxY=X(max_index,<span class="number">2</span>);</span><br><span class="line">maxValue=F(X(max_index,<span class="number">1</span>),X(max_index,<span class="number">2</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%目标函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[F]</span>=<span class="title">F</span><span class="params">(x1,x2)</span>  </span></span><br><span class="line">F=-(x1.^<span class="number">4</span>+<span class="number">3</span>*x2.^<span class="number">4</span><span class="number">-0.2</span>*<span class="built_in">cos</span>(<span class="number">3</span>*<span class="built_in">pi</span>*x1)<span class="number">-0.4</span>*<span class="built_in">cos</span>(<span class="number">4</span>*<span class="built_in">pi</span>*x2)+<span class="number">0.6</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="应用路径规划">应用：路径规划</h3>
+<h4 id="移动机器人">移动机器人</h4>
+<p>要求机器人依据某个或某些优化原则，在其工作空间中找到一条从起始状态到目标状态的能避开障碍物的最优路径。</p>
+<p><img src="https://img-blog.csdnimg.cn/5cda16ed47694ddca04e3a17c7e1e38a.png"></p>
+<p>算法流程为：</p>
+<ol type="1">
+<li>输入0-1矩阵表示机器人寻找最优路径的地图，0表示可通过的，1表示障碍物。</li>
+<li>输人初始的信息素矩阵，选择初始点(0,20)和终止点(20,0)并且设置参数(信息素重要程度参数<span class="math inline">\(\alpha = 1\)</span>，启发式因子重要程度参数<span class="math inline">\(\beta = 7\)</span>，信息素蒸发系数<span class="math inline">\(\rho =
+0.3\)</span>，信息素增加强度系数Q=1)。在此次计算中，设置所有位置的初始信息素相等。</li>
+<li>选择从初始点下一步可以到达的节点，根据每个节点的信息素求出前往每个节点的概率，并利用轮盘算法选取下一步的初始点。</li>
+</ol>
+<p><span class="math display">\[
+P_{ij}^k = \begin{cases}
+\frac{[T_{ij}(t)]^\alpha [\eta_{ij}]^\beta}
+{\sum_{k\epsilon {N-tabu_k}}{[T_{ij}(t)]^\alpha[\eta_{ij}]^\beta}} ,
+&amp; j \epsilon N - tabu_k
+\\
+0, &amp; 其他
+\end{cases}
+\]</span></p>
+<p>其中<span class="math inline">\(T_{ij}(t)\)</span>为析取图中弧(i,j)上的信息素的浓度；<span class="math inline">\(\eta_{ij}\)</span>为弧(i,j)相关联的启发性信息，<span class="math inline">\(\alpha \beta\)</span>在第二步已经定义。</p>
+<ol start="4" type="1">
+<li>更新路径以及路程长度。</li>
+<li>重复34两步，直到蚂蚁到达终点或者无路可走。</li>
+<li>重复345，直到某一代m只蚂蚁迭代结束。</li>
+<li>更新信息素矩阵，其中没有到达的蚂蚁不算在内。</li>
+</ol>
+<p><span class="math display">\[
+T_{ij}(t+1) = (1-\rho)T_{ij}(t) +▲T_{ij} \\
+▲T_{ij} = \begin{cases}
+Q / L_k(t) , &amp; 蚂蚁k经过i，j
+\\
+0, &amp; 蚂蚁k不经过i，j
+\end{cases}
+\]</span></p>
+<ol start="8" type="1">
+<li>重复3~7，直到第n代蚂蚁迭代结束。</li>
+</ol>
+<p>迭代图：</p>
+<p><img src="https://img-blog.csdnimg.cn/06604733e4894c1986e78228516b8a49.png#pic_center"></p>
+<p>结果图：</p>
+<p><img src="https://img-blog.csdnimg.cn/16d35054b3274b2f87a21396112ecb19.png#pic_center"></p>
+<p>收敛曲线，在第68次迭代时，完成收敛：</p>
+<p><img src="https://img-blog.csdnimg.cn/62c46f31ebbb440abd179ee4454ca8ce.png#pic_center"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line">G=[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; </span><br><span class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>;];</span><br><span class="line">MM=<span class="built_in">size</span>(G,<span class="number">1</span>);                  <span class="comment">% G 地形图为01矩阵，1表示障碍物 </span></span><br><span class="line">Tau=<span class="built_in">ones</span>(MM*MM,MM*MM);         <span class="comment">% Tau 初始信息素矩阵</span></span><br><span class="line">Tau=<span class="number">8.</span>*Tau; </span><br><span class="line">K=<span class="number">200</span>;                         <span class="comment">% K 迭代次数（指蚂蚁出动多少波）</span></span><br><span class="line">M=<span class="number">80</span>;                          <span class="comment">% 蚂蚁个数</span></span><br><span class="line">S=<span class="number">1</span> ;                          <span class="comment">% 最短路径的起始点</span></span><br><span class="line">E=MM*MM;                       <span class="comment">% 最短路径的目的点</span></span><br><span class="line">Alpha=<span class="number">1</span>;                       <span class="comment">% Alpha 表征信息素重要程度的参数</span></span><br><span class="line">Beta=<span class="number">8</span>;                        <span class="comment">% Beta 表征启发式因子重要程度的参数</span></span><br><span class="line">Rho=<span class="number">0.4</span> ;                      <span class="comment">% Rho 信息素蒸发系数</span></span><br><span class="line">Q=<span class="number">1</span>;                           <span class="comment">% Q 信息素增加强度系数 </span></span><br><span class="line">minkl=<span class="built_in">inf</span>; </span><br><span class="line">mink=<span class="number">0</span>; </span><br><span class="line">minl=<span class="number">0</span>; </span><br><span class="line"> D=G2D(G); </span><br><span class="line">N=<span class="built_in">size</span>(D,<span class="number">1</span>);            <span class="comment">%N表示问题的规模（象素个数）</span></span><br><span class="line"> a=<span class="number">1</span>;                   <span class="comment">%小方格象素的边长</span></span><br><span class="line"> Ex=a*(<span class="built_in">mod</span>(E,MM)<span class="number">-0.5</span>);  <span class="comment">%终止点横坐标</span></span><br><span class="line"> <span class="keyword">if</span> Ex==<span class="number">-0.5</span> </span><br><span class="line">Ex=MM<span class="number">-0.5</span>; </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">Ey=a*(MM+<span class="number">0.5</span>-<span class="built_in">ceil</span>(E/MM));<span class="comment">%终止点纵坐标</span></span><br><span class="line"> Eta=<span class="built_in">zeros</span>(N);           <span class="comment">%启发式信息，取为至目标点的直线距离的倒数</span></span><br><span class="line"> <span class="comment">%以下启发式信息矩阵</span></span><br><span class="line"> <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N </span><br><span class="line"> ix=a*(<span class="built_in">mod</span>(<span class="built_in">i</span>,MM)<span class="number">-0.5</span>); </span><br><span class="line">   <span class="keyword">if</span> ix==<span class="number">-0.5</span> </span><br><span class="line">   ix=MM<span class="number">-0.5</span>; </span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line">iy=a*(MM+<span class="number">0.5</span>-<span class="built_in">ceil</span>(<span class="built_in">i</span>/MM));  </span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">i</span>~=E </span><br><span class="line">   Eta(<span class="built_in">i</span>)=<span class="number">1</span>/((ix-Ex)^<span class="number">2</span>+(iy-Ey)^<span class="number">2</span>)^<span class="number">0.5</span>; </span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">   Eta(<span class="built_in">i</span>)=<span class="number">100</span>; </span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">ROUTES=cell(K,M);   <span class="comment">%用细胞结构存储每一代的每一只蚂蚁的爬行路线</span></span><br><span class="line"> PL=<span class="built_in">zeros</span>(K,M);     <span class="comment">%用矩阵存储每一代的每一只蚂蚁的爬行路线长度</span></span><br><span class="line"> <span class="comment">%启动K轮蚂蚁觅食活动，每轮派出M只蚂蚁</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:K </span><br><span class="line"><span class="keyword">for</span> m=<span class="number">1</span>:M </span><br><span class="line"><span class="comment">%状态初始化</span></span><br><span class="line">W=S;           <span class="comment">%当前节点初始化为起始点</span></span><br><span class="line">Path=S;        <span class="comment">%爬行路线初始化</span></span><br><span class="line">PLkm=<span class="number">0</span>;         <span class="comment">%爬行路线长度初始化</span></span><br><span class="line">TABUkm=<span class="built_in">ones</span>(N);<span class="comment">%禁忌表初始化</span></span><br><span class="line">TABUkm(S)=<span class="number">0</span>;   <span class="comment">%已经在初始点了，因此要排除</span></span><br><span class="line">DD=D;          <span class="comment">%邻接矩阵初始化</span></span><br><span class="line"><span class="comment">%下一步可以前往的节点</span></span><br><span class="line">DW=DD(W,:); </span><br><span class="line">DW1=<span class="built_in">find</span>(DW); </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="built_in">length</span>(DW1) </span><br><span class="line">   <span class="keyword">if</span> TABUkm(DW1(<span class="built_in">j</span>))==<span class="number">0</span> </span><br><span class="line">      DW(DW1(<span class="built_in">j</span>))=<span class="number">0</span>; </span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">LJD=<span class="built_in">find</span>(DW); </span><br><span class="line">Len_LJD=<span class="built_in">length</span>(LJD);<span class="comment">%可选节点的个数</span></span><br><span class="line"><span class="comment">%蚂蚁未遇到食物或者陷入死胡同或者觅食停止</span></span><br><span class="line"> <span class="keyword">while</span> W~=E&amp;&amp;Len_LJD&gt;=<span class="number">1</span> </span><br><span class="line"><span class="comment">%转轮赌法选择下一步怎么走</span></span><br><span class="line"> PP=<span class="built_in">zeros</span>(Len_LJD); </span><br><span class="line">  <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Len_LJD </span><br><span class="line">    PP(<span class="built_in">i</span>)=(Tau(W,LJD(<span class="built_in">i</span>))^Alpha)*((Eta(LJD(<span class="built_in">i</span>)))^Beta); </span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line">sumpp=sum(PP); </span><br><span class="line">PP=PP/sumpp;<span class="comment">%建立概率分布</span></span><br><span class="line">Pcum(<span class="number">1</span>)=PP(<span class="number">1</span>); </span><br><span class="line">  <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:Len_LJD </span><br><span class="line">  Pcum(<span class="built_in">i</span>)=Pcum(<span class="built_in">i</span><span class="number">-1</span>)+PP(<span class="built_in">i</span>); </span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line">Select=<span class="built_in">find</span>(Pcum&gt;=<span class="built_in">rand</span>); </span><br><span class="line">to_visit=LJD(Select(<span class="number">1</span>)); </span><br><span class="line"><span class="comment">%状态更新和记录</span></span><br><span class="line">Path=[Path,to_visit];       <span class="comment">%路径增加</span></span><br><span class="line">PLkm=PLkm+DD(W,to_visit);   <span class="comment">%路径长度增加</span></span><br><span class="line">W=to_visit;                 <span class="comment">%蚂蚁移到下一个节点</span></span><br><span class="line">   <span class="keyword">for</span> kk=<span class="number">1</span>:N </span><br><span class="line">      <span class="keyword">if</span> TABUkm(kk)==<span class="number">0</span> </span><br><span class="line">      DD(W,kk)=<span class="number">0</span>; </span><br><span class="line">      DD(kk,W)=<span class="number">0</span>; </span><br><span class="line">      <span class="keyword">end</span> </span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line">TABUkm(W)=<span class="number">0</span>;<span class="comment">%已访问过的节点从禁忌表中删除</span></span><br><span class="line"> DW=DD(W,:); </span><br><span class="line">DW1=<span class="built_in">find</span>(DW); </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="built_in">length</span>(DW1) </span><br><span class="line">    <span class="keyword">if</span> TABUkm(DW1(<span class="built_in">j</span>))==<span class="number">0</span> </span><br><span class="line">       DW(<span class="built_in">j</span>)=<span class="number">0</span>; </span><br><span class="line">    <span class="keyword">end</span> </span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line">LJD=<span class="built_in">find</span>(DW); </span><br><span class="line">Len_LJD=<span class="built_in">length</span>(LJD);<span class="comment">%可选节点的个数</span></span><br><span class="line"> <span class="keyword">end</span> </span><br><span class="line"><span class="comment">%记下每一代每一只蚂蚁的觅食路线和路线长度</span></span><br><span class="line"> ROUTES&#123;k,m&#125;=Path; </span><br><span class="line">   <span class="keyword">if</span> Path(<span class="keyword">end</span>)==E </span><br><span class="line">      PL(k,m)=PLkm; </span><br><span class="line">      <span class="keyword">if</span> PLkm&lt;minkl </span><br><span class="line">          mink=k;minl=m;minkl=PLkm; </span><br><span class="line">      <span class="keyword">end</span> </span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">      PL(k,m)=<span class="number">0</span>; </span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="comment">%更新信息素</span></span><br><span class="line">Delta_Tau=<span class="built_in">zeros</span>(N,N);<span class="comment">%更新量初始化</span></span><br><span class="line">   <span class="keyword">for</span> m=<span class="number">1</span>:M </span><br><span class="line">     <span class="keyword">if</span> PL(k,m)  </span><br><span class="line">        ROUT=ROUTES&#123;k,m&#125;; </span><br><span class="line">        TS=<span class="built_in">length</span>(ROUT)<span class="number">-1</span>;<span class="comment">%跳数</span></span><br><span class="line">         PL_km=PL(k,m); </span><br><span class="line">        <span class="keyword">for</span> s=<span class="number">1</span>:TS </span><br><span class="line">          x=ROUT(s); </span><br><span class="line">          y=ROUT(s+<span class="number">1</span>); </span><br><span class="line">          Delta_Tau(x,y)=Delta_Tau(x,y)+Q/PL_km; </span><br><span class="line">          Delta_Tau(y,x)=Delta_Tau(y,x)+Q/PL_km; </span><br><span class="line">        <span class="keyword">end</span> </span><br><span class="line">     <span class="keyword">end</span> </span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line">Tau=(<span class="number">1</span>-Rho).*Tau+Delta_Tau;<span class="comment">%信息素挥发一部分，新增加一部分</span></span><br><span class="line"> <span class="keyword">end</span> </span><br><span class="line"><span class="comment">%绘图</span></span><br><span class="line">plotif=<span class="number">1</span>;<span class="comment">%是否绘图的控制参数</span></span><br><span class="line"> <span class="keyword">if</span> plotif==<span class="number">1</span> <span class="comment">%绘收敛曲线</span></span><br><span class="line">    minPL=<span class="built_in">zeros</span>(K); </span><br><span class="line">   <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:K </span><br><span class="line">     PLK=PL(<span class="built_in">i</span>,:); </span><br><span class="line">     Nonzero=<span class="built_in">find</span>(PLK); </span><br><span class="line">     PLKPLK=PLK(Nonzero); </span><br><span class="line">     minPL(<span class="built_in">i</span>)=<span class="built_in">min</span>(PLKPLK); </span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>) </span><br><span class="line"><span class="built_in">plot</span>(minPL); </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line">grid on </span><br><span class="line">title(<span class="string">&#x27;收敛曲线变化趋势&#x27;</span>); </span><br><span class="line">xlabel(<span class="string">&#x27;迭代次数&#x27;</span>); </span><br><span class="line">ylabel(<span class="string">&#x27;最小路径长度&#x27;</span>); </span><br><span class="line"><span class="comment">%绘爬行图</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>) </span><br><span class="line">axis([<span class="number">0</span>,MM,<span class="number">0</span>,MM]) </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:MM </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:MM </span><br><span class="line"><span class="keyword">if</span> G(<span class="built_in">i</span>,<span class="built_in">j</span>)==<span class="number">1</span> </span><br><span class="line">x1=<span class="built_in">j</span><span class="number">-1</span>;y1=MM-<span class="built_in">i</span>; </span><br><span class="line">x2=<span class="built_in">j</span>;y2=MM-<span class="built_in">i</span>; </span><br><span class="line">x3=<span class="built_in">j</span>;y3=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">x4=<span class="built_in">j</span><span class="number">-1</span>;y4=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">fill([x1,x2,x3,x4],[y1,y2,y3,y4],[<span class="number">0.2</span>,<span class="number">0.2</span>,<span class="number">0.2</span>]); </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">x1=<span class="built_in">j</span><span class="number">-1</span>;y1=MM-<span class="built_in">i</span>; </span><br><span class="line">x2=<span class="built_in">j</span>;y2=MM-<span class="built_in">i</span>; </span><br><span class="line">x3=<span class="built_in">j</span>;y3=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">x4=<span class="built_in">j</span><span class="number">-1</span>;y4=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">fill([x1,x2,x3,x4],[y1,y2,y3,y4],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]); </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line">title(<span class="string">&#x27;机器人运动轨迹&#x27;</span>); </span><br><span class="line">xlabel(<span class="string">&#x27;坐标x&#x27;</span>); </span><br><span class="line">ylabel(<span class="string">&#x27;坐标y&#x27;</span>);</span><br><span class="line">ROUT=ROUTES&#123;mink,minl&#125;; </span><br><span class="line">LENROUT=<span class="built_in">length</span>(ROUT); </span><br><span class="line">Rx=ROUT; </span><br><span class="line">Ry=ROUT; </span><br><span class="line"><span class="keyword">for</span> ii=<span class="number">1</span>:LENROUT </span><br><span class="line">Rx(ii)=a*(<span class="built_in">mod</span>(ROUT(ii),MM)<span class="number">-0.5</span>); </span><br><span class="line"><span class="keyword">if</span> Rx(ii)==<span class="number">-0.5</span> </span><br><span class="line">Rx(ii)=MM<span class="number">-0.5</span>; </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">Ry(ii)=a*(MM+<span class="number">0.5</span>-<span class="built_in">ceil</span>(ROUT(ii)/MM)); </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">plot</span>(Rx,Ry) </span><br><span class="line"> <span class="keyword">end</span> </span><br><span class="line">plotif2=<span class="number">1</span>;<span class="comment">%绘各代蚂蚁爬行图</span></span><br><span class="line"><span class="keyword">if</span> plotif2==<span class="number">1</span> </span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>) </span><br><span class="line">axis([<span class="number">0</span>,MM,<span class="number">0</span>,MM]) </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:MM </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:MM </span><br><span class="line"><span class="keyword">if</span> G(<span class="built_in">i</span>,<span class="built_in">j</span>)==<span class="number">1</span> </span><br><span class="line">x1=<span class="built_in">j</span><span class="number">-1</span>;y1=MM-<span class="built_in">i</span>; </span><br><span class="line">x2=<span class="built_in">j</span>;y2=MM-<span class="built_in">i</span>; </span><br><span class="line">x3=<span class="built_in">j</span>;y3=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">x4=<span class="built_in">j</span><span class="number">-1</span>;y4=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">fill([x1,x2,x3,x4],[y1,y2,y3,y4],[<span class="number">0.2</span>,<span class="number">0.2</span>,<span class="number">0.2</span>]); </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">x1=<span class="built_in">j</span><span class="number">-1</span>;y1=MM-<span class="built_in">i</span>; </span><br><span class="line">x2=<span class="built_in">j</span>;y2=MM-<span class="built_in">i</span>; </span><br><span class="line">x3=<span class="built_in">j</span>;y3=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">x4=<span class="built_in">j</span><span class="number">-1</span>;y4=MM-<span class="built_in">i</span>+<span class="number">1</span>; </span><br><span class="line">fill([x1,x2,x3,x4],[y1,y2,y3,y4],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]); </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:K </span><br><span class="line">PLK=PL(k,:); </span><br><span class="line">minPLK=<span class="built_in">min</span>(PLK); </span><br><span class="line">pos=<span class="built_in">find</span>(PLK==minPLK); </span><br><span class="line">m=pos(<span class="number">1</span>); </span><br><span class="line">ROUT=ROUTES&#123;k,m&#125;; </span><br><span class="line">LENROUT=<span class="built_in">length</span>(ROUT); </span><br><span class="line">Rx=ROUT; </span><br><span class="line">Ry=ROUT; </span><br><span class="line"><span class="keyword">for</span> ii=<span class="number">1</span>:LENROUT </span><br><span class="line">Rx(ii)=a*(<span class="built_in">mod</span>(ROUT(ii),MM)<span class="number">-0.5</span>); </span><br><span class="line"><span class="keyword">if</span> Rx(ii)==<span class="number">-0.5</span> </span><br><span class="line">Rx(ii)=MM<span class="number">-0.5</span>; </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">Ry(ii)=a*(MM+<span class="number">0.5</span>-<span class="built_in">ceil</span>(ROUT(ii)/MM)); </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="built_in">plot</span>(Rx,Ry) </span><br><span class="line"><span class="built_in">hold</span> on </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">D</span>=<span class="title">G2D</span><span class="params">(G)</span> </span></span><br><span class="line">l=<span class="built_in">size</span>(G,<span class="number">1</span>); </span><br><span class="line">D=<span class="built_in">zeros</span>(l*l,l*l); </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:l </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:l </span><br><span class="line">        <span class="keyword">if</span> G(<span class="built_in">i</span>,<span class="built_in">j</span>)==<span class="number">0</span> </span><br><span class="line">            <span class="keyword">for</span> m=<span class="number">1</span>:l </span><br><span class="line">                <span class="keyword">for</span> n=<span class="number">1</span>:l </span><br><span class="line">                    <span class="keyword">if</span> G(m,n)==<span class="number">0</span> </span><br><span class="line">                        im=<span class="built_in">abs</span>(<span class="built_in">i</span>-m);jn=<span class="built_in">abs</span>(<span class="built_in">j</span>-n); </span><br><span class="line">                        <span class="keyword">if</span> im+jn==<span class="number">1</span>||(im==<span class="number">1</span>&amp;&amp;jn==<span class="number">1</span>) </span><br><span class="line">                        D((<span class="built_in">i</span><span class="number">-1</span>)*l+<span class="built_in">j</span>,(m<span class="number">-1</span>)*l+n)=(im+jn)^<span class="number">0.5</span>; </span><br><span class="line">                        <span class="keyword">end</span> </span><br><span class="line">                    <span class="keyword">end</span> </span><br><span class="line">                <span class="keyword">end</span> </span><br><span class="line">            <span class="keyword">end</span> </span><br><span class="line">        <span class="keyword">end</span> </span><br><span class="line">    <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span> </span><br></pre></td></tr></table></figure>
+<h4 id="山区地势图最优路径">山区地势图最优路径</h4>
+<p>有一个山区地势图如图所示，任意设置一个起始点和终止点位置，求蚂蚁从起始点到终点之间的最优路径。</p>
+<p><img src="https://img-blog.csdnimg.cn/a2b6438e921a4c5a972297c62c20aba7.png#pic_center"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">clear all</span><br><span class="line">clc</span><br><span class="line">h=[<span class="number">1800</span> <span class="number">2200</span> <span class="number">1900</span> <span class="number">2400</span> <span class="number">2300</span> <span class="number">2100</span> <span class="number">2500</span> <span class="number">2400</span> <span class="number">2700</span> <span class="number">2600</span> <span class="number">2900</span></span><br><span class="line">   <span class="number">1600</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2600</span> <span class="number">2900</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2500</span> <span class="number">2700</span> <span class="number">3000</span> <span class="number">2800</span></span><br><span class="line">   <span class="number">2100</span> <span class="number">1900</span> <span class="number">2000</span> <span class="number">1900</span> <span class="number">1700</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2500</span> <span class="number">2900</span></span><br><span class="line">   <span class="number">1700</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">1800</span> <span class="number">2000</span> <span class="number">2200</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2000</span> <span class="number">2800</span></span><br><span class="line">   <span class="number">2200</span> <span class="number">1800</span> <span class="number">2000</span> <span class="number">3100</span> <span class="number">2300</span> <span class="number">2400</span> <span class="number">1800</span> <span class="number">3100</span> <span class="number">3200</span> <span class="number">2300</span> <span class="number">2000</span></span><br><span class="line">   <span class="number">1900</span> <span class="number">2100</span> <span class="number">2200</span> <span class="number">3000</span> <span class="number">2300</span> <span class="number">3000</span> <span class="number">3500</span> <span class="number">3100</span> <span class="number">2300</span> <span class="number">2600</span> <span class="number">2500</span></span><br><span class="line">   <span class="number">1700</span> <span class="number">1400</span> <span class="number">2300</span> <span class="number">2900</span> <span class="number">2400</span> <span class="number">2800</span> <span class="number">1800</span> <span class="number">3500</span> <span class="number">2600</span> <span class="number">2000</span> <span class="number">3200</span></span><br><span class="line">   <span class="number">2300</span> <span class="number">2500</span> <span class="number">2400</span> <span class="number">3100</span> <span class="number">3000</span> <span class="number">2600</span> <span class="number">3000</span> <span class="number">2300</span> <span class="number">3000</span> <span class="number">2500</span> <span class="number">2700</span></span><br><span class="line">   <span class="number">2000</span> <span class="number">2200</span> <span class="number">2100</span> <span class="number">2000</span> <span class="number">2200</span> <span class="number">3000</span> <span class="number">2300</span> <span class="number">2500</span> <span class="number">2400</span> <span class="number">2000</span> <span class="number">2300</span></span><br><span class="line">   <span class="number">2300</span> <span class="number">2200</span> <span class="number">2000</span> <span class="number">2300</span> <span class="number">2200</span> <span class="number">2200</span> <span class="number">2200</span> <span class="number">2500</span> <span class="number">2000</span> <span class="number">2800</span> <span class="number">2700</span></span><br><span class="line">   <span class="number">2000</span> <span class="number">2300</span> <span class="number">2500</span> <span class="number">2200</span> <span class="number">2200</span> <span class="number">2000</span> <span class="number">2300</span> <span class="number">2600</span> <span class="number">2000</span> <span class="number">2500</span> <span class="number">2000</span>];</span><br><span class="line">h=h<span class="number">-1400</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">11</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">11</span></span><br><span class="line">        h1(<span class="number">2</span>*<span class="built_in">i</span><span class="number">-1</span>,<span class="built_in">j</span>)=h(<span class="built_in">i</span>,<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">11</span></span><br><span class="line">        h1(<span class="number">2</span>*<span class="built_in">i</span>,<span class="built_in">j</span>)=(h1(<span class="number">2</span>*<span class="built_in">i</span><span class="number">-1</span>,<span class="built_in">j</span>)+h1(<span class="number">2</span>*<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>))/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">21</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">11</span></span><br><span class="line">        h2(<span class="built_in">i</span>,<span class="number">2</span>*<span class="built_in">j</span><span class="number">-1</span>)=h1(<span class="built_in">i</span>,<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">21</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">10</span></span><br><span class="line">        h2(<span class="built_in">i</span>,<span class="number">2</span>*<span class="built_in">j</span>)=(h2(<span class="built_in">i</span>,<span class="number">2</span>*<span class="built_in">j</span><span class="number">-1</span>)+h2(<span class="built_in">i</span>,<span class="number">2</span>*<span class="built_in">j</span>+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">z=h2;      <span class="comment">%初始地形</span></span><br><span class="line"></span><br><span class="line">x=<span class="number">1</span>:<span class="number">21</span>;</span><br><span class="line">y=<span class="number">1</span>:<span class="number">21</span>;</span><br><span class="line">[x1,y1]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line">mesh(x1,y1,z)</span><br><span class="line">axis([<span class="number">1</span>,<span class="number">21</span>,<span class="number">1</span>,<span class="number">21</span>,<span class="number">0</span>,<span class="number">2000</span>])</span><br><span class="line">xlabel(<span class="string">&#x27;km&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;km&#x27;</span>)</span><br><span class="line">zlabel(<span class="string">&#x27;m&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">21</span></span><br><span class="line">    information(<span class="built_in">i</span>,:,:)=<span class="built_in">ones</span>(<span class="number">21</span>,<span class="number">21</span>);     <span class="comment">%初始信息素</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%起点坐标</span></span><br><span class="line">starty=<span class="number">10</span>;</span><br><span class="line">starth=<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%终点坐标</span></span><br><span class="line">endy=<span class="number">8</span>;</span><br><span class="line">endh=<span class="number">5</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">%n=10;</span></span><br><span class="line">n=<span class="number">1</span>;</span><br><span class="line">m=<span class="number">21</span>;</span><br><span class="line"></span><br><span class="line">Best=[];</span><br><span class="line">[path,information]=searchpath(n,m,information,z,starty,starth,endy,endh);  <span class="comment">%路径寻找</span></span><br><span class="line">fitness=CacuFit(path);                          <span class="comment">%适应度计算</span></span><br><span class="line">[bestfitness,bestindex]=<span class="built_in">min</span>(fitness);           <span class="comment">%最佳适应度</span></span><br><span class="line">bestpath=path(bestindex,:);</span><br><span class="line">Best=[Best;bestfitness];</span><br><span class="line"></span><br><span class="line"><span class="comment">%更新信息素</span></span><br><span class="line">rou=<span class="number">0.5</span>;</span><br><span class="line">cfit=<span class="number">100</span>/bestfitness;</span><br><span class="line">k=<span class="number">2</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:m<span class="number">-1</span></span><br><span class="line">    information(k,bestpath(<span class="built_in">i</span>*<span class="number">2</span><span class="number">-1</span>),bestpath(<span class="built_in">i</span>*<span class="number">2</span>))=(<span class="number">1</span>-rou)*information(k,bestpath(<span class="built_in">i</span>*<span class="number">2</span><span class="number">-1</span>),bestpath(<span class="built_in">i</span>*<span class="number">2</span>))+rou*cfit;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> kk=<span class="number">1</span>:<span class="number">1</span>:<span class="number">100</span></span><br><span class="line">    kk</span><br><span class="line">    [path,information]=searchpath(n,m,information,z,starty,starth,endy,endh);  <span class="comment">%路径寻找</span></span><br><span class="line">    fitness=CacuFit(path);    <span class="comment">%适应度计算</span></span><br><span class="line">    [newbestfitness,newbestindex]=<span class="built_in">min</span>(fitness);           <span class="comment">%最佳适应度</span></span><br><span class="line">    <span class="keyword">if</span> newbestfitness&lt;bestfitness</span><br><span class="line">        bestfitness=newbestfitness;</span><br><span class="line">        bestpath=path(newbestindex,:);</span><br><span class="line">    <span class="keyword">end</span>   </span><br><span class="line">    Best=[Best;bestfitness];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">%更新信息素</span></span><br><span class="line">    rou=<span class="number">0.2</span>;</span><br><span class="line">    cfit=<span class="number">100</span>/bestfitness;</span><br><span class="line">    k=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:m<span class="number">-1</span></span><br><span class="line">        information(k,bestpath(<span class="built_in">i</span>*<span class="number">2</span><span class="number">-1</span>),bestpath(<span class="built_in">i</span>*<span class="number">2</span>))=(<span class="number">1</span>-rou)*information(k,bestpath(<span class="built_in">i</span>*<span class="number">2</span><span class="number">-1</span>),bestpath(<span class="built_in">i</span>*<span class="number">2</span>))+rou*cfit;</span><br><span class="line">    <span class="keyword">end</span>     </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">21</span></span><br><span class="line">    a(<span class="built_in">i</span>,<span class="number">1</span>)=bestpath(<span class="built_in">i</span>*<span class="number">2</span><span class="number">-1</span>);</span><br><span class="line">    a(<span class="built_in">i</span>,<span class="number">2</span>)=bestpath(<span class="built_in">i</span>*<span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 绘制结果图形</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">plot</span>(Best)</span><br><span class="line">title(<span class="string">&#x27;最佳个体适应度变化趋势&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;迭代次数&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;适应度值&#x27;</span>)</span><br><span class="line"></span><br><span class="line">k=<span class="number">1</span>:<span class="number">21</span></span><br><span class="line">x=<span class="number">1</span>:<span class="number">21</span>;</span><br><span class="line">y=<span class="number">1</span>:<span class="number">21</span>;</span><br><span class="line">[x1,y1]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>)</span><br><span class="line">mesh(x1,y1,z);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot3</span>(k&#x27;,a(:,<span class="number">1</span>)&#x27;,a(:,<span class="number">2</span>)&#x27;*<span class="number">200</span>,<span class="string">&#x27;k-&#x27;</span>)</span><br><span class="line">axis([<span class="number">1</span>,<span class="number">21</span>,<span class="number">1</span>,<span class="number">21</span>,<span class="number">0</span>,<span class="number">2000</span>])</span><br></pre></td></tr></table></figure>
+<p>适应度函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%计算个体适应度值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fitness</span>=<span class="title">CacuFit</span><span class="params">(path)</span></span></span><br><span class="line"><span class="comment">%path:路径</span></span><br><span class="line"><span class="comment">%fitness:路径适应度值</span></span><br><span class="line">[n,m]=<span class="built_in">size</span>(path);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n</span><br><span class="line">    fitness(<span class="built_in">i</span>)=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">2</span>:m/<span class="number">2</span></span><br><span class="line">        fitness(<span class="built_in">i</span>)=fitness(<span class="built_in">i</span>)+<span class="built_in">sqrt</span>(<span class="number">1</span>+(path(<span class="built_in">i</span>,<span class="built_in">j</span>*<span class="number">2</span><span class="number">-1</span>)-path(<span class="built_in">i</span>,(<span class="built_in">j</span><span class="number">-1</span>)*<span class="number">2</span><span class="number">-1</span>))^<span class="number">2</span>+(path(<span class="built_in">i</span>,<span class="built_in">j</span>*<span class="number">2</span>)-path(<span class="built_in">i</span>,(<span class="built_in">j</span><span class="number">-1</span>)*<span class="number">2</span>))^<span class="number">2</span>)+<span class="built_in">abs</span>(path(<span class="built_in">i</span>,<span class="built_in">j</span>*<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>启发值函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%计算每个点的启发值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">qfz</span>=<span class="title">CacuQfz</span><span class="params">(nowy,nowh,oldy,oldh,endy,endh,k,z)</span></span></span><br><span class="line"><span class="comment">%nowy,nowh:现在点</span></span><br><span class="line"><span class="comment">%endy,endh:终点 </span></span><br><span class="line"><span class="comment">%oldy,oldh:上个点</span></span><br><span class="line"><span class="comment">%k:当前层数</span></span><br><span class="line"><span class="comment">%z:地形高度图</span></span><br><span class="line"><span class="keyword">if</span> z(nowy,k)&lt;nowh*<span class="number">200</span></span><br><span class="line">    S=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    S=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%D距离</span></span><br><span class="line">D=<span class="number">50</span>/(<span class="built_in">sqrt</span>(<span class="number">1</span>+(oldh*<span class="number">0.2</span>-nowh*<span class="number">0.2</span>)^<span class="number">2</span>+(nowy-oldy)^<span class="number">2</span>)+<span class="built_in">sqrt</span>((<span class="number">21</span>-k)^<span class="number">2</span>+(endh*<span class="number">0.2</span>-nowh*<span class="number">0.2</span>)^<span class="number">2</span>+(nowy-oldy)^<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">%纵向改变</span></span><br><span class="line">M=<span class="number">30</span>/(<span class="built_in">abs</span>(nowh-oldh)+<span class="number">1</span>);</span><br><span class="line">qfz=S*M*D; </span><br></pre></td></tr></table></figure>
+<p>寻找路径函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%寻找路径</span></span><br><span class="line"><span class="comment">%n:路径条数 m分开平面数 information:信息素 z高度表</span></span><br><span class="line"><span class="comment">%starty starth 出发点</span></span><br><span class="line"><span class="comment">%endy endh 终点</span></span><br><span class="line"><span class="comment">%path 寻到路径</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[path,information]</span>=<span class="title">searchpath</span><span class="params">(n,m,information,z,starty,starth,endy,endh)</span></span></span><br><span class="line">ycMax=<span class="number">2</span>;   <span class="comment">%横向最大变动</span></span><br><span class="line">hcMax=<span class="number">2</span>;   <span class="comment">%纵向最大变动</span></span><br><span class="line">decr=<span class="number">0.8</span>;  <span class="comment">%衰减概率</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ii=<span class="number">1</span>:n</span><br><span class="line">    path(ii,<span class="number">1</span>:<span class="number">2</span>)=[starty,starth];  </span><br><span class="line">    oldpoint=[starty,starth];   <span class="comment">%当前坐标点 </span></span><br><span class="line">    <span class="comment">%k:当前层数</span></span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">2</span>:m<span class="number">-1</span></span><br><span class="line">        <span class="comment">%计算所有数据点对应的适应度值</span></span><br><span class="line">        kk=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">i</span>=-ycMax:ycMax</span><br><span class="line">            <span class="keyword">for</span> <span class="built_in">j</span>=-hcMax:hcMax</span><br><span class="line">                point(kk,:)=[oldpoint(<span class="number">1</span>)+<span class="built_in">i</span>,oldpoint(<span class="number">2</span>)+<span class="built_in">j</span>];</span><br><span class="line">                <span class="keyword">if</span> (point(kk,<span class="number">1</span>)&lt;<span class="number">20</span>)&amp;&amp;(point(kk,<span class="number">1</span>)&gt;<span class="number">0</span>)&amp;&amp;(point(kk,<span class="number">2</span>)&lt;<span class="number">17</span>)&amp;&amp;(point(kk,<span class="number">2</span>)&gt;<span class="number">0</span>)</span><br><span class="line">                    <span class="comment">%计算启发值</span></span><br><span class="line">                    qfz(kk)=CacuQfz(point(kk,<span class="number">1</span>),point(kk,<span class="number">2</span>),oldpoint(<span class="number">1</span>),oldpoint(<span class="number">2</span>),endy,endh,k,z);</span><br><span class="line">                    qz(kk)=qfz(kk)*information(k,point(kk,<span class="number">1</span>),point(kk,<span class="number">2</span>));</span><br><span class="line">                    kk=kk+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    qz(kk)=<span class="number">0</span>;</span><br><span class="line">                    kk=kk+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span>   </span><br><span class="line">        </span><br><span class="line">        <span class="comment">%选择下个点</span></span><br><span class="line">        sumq=qz./sum(qz);</span><br><span class="line">    </span><br><span class="line">        pick=<span class="built_in">rand</span>;</span><br><span class="line">        <span class="keyword">while</span> pick==<span class="number">0</span></span><br><span class="line">            pick=<span class="built_in">rand</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">49</span></span><br><span class="line">            pick=pick-sumq(<span class="built_in">i</span>);</span><br><span class="line">            <span class="keyword">if</span> pick&lt;=<span class="number">0</span></span><br><span class="line">                index=<span class="built_in">i</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        </span><br><span class="line">        oldpoint=point(index,:);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">%更新信息素</span></span><br><span class="line">        information(k+<span class="number">1</span>,oldpoint(<span class="number">1</span>),oldpoint(<span class="number">2</span>))=<span class="number">0.5</span>*information(k+<span class="number">1</span>,oldpoint(<span class="number">1</span>),oldpoint(<span class="number">2</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">%路径保存</span></span><br><span class="line">        path(ii,k*<span class="number">2</span><span class="number">-1</span>:k*<span class="number">2</span>)=[oldpoint(<span class="number">1</span>),oldpoint(<span class="number">2</span>)];       </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    path(ii,<span class="number">41</span>:<span class="number">42</span>)=[endy,endh];</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/ff88c860ed8b489d8ad190d0469be90d.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/225deec5f2cf4145a4bef4a371c403c3.png#pic_center"></p>
+<h3 id="应用tsp问题">应用：TSP问题</h3>
+<p>旅行商问题（ travelling salesman problem . TSP
+）是物流领城中的典型问题，它的水胖具有十分重要的理论和现实意义。采用一定的物流配送方式，可以大大节省人力物力，完善整个物流系统。
+已被广泛来用的遗传算法是旅行商问题的传统求解方法，但遗传算法收敛速度慢，具有一定的缺陷。
+采用蚁群算法，充分利用蚁群算法的智能性，求解旅行商问题，并进行实例仿真。进行仿真计算的目标是，该算法能够获得旅行商问题的优化结果，平均距离和最短距离。
+求解 TSP
+的蚂蚁算法中，每只蚂蚁是一个独立的用于构造路线的过程，若干蚂蚁过程之间通过自适应的信息素值来交换信息，合作求解，并不断优化。这里的信息素值分布式存储在图中，与各弧相关联。
+蚂蚁算法求解 TSP 的过程如下： (1）首先初始化，设迭代的次数为 NC 。初始化
+NC =0。</p>
+<p>(2）将 m 个蚂蚁置于 n 个顶点上。</p>
+<ol start="3" type="1">
+<li>m 只蚂蚁按概率函数选择下一座城市，完成各自的周游。</li>
+</ol>
+<p>每个蚂蚁按照状态变化规则逐步地构造一个解，即生成一条回路。蚂蚁的任务是访问所有的城市后返回到起点，生成一条回路。设蚂蚁
+k 当前所在的顶点为 i ，那么，蚂蚁 k 由点 i 向点 j
+移动要遵循规则而不断迁移，按不同概率来选择下一点。</p>
+<p>(4）记录本次迭代最佳路线。</p>
+<p>(5）全局更新信息素值。</p>
+<p>应用全局信息素更新规则来改变信息素值。当所有 m 个蚂蚁生成了 m
+个解，其中有一条最短路径是本代最优解，将属于这条路线上的所有弧相关联的信息素值进行更新。</p>
+<p>全局信息素更新的目的是在最短路线上注人额外的信息素，即只有属于最短路线的弧上的信息素オ能得到加强，这是一个正反馈的过程，也是一个强化学习的过程。在图中各弧上，伴随着信息素的挥发，全局最短路线上各弧的信息素值得到增加。</p>
+<p>(6）终止。若终止条件满足，则结束；否则 NC = NC
++1，转人步骤（2）进行下一代进化。终止条件可指定进化的代数，也可限定运行时间，或设定最短路长的下限。</p>
+<p>(7）输出结果。</p>
+<p>【例】设有 n 个城市 C =(1,2,…, n )，任意两个城市 i 到 j 之间的距离为
+<span class="math inline">\(d_{ij}\)</span>
+求一条经过每个城市的路径<span class="math inline">\(\pi＝(\pi(1),\pi(2),…\pi(
+n))\)</span>，使得距离最小。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>=<span class="title">ACOTSP</span></span></span><br><span class="line"><span class="comment">% C表示n个城市的坐标，n×2的矩阵</span></span><br><span class="line"><span class="comment">% NC_max表示最大迭代次数</span></span><br><span class="line"><span class="comment">% m表示蚂蚁个数</span></span><br><span class="line"><span class="comment">% Alpha表示表征信息素重要程度的参数</span></span><br><span class="line"><span class="comment">% Beta表示表征启发式因子重要程度的参数</span></span><br><span class="line"><span class="comment">% Rho表示信息素蒸发系数</span></span><br><span class="line"><span class="comment">% Q表示信息素增加强度系数</span></span><br><span class="line"><span class="comment">% R_best表示各代最佳路线</span></span><br><span class="line"><span class="comment">% L_best表示各代最佳路线的长度</span></span><br><span class="line">x=[<span class="number">51</span> <span class="number">27</span> <span class="number">56</span> <span class="number">21</span> <span class="number">4</span> <span class="number">6</span> <span class="number">58</span> <span class="number">71</span> <span class="number">54</span> <span class="number">53</span> <span class="number">94</span> <span class="number">18</span> <span class="number">89</span> <span class="number">33</span> <span class="number">12</span> <span class="number">25</span> <span class="number">24</span> <span class="number">58</span> <span class="number">71</span> <span class="number">94</span> <span class="number">17</span> <span class="number">38</span> <span class="number">13</span> <span class="number">82</span> <span class="number">12</span> <span class="number">58</span> <span class="number">45</span> <span class="number">11</span> <span class="number">47</span> <span class="number">4</span>]&#x27;;</span><br><span class="line">y=[<span class="number">14</span> <span class="number">81</span> <span class="number">67</span> <span class="number">92</span> <span class="number">64</span> <span class="number">19</span> <span class="number">98</span> <span class="number">18</span> <span class="number">62</span> <span class="number">69</span> <span class="number">30</span> <span class="number">54</span> <span class="number">10</span> <span class="number">46</span> <span class="number">34</span> <span class="number">18</span> <span class="number">42</span> <span class="number">69</span> <span class="number">61</span> <span class="number">78</span> <span class="number">16</span> <span class="number">40</span> <span class="number">10</span> <span class="number">7</span> <span class="number">32</span> <span class="number">17</span> <span class="number">21</span> <span class="number">26</span> <span class="number">35</span> <span class="number">90</span>]&#x27;;</span><br><span class="line">C=[x y];</span><br><span class="line">NC_max=<span class="number">50</span>;</span><br><span class="line">m=<span class="number">30</span>;</span><br><span class="line">Alpha=<span class="number">1.4</span>;</span><br><span class="line">Beta=<span class="number">2.2</span>;</span><br><span class="line">Rho=<span class="number">0.15</span>;</span><br><span class="line">Q=<span class="number">10</span>^<span class="number">6</span>;</span><br><span class="line"><span class="comment">%%%%%%%%变量初始化%%%%%%%%%%%%%%%%</span></span><br><span class="line">n=<span class="built_in">size</span>(C,<span class="number">1</span>); <span class="comment">%n表示问题的规模（城市个数）</span></span><br><span class="line">D=<span class="built_in">zeros</span>(n,n);<span class="comment">%D表示完全图的赋权邻接矩阵</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">i</span>~=<span class="built_in">j</span></span><br><span class="line">           D(<span class="built_in">i</span>,<span class="built_in">j</span>)=((C(<span class="built_in">i</span>,<span class="number">1</span>)-C(<span class="built_in">j</span>,<span class="number">1</span>))^<span class="number">2</span>+(C(<span class="built_in">i</span>,<span class="number">2</span>)-C(<span class="built_in">j</span>,<span class="number">2</span>))^<span class="number">2</span>)^<span class="number">0.5</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">           D(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="built_in">eps</span>;      </span><br><span class="line">           <span class="comment">%i=j时不计算，应该为0，但后面的启发因子要取倒数，用eps（浮点相对精度）表示</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        D(<span class="built_in">j</span>,<span class="built_in">i</span>)=D(<span class="built_in">i</span>,<span class="built_in">j</span>);   <span class="comment">%对称矩阵</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Eta=<span class="number">1.</span>/D;                     <span class="comment">%Eta为启发因子，这里设为距离的倒数</span></span><br><span class="line">Tau=<span class="built_in">ones</span>(n,n);                <span class="comment">%Tau为信息素矩阵</span></span><br><span class="line">Tabu=<span class="built_in">zeros</span>(m,n);              <span class="comment">%存储并记录路径的生成</span></span><br><span class="line">NC=<span class="number">1</span>;                         <span class="comment">%迭代计数器，记录迭代次数</span></span><br><span class="line">R_best=<span class="built_in">zeros</span>(NC_max,n);       <span class="comment">%各代最佳路线</span></span><br><span class="line">L_best=<span class="built_in">inf</span>.*<span class="built_in">ones</span>(NC_max,<span class="number">1</span>);   <span class="comment">%各代最佳路线的长度</span></span><br><span class="line">L_ave=<span class="built_in">zeros</span>(NC_max,<span class="number">1</span>);        <span class="comment">%各代路线的平均长度</span></span><br><span class="line"><span class="keyword">while</span> NC&lt;=NC_max              <span class="comment">%停止条件之一：达到最大迭代次数，停止</span></span><br><span class="line"><span class="comment">%%%%%%%%将m只蚂蚁放到n个城市上%%%%%%%%%%%%</span></span><br><span class="line">Randpos=[];                   <span class="comment">%随即存取</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:(<span class="built_in">ceil</span>(m/n))</span><br><span class="line">    Randpos=[Randpos,randperm(n)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Tabu(:,<span class="number">1</span>)=(Randpos(<span class="number">1</span>,<span class="number">1</span>:m))&#x27;;    </span><br><span class="line"><span class="comment">%%%%%%%%m只蚂蚁按概率函数选择下一座城市，完成各自的周游%%%%%%%%%%%%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">2</span>:n                         <span class="comment">%所在城市不计算</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m     </span><br><span class="line">        visited=Tabu(<span class="built_in">i</span>,<span class="number">1</span>:(<span class="built_in">j</span><span class="number">-1</span>));  <span class="comment">%记录已访问的城市，避免重复访问</span></span><br><span class="line">        J=<span class="built_in">zeros</span>(<span class="number">1</span>,(n-<span class="built_in">j</span>+<span class="number">1</span>));       <span class="comment">%待访问的城市</span></span><br><span class="line">        P=J;                      <span class="comment">%待访问城市的选择概率分布</span></span><br><span class="line">        Jc=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">length</span>(<span class="built_in">find</span>(visited==k))==<span class="number">0</span>   <span class="comment">%开始时置0</span></span><br><span class="line">           J(Jc)=k;</span><br><span class="line">           Jc=Jc+<span class="number">1</span>;            	         <span class="comment">%访问的城市个数自加1</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="comment">%下面计算待选城市的概率分布</span></span><br><span class="line">    <span class="keyword">for</span> k=<span class="number">1</span>:<span class="built_in">length</span>(J)</span><br><span class="line">        P(k)=(Tau(visited(<span class="keyword">end</span>),J(k))^Alpha)*(Eta(visited(<span class="keyword">end</span>),J(k))^Beta);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">        P=P/(sum(P));</span><br><span class="line"><span class="comment">%按概率原则选取下一个城市</span></span><br><span class="line">        Pcum=cumsum(P);          <span class="comment">%cumsum，元素累加即求和</span></span><br><span class="line">        Select=<span class="built_in">find</span>(Pcum&gt;=<span class="built_in">rand</span>); <span class="comment">%若计算的概率大于原来的就选择这条路线</span></span><br><span class="line">        to_visit=J(Select(<span class="number">1</span>));</span><br><span class="line">        Tabu(<span class="built_in">i</span>,<span class="built_in">j</span>)=to_visit;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> NC&gt;=<span class="number">2</span></span><br><span class="line">   Tabu(<span class="number">1</span>,:)=R_best(NC<span class="number">-1</span>,:);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%%%%%%%%记录本次迭代最佳路线%%%%%%%%%%%%</span></span><br><span class="line">L=<span class="built_in">zeros</span>(m,<span class="number">1</span>);                        <span class="comment">%开始距离为0，m*1的列向量</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span><br><span class="line">    R=Tabu(<span class="built_in">i</span>,:);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:(n<span class="number">-1</span>)</span><br><span class="line">    L(<span class="built_in">i</span>)=L(<span class="built_in">i</span>)+D(R(<span class="built_in">j</span>),R(<span class="built_in">j</span>+<span class="number">1</span>));        <span class="comment">%原距离加上第j个城市到第j+1个城市的距离</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L(<span class="built_in">i</span>)=L(<span class="built_in">i</span>)+D(R(<span class="number">1</span>),R(n));              <span class="comment">%一轮下来后走过的距离</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L_best(NC)=<span class="built_in">min</span>(L);                   <span class="comment">%最佳距离取最小</span></span><br><span class="line">pos=<span class="built_in">find</span>(L==L_best(NC));</span><br><span class="line">R_best(NC,:)=Tabu(pos(<span class="number">1</span>),:);         <span class="comment">%此轮迭代后的最佳路线</span></span><br><span class="line">L_ave(NC)=<span class="built_in">mean</span>(L);                   <span class="comment">%此轮迭代后的平均距离</span></span><br><span class="line">NC=NC+<span class="number">1</span>;                             <span class="comment">%迭代继续</span></span><br><span class="line"><span class="comment">%%%%%%%%更新信息素%%%%%%%%%%%%%%%%</span></span><br><span class="line">Delta_Tau=<span class="built_in">zeros</span>(n,n);                <span class="comment">%开始时信息素为n*n的0矩阵</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:(n<span class="number">-1</span>)</span><br><span class="line">        Delta_Tau(Tabu(<span class="built_in">i</span>,<span class="built_in">j</span>),Tabu(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>))=Delta_Tau(Tabu(<span class="built_in">i</span>,<span class="built_in">j</span>),Tabu(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>))+Q/L(<span class="built_in">i</span>);           </span><br><span class="line"><span class="comment">%此次循环在路径（i，j）上的信息素增量</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">Delta_Tau(Tabu(<span class="built_in">i</span>,n),Tabu(<span class="built_in">i</span>,<span class="number">1</span>))=Delta_Tau(Tabu(<span class="built_in">i</span>,n),Tabu(<span class="built_in">i</span>,<span class="number">1</span>))+Q/L(<span class="built_in">i</span>);</span><br><span class="line"><span class="comment">%此次循环在整个路径上的信息素增量</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Tau=(<span class="number">1</span>-Rho).*Tau+Delta_Tau;      <span class="comment">%考虑信息素挥发，更新后的信息素</span></span><br><span class="line"><span class="comment">%%%%%%%%禁忌表清零%%%%%%%%%%%%</span></span><br><span class="line">Tabu=<span class="built_in">zeros</span>(m,n);                 <span class="comment">%%直到最大迭代次数</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%%%%%%%%结果%%%%%%%%%%%%</span></span><br><span class="line">Pos=<span class="built_in">find</span>(L_best==<span class="built_in">min</span>(L_best));   <span class="comment">%找到最佳路径（非0为真）</span></span><br><span class="line">Shortest_Route=R_best(Pos(<span class="number">1</span>),:)  <span class="comment">%最大迭代次数后最佳路径</span></span><br><span class="line">Shortest_Length=L_best(Pos(<span class="number">1</span>))   <span class="comment">%最大迭代次数后最短距离</span></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>);                  <span class="comment">%绘制第一个子图形</span></span><br><span class="line">DrawRoute(C,Shortest_Route);     <span class="comment">%画路线图的子函数</span></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>);                  <span class="comment">%绘制第二个子图形</span></span><br><span class="line"><span class="built_in">plot</span>(L_best);</span><br><span class="line"><span class="built_in">hold</span> on                        </span><br><span class="line"><span class="built_in">plot</span>(L_ave,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line">title(<span class="string">&#x27;平均距离和最短距离&#x27;</span>)      </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DrawRoute</span><span class="params">(C,R)</span></span></span><br><span class="line"><span class="comment">%画路线图的子函数</span></span><br><span class="line">N=<span class="built_in">length</span>(R);</span><br><span class="line"><span class="built_in">scatter</span>(C(:,<span class="number">1</span>),C(:,<span class="number">2</span>));</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>([C(R(<span class="number">1</span>),<span class="number">1</span>),C(R(N),<span class="number">1</span>)],[C(R(<span class="number">1</span>),<span class="number">2</span>),C(R(N),<span class="number">2</span>)],<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="keyword">for</span> ii=<span class="number">2</span>:N</span><br><span class="line">    <span class="built_in">plot</span>([C(R(ii<span class="number">-1</span>),<span class="number">1</span>),C(R(ii),<span class="number">1</span>)],[C(R(ii<span class="number">-1</span>),<span class="number">2</span>),C(R(ii),<span class="number">2</span>)],<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">    <span class="built_in">hold</span> on</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">title(<span class="string">&#x27;TSP问题优化结果 &#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/f5d49de55f294d8882b502e68007dbd3.png#pic_center"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/" rel="tag"># 蚁群算法</a>
+          
+            <a href="/tags/%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92/" rel="tag"># 路径规划</a>
+          
+            <a href="/tags/TSP/" rel="tag"># TSP</a>
+          
+            <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%95%B4%E6%95%B0%E8%A7%84%E5%88%92/" rel="tag"># 非线性整数规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/04/26/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/gcd(%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86)/" rel="next" title="牛客ACM题单：gcd(裴蜀定理)">
+                <i class="fa fa-chevron-left"></i> 牛客ACM题单：gcd(裴蜀定理)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/04/30/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95_%E9%AB%98%E5%B0%9A/" rel="prev" title="MATLAB 蚁群算法理论、应用及其与其它算法的混合">
+                MATLAB 蚁群算法理论、应用及其与其它算法的混合 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NTcxOS8zMjE4NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#matlab%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">MATLAB智能算法：蚁群算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">蚁群算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">蚁群算法基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">自适应蚁群算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">蚁群算法的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92"><span class="nav-number">1.2.</span> <span class="nav-text">应用：路径规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">移动机器人</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%B1%E5%8C%BA%E5%9C%B0%E5%8A%BF%E5%9B%BE%E6%9C%80%E4%BC%98%E8%B7%AF%E5%BE%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">山区地势图最优路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8tsp%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">应用：TSP问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

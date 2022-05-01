@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.1 lc.2022 一维数组转二维数组 给你一个下标从 0 开始的一维整数数组 original 和两个整数 m 和 n 。你需要使用 original 中 所有 元素创建一个 m 行 n 列的二维数组。 original 中下标从 0 到 n - 1 （都 包含 ）的元素构成二维数组的第一行，下标从 n 到 2 * n - 1 （都 包含 ）的元素构成二维数组的第二行，依此类推">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode每日一题 2022年1月">
+<meta property="og:url" content="https://wangerxzai.github.io/2022/02/01/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%202022%E5%B9%B41%E6%9C%88/index.html">
+<meta property="og:site_name" content="不学习变傻瓜">
+<meta property="og:description" content="1.1 lc.2022 一维数组转二维数组 给你一个下标从 0 开始的一维整数数组 original 和两个整数 m 和 n 。你需要使用 original 中 所有 元素创建一个 m 行 n 列的二维数组。 original 中下标从 0 到 n - 1 （都 包含 ）的元素构成二维数组的第一行，下标从 n 到 2 * n - 1 （都 包含 ）的元素构成二维数组的第二行，依此类推">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/900c279dba1e48c6aa302f116ad1f52f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_14,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c6a850204d1d4e25ae17586b36f214b4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f383f1bdd72547d9bcd189b96e95a7c3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bba9689eb2914c65aa902b525c7d4af1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_15,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-01-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-10T14:34:36.331Z">
+<meta property="article:author" content="wanger">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/900c279dba1e48c6aa302f116ad1f52f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_14,color_FFFFFF,t_70,g_se,x_16">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wangerxzai.github.io/2022/02/01/基础算法/LeetCode/LeetCode每日一题 2022年1月/"/>
+
+
+
+
+
+  <title>LeetCode每日一题 2022年1月 | 不学习变傻瓜</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">不学习变傻瓜</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding by Wanger</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/02/01/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%202022%E5%B9%B41%E6%9C%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不学习变傻瓜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode每日一题 2022年1月</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-01T00:00:00+08:00">
+                2022-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://img-blog.csdnimg.cn/900c279dba1e48c6aa302f116ad1f52f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_14,color_FFFFFF,t_70,g_se,x_16"></p>
+<h2 id="lc.2022-一维数组转二维数组">1.1 lc.2022 一维数组转二维数组</h2>
+<p>给你一个下标从 0 开始的一维整数数组 original 和两个整数 m 和 n
+。你需要使用 original 中 所有 元素创建一个 m 行 n 列的二维数组。
+original 中下标从 0 到 n - 1 （都 包含
+）的元素构成二维数组的第一行，下标从 n 到 2 * n - 1 （都 包含
+）的元素构成二维数组的第二行，依此类推。 请你根据上述过程返回一个 m x n
+的二维数组。如果无法构成这样的二维数组，请你返回一个空的二维数组。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">construct2DArray</span>(vector&lt;<span class="type">int</span>&gt;&amp; original, <span class="type">int</span> m, <span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; a;</span><br><span class="line">        <span class="keyword">if</span>(original.<span class="built_in">size</span>() != m*n)&#123;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it = original.<span class="built_in">begin</span>();it != original.<span class="built_in">end</span>();it += n)&#123;</span><br><span class="line">            a.<span class="built_in">emplace_back</span>(it,it+n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>for的条件可以用vector值顺推。</p>
+<p>emplace_back 不同于push_back
+，不需要左值，直接可以传入，但是位置固定，无法更改。</p>
+<h2 id="lc.390-消除游戏">1.2 lc.390 消除游戏</h2>
+<p>列表 arr 由在范围 [1, n] 中的所有整数组成，并按严格递增排序。请你对
+arr 应用下述算法：</p>
+<pre><code>从左到右，删除第一个数字，然后每隔一个数字删除一个，直到到达列表末尾。
+重复上面的步骤，但这次是从右到左。也就是，删除最右侧的数字，然后剩下的数字每隔一个删除一个。
+不断重复这两步，从左到右和从右到左交替进行，直到只剩下一个数字。</code></pre>
+<p>给你整数 n ，返回 arr 最后剩下的数字。</p>
+<ul>
+<li>官方题解</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> a1 = <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> k = <span class="number">0</span>, cnt = n, step = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (cnt &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (k % <span class="number">2</span> == <span class="number">0</span>) &#123; <span class="comment">// 正向</span></span><br><span class="line">                a1 = a1 + step;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 反向</span></span><br><span class="line">                a1 = (cnt % <span class="number">2</span> == <span class="number">0</span>) ? a1 : a1 + step;</span><br><span class="line">            &#125;</span><br><span class="line">            k++;</span><br><span class="line">            cnt = cnt &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            step = step &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.1185-一周中的第几天">1.3 lc.1185 一周中的第几天</h2>
+<p>给你一个日期，请你设计一个算法来判断它是对应一周中的哪一天。
+输入为三个整数：day、month 和 year，分别表示日、月、年。
+您返回的结果必须是这几个值中的一个 {"Sunday", "Monday", "Tuesday",
+"Wednesday", "Thursday", "Friday", "Saturday"}。</p>
+<ul>
+<li>zeller公式</li>
+</ul>
+<p>感觉应该会有数学公式。上网查了查，真有公式。<img src="https://img-blog.csdnimg.cn/c6a850204d1d4e25ae17586b36f214b4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dayOfTheWeek</span><span class="params">(<span class="type">int</span> day, <span class="type">int</span> month, <span class="type">int</span> year)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; Weekday=&#123;<span class="string">&quot;Sunday&quot;</span>,<span class="string">&quot;Monday&quot;</span>,<span class="string">&quot;Tuesday&quot;</span>,<span class="string">&quot;Wednesday&quot;</span>,<span class="string">&quot;Thursday&quot;</span>,<span class="string">&quot;Friday&quot;</span>,<span class="string">&quot;Saturday&quot;</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(month == <span class="number">1</span> || month == <span class="number">2</span>)&#123;</span><br><span class="line">            month += <span class="number">12</span>;</span><br><span class="line">            year -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> c = year / <span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> y = year % <span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> weekday;</span><br><span class="line">        weekday = (c/<span class="number">4</span> - <span class="number">2</span>*c + y + y/<span class="number">4</span> + (<span class="number">13</span>*(month+<span class="number">1</span>))/<span class="number">5</span> + day - <span class="number">1</span>)%<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Weekday[weekday];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在2003.7.3时，weekday == -2，runtime error</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dayOfTheWeek</span><span class="params">(<span class="type">int</span> day, <span class="type">int</span> month, <span class="type">int</span> year)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; Weekday=&#123;<span class="string">&quot;Sunday&quot;</span>,<span class="string">&quot;Monday&quot;</span>,<span class="string">&quot;Tuesday&quot;</span>,<span class="string">&quot;Wednesday&quot;</span>,<span class="string">&quot;Thursday&quot;</span>,<span class="string">&quot;Friday&quot;</span>,<span class="string">&quot;Saturday&quot;</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(month == <span class="number">1</span> || month == <span class="number">2</span>)&#123;</span><br><span class="line">            month += <span class="number">12</span>;</span><br><span class="line">            year -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> c = year / <span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> y = year % <span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> weekday = c/<span class="number">4</span> - <span class="number">2</span>*c + y + y/<span class="number">4</span> + (<span class="number">13</span>*(month+<span class="number">1</span>))/<span class="number">5</span> + day - <span class="number">1</span>;</span><br><span class="line">        weekday = (weekday % <span class="number">7</span> + <span class="number">7</span>)%<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Weekday[weekday];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>weekday = (weekday % 7 + 7)%7;</code>避免了负数的情况。</p>
+<ul>
+<li>官方题解</li>
+</ul>
+<p>题目规定输入的日期一定是在 1971 到 2100 年之间的有效日期，即在 1971
+年 1 月 1 日，到 2100 年 12 月 31 日之间。通过查询日历可知，1970 年 12
+月 31 日是星期四，我们只需要算出输入的日期距离 1970 年 12 月 31
+日有几天，再加上 3 后对 7 求余，即可得到输入日期是一周中的第几天。</p>
+<p>求输入的日期距离 1970 年 12 月 31
+日的天数，可以分为三部分分别计算后求和：
+（1）输入年份之前的年份的天数贡献；
+（2）输入年份中，输入月份之前的月份的天数贡献；
+（3）输入月份中的天数贡献。</p>
+<p>例如，如果输入是 2100 年 12 月 31 日，即可分为三部分分别计算后求和：
+（1）1971 年 1 月 1 到 2099 年 12 月 31 日之间所有的天数； （2）2100 年
+1 月 1 日到 2100 年 11 月 31 日之间所有的天数； （3）2100 年 12 月 1
+日到 2100 年 12 月 31 日之间所有的天数。</p>
+<p>其中（1）和（2）部分的计算需要考虑到闰年的影响。当年份是 400
+的倍数或者是 4 的倍数且不是 100 的倍数时，该年会在二月份多出一天。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">dayOfTheWeek</span><span class="params">(<span class="type">int</span> day, <span class="type">int</span> month, <span class="type">int</span> year)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; week = &#123;<span class="string">&quot;Monday&quot;</span>, <span class="string">&quot;Tuesday&quot;</span>, <span class="string">&quot;Wednesday&quot;</span>, <span class="string">&quot;Thursday&quot;</span>, <span class="string">&quot;Friday&quot;</span>, <span class="string">&quot;Saturday&quot;</span>, <span class="string">&quot;Sunday&quot;</span>&#125;;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; monthDays = &#123;<span class="number">31</span>, <span class="number">28</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>&#125;;</span><br><span class="line">        <span class="comment">/* 输入年份之前的年份的天数贡献 */</span></span><br><span class="line">        <span class="type">int</span> days = <span class="number">365</span> * (year - <span class="number">1971</span>) + (year - <span class="number">1969</span>) / <span class="number">4</span>;</span><br><span class="line">        <span class="comment">/* 输入年份中，输入月份之前的月份的天数贡献 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; month - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            days += monthDays[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ((year % <span class="number">400</span> == <span class="number">0</span> || (year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>)) &amp;&amp; month &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            days += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 输入月份中的天数贡献 */</span></span><br><span class="line">        days += day;</span><br><span class="line">        <span class="keyword">return</span> week[(days + <span class="number">3</span>) % <span class="number">7</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>官方题解从1971.1.1一点点挪着算，太麻烦，zeller简单一些。</p>
+<h2 id="lc.1576-替换问号">1.5 lc.1576 替换问号</h2>
+<p>给你一个仅包含小写英文字母和 '?' 字符的字符串 s，请你将所有的 '?'
+转换为若干小写字母，使最终的字符串不包含任何 连续重复 的字符。 注意：你
+不能 修改非 '?' 字符。 题目测试用例保证 除 '?' 字符
+之外，不存在连续重复的字符。
+在完成所有转换（可能无需转换）后返回最终的字符串。如果有多个解决方案，请返回其中任何一个。可以证明，在给定的约束条件下，答案总是存在的。</p>
+<ul>
+<li>遍历（居然过了）</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">modifyString</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        string alpha = <span class="string">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s.<span class="built_in">size</span>() ; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27;?&#x27;</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span> ; j &lt; alpha.<span class="built_in">size</span>() ; j++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(alpha[j] != s[i+<span class="number">1</span>])&#123;</span><br><span class="line">                          s[i] = alpha[j];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i == s.<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span> ; j &lt; alpha.<span class="built_in">size</span>() ; j++)&#123;</span><br><span class="line">                       <span class="keyword">if</span>(alpha[j] != s[i<span class="number">-1</span>])&#123;</span><br><span class="line">                            s[i] = alpha[j];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span> ; j &lt; alpha.<span class="built_in">size</span>() ; j++)&#123;</span><br><span class="line">                       <span class="keyword">if</span>(alpha[j] != s[i<span class="number">-1</span>] &amp;&amp; alpha[j] != s[i+<span class="number">1</span>])&#123;</span><br><span class="line">                            s[i] = alpha[j];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>官方遍历</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">modifyString</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27;?&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>; ch &lt;= <span class="string">&#x27;c&#x27;</span>; ++ch) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((i &gt; <span class="number">0</span> &amp;&amp; s[i - <span class="number">1</span>] == ch) || (i &lt; n - <span class="number">1</span> &amp;&amp; s[i + <span class="number">1</span>] == ch)) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    s[i] = ch;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>优化：因为只要求和前后两个字母不一样，所以不用遍历所有的字母，只要三个就好。妙。
+for循环 可以直接通过字母遍历。</p>
+<h2 id="lc.71-简化路径">1.6 lc.71 简化路径</h2>
+<p>给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径
+（以 '/' 开头），请你将其转化为更加简洁的规范路径。 在 Unix
+风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..）
+表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，'//'）都被视为单个斜杠
+'/' 。
+对于此问题，任何其他格式的点（例如，'...'）均被视为文件/目录名称。
+请注意，返回的 规范路径 必须遵循下述格式：</p>
+<pre><code>始终以斜杠 &#39;/&#39; 开头。
+两个目录名之间必须只有一个斜杠 &#39;/&#39; 。
+最后一个目录名（如果存在）不能 以 &#39;/&#39; 结尾。
+此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 &#39;.&#39; 或 &#39;..&#39;）。</code></pre>
+<p>返回简化后得到的 规范路径 。</p>
+<ul>
+<li>deque</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">simplifyPath</span><span class="params">(string path)</span> </span>&#123;</span><br><span class="line">        deque&lt;string&gt; st;</span><br><span class="line">        <span class="type">int</span> n = path.<span class="built_in">size</span>(), i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(path[i] == <span class="string">&#x27;/&#x27;</span>) i++;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                string temp;</span><br><span class="line">                <span class="keyword">while</span>(i &lt; n &amp;&amp; path[i] != <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">                    temp += path[i];</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(temp == <span class="string">&quot;..&quot;</span> &amp;&amp; !st.<span class="built_in">empty</span>()) st.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(temp != <span class="string">&quot;..&quot;</span> &amp;&amp; temp != <span class="string">&quot;.&quot;</span>) st.<span class="built_in">push_back</span>(temp); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        string res = <span class="string">&quot;/&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            res += st.<span class="built_in">front</span>() + <span class="string">&quot;/&quot;</span>;</span><br><span class="line">            st.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(res.<span class="built_in">size</span>() &gt; <span class="number">1</span>) res.<span class="built_in">pop_back</span>();</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>第二个 while 里也需要判断条件 i &lt; n 不然弹不出该 while。</p>
+<h2 id="lc.89-格雷码">1.8 lc.89 格雷码</h2>
+<p>n 位格雷码序列 是一个由 2n 个整数组成的序列，其中：</p>
+<pre><code>每个整数都在范围 [0, 2n - 1] 内（含 0 和 2n - 1）
+第一个整数是 0
+一个整数在序列中出现 不超过一次
+每对 相邻 整数的二进制表示 恰好一位不同 ，且
+第一个 和 最后一个 整数的二进制表示 恰好一位不同</code></pre>
+<p>给你一个整数 n ，返回任一有效的 n 位格雷码序列 。</p>
+<ul>
+<li>官方题解：反转合并</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">grayCode</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ret;</span><br><span class="line">        ret.<span class="built_in">reserve</span>(<span class="number">1</span> &lt;&lt; n);</span><br><span class="line">        ret.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> m = ret.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = m - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                ret.<span class="built_in">push_back</span>(ret[j] | (<span class="number">1</span> &lt;&lt; (i - <span class="number">1</span>)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>1 &lt;&lt; n</code> 1 * 2 <sup>n</sup>（转 2
+进制）。<code>reserve</code>
+预先分配空间。<code>ret[j] | (1 &lt;&lt; (i - 1))</code> 相当于
+<code>ret[j]</code> 与 2 <sup>i-1</sup> 相加（首位转为 1 ）。</p>
+<h2 id="lc.1629-按键持续时间最长的键">1.9 lc.1629
+按键持续时间最长的键</h2>
+<p>easy</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">char</span> <span class="title">slowestKey</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; releaseTimes, string keysPressed)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> temp = releaseTimes[<span class="number">0</span>];</span><br><span class="line">        <span class="type">char</span> ans = keysPressed[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt; keysPressed.<span class="built_in">size</span>() ; i ++ )&#123;</span><br><span class="line">            <span class="keyword">if</span>(releaseTimes[i] - releaseTimes[i<span class="number">-1</span>] &gt; temp)&#123;</span><br><span class="line">                ans = keysPressed[i];</span><br><span class="line">                temp = releaseTimes[i] - releaseTimes[i<span class="number">-1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(releaseTimes[i] - releaseTimes[i<span class="number">-1</span>] == temp &amp;&amp; keysPressed[i] &gt; ans )&#123;</span><br><span class="line">                ans = keysPressed[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.334-递增的三元子序列">1.12 lc.334 递增的三元子序列</h2>
+<p>给你一个整数数组 nums ，判断这个数组中是否存在长度为 3 的递增子序列。
+如果存在这样的三元组下标 (i, j, k) 且满足 i &lt; j &lt; k ，使得 nums[i]
+&lt; nums[j] &lt; nums[k] ，返回 true ；否则，返回 false 。</p>
+<ul>
+<li>for * for 超时</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">increasingTriplet</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; cnt[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = i ; j &lt; nums.<span class="built_in">size</span>() ; j ++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &lt; nums[j])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(cnt[j].<span class="built_in">empty</span>()) cnt[j].<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="keyword">if</span>(cnt[j][<span class="number">0</span>] &lt; nums[i]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">else</span> cnt[j][<span class="number">0</span>] = nums[i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>官方题解 两个数组记录 max min</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">increasingTriplet</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftMin</span><span class="params">(n)</span></span>;</span><br><span class="line">        leftMin[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            leftMin[i] = <span class="built_in">min</span>(leftMin[i - <span class="number">1</span>], nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">rightMax</span><span class="params">(n)</span></span>;</span><br><span class="line">        rightMax[n - <span class="number">1</span>] = nums[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            rightMax[i] = <span class="built_in">max</span>(rightMax[i + <span class="number">1</span>], nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; leftMin[i - <span class="number">1</span>] &amp;&amp; nums[i] &lt; rightMax[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这种情况下，时间 O(n) 如果遍历，在 for 里比较时间就是
+O(n<sup>2</sup>)</p>
+<h2 id="lc.747-查找">1.13 lc.747 查找</h2>
+<p>给你一个整数数组 nums ，其中总是存在 唯一的 一个最大整数 。
+请你找出数组中的最大元素并检查它是否 至少是数组中每个其他数字的两倍
+。如果是，则返回 最大元素的下标 ，否则返回 -1 。</p>
+<ul>
+<li>找最大值与第二大的值</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">dominantIndex</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> max1 = <span class="number">0</span> , max2 = <span class="number">0</span> , t = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; max1) &#123;</span><br><span class="line">                max1 = nums[i] ;</span><br><span class="line">                t = i ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; max1 &amp;&amp; nums[i] &gt; max2) max2 = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(max1 &gt;= <span class="number">2</span>*max2) <span class="keyword">return</span> t;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个 for 就够了，我是蠢货</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">dominantIndex</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m1 = <span class="number">-1</span>, m2 = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; m1) &#123;</span><br><span class="line">                m2 = m1;</span><br><span class="line">                m1 = nums[i];</span><br><span class="line">                index = i;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &gt; m2) &#123;</span><br><span class="line">                m2 = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m1 &gt;= m2 * <span class="number">2</span> ? index : <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.373-查找和最小的k对数字">1.14 lc.373 查找和最小的K对数字</h2>
+<p>给定两个以升序排列的整数数组 nums1 和 nums2 , 以及一个整数 k 。
+定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。
+请找到和最小的 k 个数对 (u1,v1), (u2,v2) ... (uk,vk) 。</p>
+<ul>
+<li>官方二分</li>
+</ul>
+<p>第 k 个元素和大小为 psum ，和为 psum 的位置大于等于 k。所以先讨论小于
+psum 的个数，再加上所需的和为 psum 的个数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">kSmallestPairs</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="type">int</span> m = nums1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = nums2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">auto</span> count = [&amp;](<span class="type">int</span> target)&#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> cnt = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> start = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> end = n - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (start &lt; m &amp;&amp; end &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums1[start] + nums2[end] &gt; target) &#123;</span><br><span class="line">                    end--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    cnt += end + <span class="number">1</span>;</span><br><span class="line">                    start++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> cnt;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*二分查找第 k 小的数对和的大小*/</span></span><br><span class="line">        <span class="type">int</span> left = nums1[<span class="number">0</span>] + nums2[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> right = nums1.<span class="built_in">back</span>() + nums2.<span class="built_in">back</span>();</span><br><span class="line">        <span class="type">int</span> pairSum = right;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            <span class="type">int</span> mid = left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">count</span>(mid) &lt; k) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pairSum = mid;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="type">int</span> pos = n - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">/*找到小于目标值 pairSum 的数对*/</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (pos &gt;= <span class="number">0</span> &amp;&amp; nums1[i] + nums2[pos] &gt;= pairSum) &#123;</span><br><span class="line">                pos--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= pos &amp;&amp; k &gt; <span class="number">0</span>; j++, k--) &#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(&#123;nums1[i], nums2[j]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*找到等于目标值 pairSum 的数对*/</span></span><br><span class="line">        pos = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m &amp;&amp; k &gt; <span class="number">0</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (pos &gt;= <span class="number">0</span> &amp;&amp; nums1[i] + nums2[pos] &gt; pairSum) &#123;</span><br><span class="line">                pos--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i; k &gt; <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; nums1[j] + nums2[pos] == pairSum; j--, k--) &#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(&#123;nums1[i], nums2[pos]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>虽然通过题目所给测试用例，然而，“找到等于目标值 pairSum
+的数对”部分代码存在问题。在测试用例 <code>[1,1,1] [2,2,2] 7</code> 中：
+<img src="https://img-blog.csdnimg.cn/f383f1bdd72547d9bcd189b96e95a7c3.png" alt="在这里插入图片描述"></p>
+<p>同时，以题解的代码没有按照元素和大小排序输出。</p>
+<figure>
+<img src="https://img-blog.csdnimg.cn/bba9689eb2914c65aa902b525c7d4af1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_15,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述">
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>本题还是考虑<strong>优先队列</strong>的方案。</p>
+<ul>
+<li>set</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">kSmallestPairs</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="type">int</span> n = nums1.<span class="built_in">size</span>(), m = nums2.<span class="built_in">size</span>();</span><br><span class="line">        set&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; st; </span><br><span class="line">        <span class="comment">//tuple的(0,1,2)字段分别代表(nums1[a] + nums2[b], a, b)</span></span><br><span class="line">        <span class="comment">//当然也可以用pair&lt; int,pair&lt;int,int&gt; &gt; </span></span><br><span class="line">        st.<span class="built_in">insert</span>( &#123;nums1[<span class="number">0</span>] + nums2[<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>&#125; );</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">while</span> (ans.<span class="built_in">size</span>() &lt; k <span class="keyword">and</span> st.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [_, a, b] = *st.<span class="built_in">begin</span>();</span><br><span class="line">            st.<span class="built_in">erase</span>(st.<span class="built_in">begin</span>());</span><br><span class="line">            ans.<span class="built_in">push_back</span>( &#123;nums1[a], nums2[b]&#125; );</span><br><span class="line">            <span class="keyword">if</span> (a + <span class="number">1</span> &lt; n) &#123;</span><br><span class="line">                st.<span class="built_in">insert</span>(&#123;nums1[a + <span class="number">1</span>] + nums2[b], a + <span class="number">1</span>, b&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (b + <span class="number">1</span> &lt; m) &#123;</span><br><span class="line">                st.<span class="built_in">insert</span>(&#123;nums1[a] + nums2[b + <span class="number">1</span>], a, b + <span class="number">1</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>优先队列</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">kSmallestPairs</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">auto</span> cmp = [&amp;nums1, &amp;nums2](<span class="type">const</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; &amp; a, <span class="type">const</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; &amp; b) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums1[a.first] + nums2[a.second] &gt; nums1[b.first] + nums2[b.second];</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> m = nums1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> n = nums2.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;   </span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, <span class="keyword">decltype</span>(cmp)&gt; <span class="built_in">pq</span>(cmp);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">min</span>(k, m); i++) &#123;</span><br><span class="line">            pq.<span class="built_in">emplace</span>(i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (k-- &gt; <span class="number">0</span> &amp;&amp; !pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [x, y] = pq.<span class="built_in">top</span>(); </span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(initializer_list&lt;<span class="type">int</span>&gt;&#123;nums1[x], nums2[y]&#125;);</span><br><span class="line">            <span class="keyword">if</span> (y + <span class="number">1</span> &lt; n) &#123;</span><br><span class="line">                pq.<span class="built_in">emplace</span>(x, y + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.1716-计算银行的钱">1.15 lc.1716 计算银行的钱</h2>
+<p>Hercy 想要为购买第一辆车存钱。他 每天 都往力扣银行里存钱。
+最开始，他在周一的时候存入 1 块钱。从周二到周日，他每天都比前一天多存入
+1 块钱。在接下来每一个周一，他都会比 前一个周一 多存入 1 块钱。</p>
+<p>给你 n ，请你返回在第 n
+天结束的时候他在力扣银行总共存了多少块钱。</p>
+<ul>
+<li>easy</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">totalMoney</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> wn = n / <span class="number">7</span> , yd = n % <span class="number">7</span> , ans = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= wn ; i ++)&#123;</span><br><span class="line">            ans += <span class="number">21</span> + i * <span class="number">7</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= yd ; i ++)&#123;</span><br><span class="line">            ans += i + wn ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.539-最小时间差">1.18 lc.539 最小时间差</h2>
+<p>给定一个 24 小时制（小时:分钟
+"HH:MM"）的时间列表，找出列表中任意两个时间的最小时间差并以分钟数表示。</p>
+<ul>
+<li>sort + 鸽巢</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMinutes</span><span class="params">(string &amp;t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">int</span>(t[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span>) * <span class="number">10</span> + <span class="built_in">int</span>(t[<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>)) * <span class="number">60</span> + <span class="built_in">int</span>(t[<span class="number">3</span>] - <span class="string">&#x27;0&#x27;</span>) * <span class="number">10</span> + <span class="built_in">int</span>(t[<span class="number">4</span>] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMinDifference</span><span class="params">(vector&lt;string&gt; &amp;timePoints)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = timePoints.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &gt; <span class="number">1440</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(timePoints.<span class="built_in">begin</span>(), timePoints.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = INT_MAX;</span><br><span class="line">        <span class="type">int</span> t0Minutes = <span class="built_in">getMinutes</span>(timePoints[<span class="number">0</span>]);</span><br><span class="line">        <span class="type">int</span> preMinutes = t0Minutes;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> minutes = <span class="built_in">getMinutes</span>(timePoints[i]);</span><br><span class="line">            ans = <span class="built_in">min</span>(ans, minutes - preMinutes); <span class="comment">// 相邻时间的时间差</span></span><br><span class="line">            preMinutes = minutes;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, t0Minutes + <span class="number">1440</span> - preMinutes); <span class="comment">// 首尾时间的时间差</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>鸽巢原理和抽屉原理一样。如果大于1440，必然有两个相同的时间。</p>
+<h2 id="lc.219-存在重复元素-ii">1.19 lc.219 存在重复元素 II</h2>
+<p>给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个
+不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) &lt;= k
+。如果存在，返回 true ；否则，返回 false 。</p>
+<ul>
+<li>超时</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">containsNearbyDuplicate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span> ; j &lt;= i + k &amp;&amp; j &lt; nums.<span class="built_in">size</span>(); j ++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] == nums[j]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>哈希表 + 滑动窗口</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">containsNearbyDuplicate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; k)&#123;</span><br><span class="line">                s.<span class="built_in">erase</span>(nums[i - k - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.<span class="built_in">count</span>(nums[i])) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            s.<span class="built_in">emplace</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>维护一个只有 k 个值的哈希表，查找重复值。</p>
+<h2 id="lc.2029-石子游戏-ix">1.20 lc.2029 石子游戏 IX</h2>
+<p>Alice 和 Bob 再次设计了一款新的石子游戏。现有一行 n
+个石子，每个石子都有一个关联的数字表示它的价值。给你一个整数数组 stones
+，其中 stones[i] 是第 i 个石子的价值。 Alice 和 Bob
+轮流进行自己的回合，Alice 先手。每一回合，玩家需要从 stones
+中移除任一石子。 如果玩家移除石子后，导致 所有已移除石子 的价值 总和
+可以被 3 整除，那么该玩家就 输掉游戏 。
+如果不满足上一条，且移除后没有任何剩余的石子，那么 Bob
+将会直接获胜（即便是在 Alice 的回合）。 假设两位玩家均采用 最佳
+决策。如果 Alice 获胜，返回 true ；如果 Bob 获胜，返回 false 。</p>
+<ul>
+<li></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">stoneGameIX</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cnt0 = <span class="number">0</span>, cnt1 = <span class="number">0</span>, cnt2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> val: stones) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="type">int</span> type = val % <span class="number">3</span>; type == <span class="number">0</span>) &#123;</span><br><span class="line">                ++cnt0;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (type == <span class="number">1</span>) &#123;</span><br><span class="line">                ++cnt1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ++cnt2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt0 % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> cnt1 &gt;= <span class="number">1</span> &amp;&amp; cnt2 &gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt1 - cnt2 &gt; <span class="number">2</span> || cnt2 - cnt1 &gt; <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>逻辑小游戏，挺有意思。</p>
+<h2 id="lc.1332-删除回文子序列">1.22 lc.1332 删除回文子序列</h2>
+<p>给你一个字符串 s，它仅由字母 'a' 和 'b' 组成。每一次删除操作都可以从
+s 中删除一个回文 子序列。
+返回删除给定字符串中所有字符（字符串为空）的最小删除次数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removePalindromeSub</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] != s[n - <span class="number">1</span> - i]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我想多了···</p>
+<h2 id="lc.1688-比赛中的配对次数">1.25 lc.1688 比赛中的配对次数</h2>
+<p>给你一个整数 n ，表示比赛中的队伍数。比赛遵循一种独特的赛制：</p>
+<pre><code>如果当前队伍数是 偶数 ，那么每支队伍都会与另一支队伍配对。总共进行 n / 2 场比赛，且产生 n / 2 支队伍进入下一轮。
+如果当前队伍数为 奇数 ，那么将会随机轮空并晋级一支队伍，其余的队伍配对。总共进行 (n - 1) / 2 场比赛，且产生 (n - 1) / 2 + 1 支队伍进入下一轮。</code></pre>
+<p>返回在比赛中进行的配对次数，直到决出获胜队伍为止。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfMatches</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span>(n != <span class="number">1</span>)&#123;</span><br><span class="line">            cnt += n / <span class="number">2</span> ;</span><br><span class="line">            <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                n = n / <span class="number">2</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> n = (n - <span class="number">1</span>) / <span class="number">2</span> + <span class="number">1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配对一次 淘汰一个</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfMatches</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n - <span class="number">1</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.2047-句子中的有效单词数">1.27 lc.2047 句子中的有效单词数</h2>
+<p>句子仅由小写字母（'a' 到 'z'）、数字（'0' 到
+'9'）、连字符（'-'）、标点符号（'!'、'.' 和 ','）以及空格（'
+'）组成。每个句子可以根据空格分解成 一个或者多个 token ，这些 token
+之间由一个或者多个空格 ' ' 分隔。 如果一个 token
+同时满足下述条件，则认为这个 token 是一个有效单词：</p>
+<pre><code>仅由小写字母、连字符和/或标点（不含数字）。
+至多一个 连字符 &#39;-&#39; 。如果存在，连字符两侧应当都存在小写字母（&quot;a-b&quot; 是一个有效单词，但 &quot;-ab&quot; 和 &quot;ab-&quot; 不是有效单词）。
+至多一个 标点符号。如果存在，标点符号应当位于 token 的 末尾 。</code></pre>
+<p>这里给出几个有效单词的例子："a-b."、"afad"、"ba-c"、"a!" 和 "!" 。
+给你一个字符串 sentence ，请你找出并返回 sentence 中 有效单词的数目
+。</p>
+<ul>
+<li>纯纯 if ，毫无兴致。。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countValidWords</span><span class="params">(string sentence)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = sentence.<span class="built_in">length</span>();</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="function">string_view <span class="title">slice</span><span class="params">(sentence)</span></span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (l &lt; n &amp;&amp; sentence[l] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l &gt;= n) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            r = l + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (r &lt; n &amp;&amp; sentence[r] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                r++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">isValid</span>(slice.<span class="built_in">substr</span>(l, r - l))) &#123; <span class="comment">// 判断根据空格分解出来的 token 是否有效</span></span><br><span class="line">                ret++;</span><br><span class="line">            &#125;</span><br><span class="line">            l = r + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(<span class="type">const</span> string_view &amp;word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = word.<span class="built_in">length</span>();</span><br><span class="line">        <span class="type">bool</span> has_hyphens = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (word[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; word[i] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (word[i] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (has_hyphens == <span class="literal">true</span> || i == <span class="number">0</span> || i == n - <span class="number">1</span> || !<span class="built_in">islower</span>(word[i - <span class="number">1</span>]) || !<span class="built_in">islower</span>(word[i + <span class="number">1</span>])) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                has_hyphens = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (word[i] == <span class="string">&#x27;!&#x27;</span> || word[i] == <span class="string">&#x27;.&#x27;</span> || word[i] == <span class="string">&#x27;,&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i != n - <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.1996-游戏中角色数量">1.28 lc.1996 游戏中角色数量</h2>
+<p>你正在参加一个多角色游戏，每个角色都有两个主要属性：攻击 和 防御
+。给你一个二维整数数组 properties ，其中 properties[i] = [attacki,
+defensei] 表示游戏中第 i 个角色的属性。
+如果存在一个其他角色的攻击和防御等级 都严格高于
+该角色的攻击和防御等级，则认为该角色为 弱角色 。更正式地，如果认为角色 i
+弱于 存在的另一个角色 j ，那么 attackj &gt; attacki 且 defensej &gt;
+defensei 。 返回 弱角色 的数量。</p>
+<ul>
+<li>lambda 可以用 if ? : 来简单判断</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfWeakCharacters</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; properties)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(properties.<span class="built_in">begin</span>(), properties.<span class="built_in">end</span>(), [](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">0</span>] == b[<span class="number">0</span>] ? (a[<span class="number">1</span>] &gt; b[<span class="number">1</span>]) : (a[<span class="number">0</span>] &lt; b[<span class="number">0</span>]);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">int</span> max = <span class="number">0</span> , maxn = <span class="number">0</span> , cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = properties.<span class="built_in">size</span>() - <span class="number">1</span> ; i &gt; <span class="number">0</span> ; i --)&#123;</span><br><span class="line">            <span class="keyword">if</span>(properties[i][<span class="number">1</span>] &gt; max)&#123;</span><br><span class="line">                max = properties[i][<span class="number">1</span>];</span><br><span class="line">                maxn = properties[i][<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(properties[i - <span class="number">1</span>][<span class="number">1</span>] &lt; max &amp;&amp; properties[i - <span class="number">1</span>][<span class="number">0</span>] &lt; maxn)&#123;</span><br><span class="line">                cnt ++ ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="lc.884-两句话中不常见的单词">1.30 lc.884
+两句话中不常见的单词</h2>
+<p>句子 是一串由空格分隔的单词。每个 单词 仅由小写字母组成。
+如果某个单词在其中一个句子中恰好出现一次，在另一个句子中却 没有出现
+，那么这个单词就是 不常见的 。 给你两个 句子 s1 和 s2 ，返回所有
+不常用单词 的列表。返回列表中单词可以按 任意顺序 组织。</p>
+<ul>
+<li>stringstream <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">uncommonFromSentences</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">        stringstream ss;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        string s = s1+<span class="string">&#x27; &#x27;</span>+s2;</span><br><span class="line">        unordered_map&lt;string,<span class="type">int</span>&gt; check;</span><br><span class="line">        ss&lt;&lt;s;</span><br><span class="line">        <span class="keyword">while</span>(ss&gt;&gt;s) ++check[s];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp;[k,v] :check)</span><br><span class="line">            <span class="keyword">if</span>(v==<span class="number">1</span>) ret.<span class="built_in">emplace_back</span>(k);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="lc.1342-数字变成0的次数">lc.1342 数字变成0的次数</h2>
+<p>给你一个非负整数 num ，请你返回将它变成 0 所需要的步数。
+如果当前数字是偶数，你需要把它除以 2 ；否则，减去 1 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfSteps</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            num % <span class="number">2</span> == <span class="number">0</span> ? num /= <span class="number">2</span> : num -- ;</span><br><span class="line">            cnt ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/01/30/%E5%90%8E%E7%AB%AF/C++/Primer/String/" rel="next" title="C++标准库类型string">
+                <i class="fa fa-chevron-left"></i> C++标准库类型string
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/02/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/LeetCode/LeetCode%20DP%E5%9F%BA%E7%A1%80/" rel="prev" title="LeetCode DP基础">
+                LeetCode DP基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NTcxOS8zMjE4NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.2022-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">1.1 lc.2022 一维数组转二维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.390-%E6%B6%88%E9%99%A4%E6%B8%B8%E6%88%8F"><span class="nav-number">2.</span> <span class="nav-text">1.2 lc.390 消除游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1185-%E4%B8%80%E5%91%A8%E4%B8%AD%E7%9A%84%E7%AC%AC%E5%87%A0%E5%A4%A9"><span class="nav-number">3.</span> <span class="nav-text">1.3 lc.1185 一周中的第几天</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1576-%E6%9B%BF%E6%8D%A2%E9%97%AE%E5%8F%B7"><span class="nav-number">4.</span> <span class="nav-text">1.5 lc.1576 替换问号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84"><span class="nav-number">5.</span> <span class="nav-text">1.6 lc.71 简化路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.89-%E6%A0%BC%E9%9B%B7%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">1.8 lc.89 格雷码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1629-%E6%8C%89%E9%94%AE%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4%E6%9C%80%E9%95%BF%E7%9A%84%E9%94%AE"><span class="nav-number">7.</span> <span class="nav-text">1.9 lc.1629
+按键持续时间最长的键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.334-%E9%80%92%E5%A2%9E%E7%9A%84%E4%B8%89%E5%85%83%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">8.</span> <span class="nav-text">1.12 lc.334 递增的三元子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.747-%E6%9F%A5%E6%89%BE"><span class="nav-number">9.</span> <span class="nav-text">1.13 lc.747 查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.373-%E6%9F%A5%E6%89%BE%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84k%E5%AF%B9%E6%95%B0%E5%AD%97"><span class="nav-number">10.</span> <span class="nav-text">1.14 lc.373 查找和最小的K对数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1716-%E8%AE%A1%E7%AE%97%E9%93%B6%E8%A1%8C%E7%9A%84%E9%92%B1"><span class="nav-number">11.</span> <span class="nav-text">1.15 lc.1716 计算银行的钱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.539-%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE"><span class="nav-number">12.</span> <span class="nav-text">1.18 lc.539 最小时间差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.219-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-ii"><span class="nav-number">13.</span> <span class="nav-text">1.19 lc.219 存在重复元素 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.2029-%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F-ix"><span class="nav-number">14.</span> <span class="nav-text">1.20 lc.2029 石子游戏 IX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1332-%E5%88%A0%E9%99%A4%E5%9B%9E%E6%96%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">15.</span> <span class="nav-text">1.22 lc.1332 删除回文子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1688-%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%85%8D%E5%AF%B9%E6%AC%A1%E6%95%B0"><span class="nav-number">16.</span> <span class="nav-text">1.25 lc.1688 比赛中的配对次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.2047-%E5%8F%A5%E5%AD%90%E4%B8%AD%E7%9A%84%E6%9C%89%E6%95%88%E5%8D%95%E8%AF%8D%E6%95%B0"><span class="nav-number">17.</span> <span class="nav-text">1.27 lc.2047 句子中的有效单词数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1996-%E6%B8%B8%E6%88%8F%E4%B8%AD%E8%A7%92%E8%89%B2%E6%95%B0%E9%87%8F"><span class="nav-number">18.</span> <span class="nav-text">1.28 lc.1996 游戏中角色数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.884-%E4%B8%A4%E5%8F%A5%E8%AF%9D%E4%B8%AD%E4%B8%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="nav-number">19.</span> <span class="nav-text">1.30 lc.884
+两句话中不常见的单词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lc.1342-%E6%95%B0%E5%AD%97%E5%8F%98%E6%88%900%E7%9A%84%E6%AC%A1%E6%95%B0"><span class="nav-number">20.</span> <span class="nav-text">lc.1342 数字变成0的次数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
