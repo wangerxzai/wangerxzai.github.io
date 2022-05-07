@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/5c9ab7ae2e5549f593a9359354f8f50f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/0f8a74442f5847afa12b0123033a6071.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2022-03-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-26T15:19:04.726Z">
+<meta property="article:modified_time" content="2022-05-07T07:29:56.348Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="23王道">
 <meta property="article:tag" content="操作系统">
@@ -365,6 +365,7 @@
 <p>（3）<strong>退出区</strong>。<strong>将正在访问临界区的标志清除</strong>。</p>
 <p>（4）<strong>剩余区</strong>。代码中的其余部分。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">	entry section ; <span class="comment">//进入区</span></span><br><span class="line">	critical section ; <span class="comment">//临界区</span></span><br><span class="line">	exit section ; <span class="comment">//退出区</span></span><br><span class="line">	remainder section ; <span class="comment">//剩余区</span></span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <ol start="2" type="1">
 <li>同步</li>
 </ol>

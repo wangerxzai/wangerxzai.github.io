@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="2.4.1 死锁概念  死锁定义  指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。   死锁产生的原因  （1）系统资源的竞争。 通常系统中拥有的不可剥夺资源，其数量无法满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有不可剥夺资源可能发生死锁，可剥夺资源不会发生死锁。 （2）进程推进顺序非法。 进程在运行">
+<meta name="description" content="2.4.1 死锁概念  死锁定义  指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="23王道操作系统 C2-4死锁">
 <meta property="og:url" content="https://wangerxzai.github.io/2022/03/30/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-4%E6%AD%BB%E9%94%81/index.html">
 <meta property="og:site_name" content="不学习变傻瓜">
-<meta property="og:description" content="2.4.1 死锁概念  死锁定义  指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。   死锁产生的原因  （1）系统资源的竞争。 通常系统中拥有的不可剥夺资源，其数量无法满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有不可剥夺资源可能发生死锁，可剥夺资源不会发生死锁。 （2）进程推进顺序非法。 进程在运行">
+<meta property="og:description" content="2.4.1 死锁概念  死锁定义  指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。">
 <meta property="og:locale">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/d21f06a79d0e487289982291ee2a4514.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/ff94fcf935244f3881322d0435e6b2b9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/583b6c7aacf0472dadad588e3433cac6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/1d214cb989a9414dae96f1fd0b89bd50.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2022-03-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-30T12:55:32.215Z">
+<meta property="article:modified_time" content="2022-05-07T07:30:05.801Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="23王道">
 <meta property="article:tag" content="操作系统">
@@ -366,6 +366,7 @@
 </ol>
 <p>指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。</p>
 <p><img src="https://img-blog.csdnimg.cn/d21f06a79d0e487289982291ee2a4514.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<span id="more"></span>
 <ol start="2" type="1">
 <li>死锁产生的原因</li>
 </ol>
@@ -486,27 +487,28 @@ K，表示进程Pi需要K个Rj类型的资源。当Pi发出资源请求后，系
 ，便转向步骤(3)；否则，表示尚无足够资源，Pi须等待。 　　3)
 系统试探着把资源分配给进程Pi，并修改下面数据结构中的数值
 　　　　<strong>Available[j] = Available[j] - Requesti[j];</strong>
-　　　　　　　　　　　　　　<strong>Allocation[i,j] = Allocation[i,j] +
-Requesti[j];</strong> 　　　　　　　　　　　　　　<strong>Need[i,j] =
-Need[i,j] - Requesti[j];</strong> 　　4)
+　　　　　　　　　　　　　　　　<strong>Allocation[i,j] =
+Allocation[i,j] + Requesti[j];</strong>
+　　　　　　　　　　　　　　　　<strong>Need[i,j] = Need[i,j] -
+Requesti[j];</strong> 　　4)
 系统执行安全性算法，检查此次资源分配后系统是否处于安全状态。若安全，才正式将资源分配给进程Pi，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程Pi等待。</p>
 <p><strong>（3）安全性算法</strong></p>
 <p>系统所执行的安全性算法可描述如下: 　　1) 设置两个向量：
 　　①工作向量Work，它表示<strong>系统中剩余的各类资源可用数目</strong>，它含有m个元素，在执行安全算法开始时，Work
 = Available；
-　　　　　　　　　　　　②Finish，它表示<strong>系统是否有足够的资源分配给进程，使之运行完成</strong>。开始时先做
+　　　　　　　　　　　　　　②Finish，它表示<strong>系统是否有足够的资源分配给进程，使之运行完成</strong>。开始时先做
 Finish[i] = false；当有足够资源分配给进程时，再令Finish[i] = true。</p>
 <p>　　2) 从进程集合中找到一个能满足下述条件的进程 　　① Finish[i] =
-false; // 该行不在安全序列中 　　　　　　　　　　　　② Need[i,j] ≤
+false; // 该行不在安全序列中 　　　　　　　　　　　　　　② Need[i,j] ≤
 Work[j]; // 该行小于等于work向量</p>
 <p>　　若找到，执行步骤(3)，否则，执行步骤(4)。</p>
 <p>　　2)
 当进程Pi获得资源后，可顺利执行，直至完成，并释放出分配给它的资源，故应执行:
 　　　　　　　　Work[j] = Work[j] + Allocation[i,j];
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Finish[i]
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Finish[i]
 = true; // 进入安全队列
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　go to
-step 2; (goto语句不推荐使用) // 返回步骤2</p>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　go
+to step 2; (goto语句不推荐使用) // 返回步骤2</p>
 <ol start="4" type="1">
 <li>如果所有进程的 Finish[i]
 =true都满足，则表示系统处于安全状态；否则，系统处于不安全状态。</li>
