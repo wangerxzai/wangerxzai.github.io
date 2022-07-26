@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="题单：模拟、枚举与贪心 2021秋季算法入门班第一章习题 1001 NOIP2007字符串的展开 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;bits">
+<meta name="description" content="题单：模拟、枚举与贪心 2021秋季算法入门班第一章习题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="牛客入门题单：模拟、枚举与贪心">
 <meta property="og:url" content="https://wangerxzai.github.io/2022/04/10/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/%E7%89%9B%E5%AE%A2%E5%85%A5%E9%97%A8%E9%A2%98%E5%8D%95%EF%BC%9A%E6%A8%A1%E6%8B%9F%E3%80%81%E6%9E%9A%E4%B8%BE%E4%B8%8E%E8%B4%AA%E5%BF%83/index.html">
-<meta property="og:site_name" content="不学习变傻瓜">
-<meta property="og:description" content="题单：模拟、枚举与贪心 2021秋季算法入门班第一章习题 1001 NOIP2007字符串的展开 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;bits">
+<meta property="og:site_name" content="黄油法棍与树莓甜甜圈">
+<meta property="og:description" content="题单：模拟、枚举与贪心 2021秋季算法入门班第一章习题">
 <meta property="og:locale">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/9db7626e285f4fada01dc163f8d5ad88.png">
 <meta property="article:published_time" content="2022-04-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-10T09:42:48.128Z">
+<meta property="article:modified_time" content="2022-05-07T07:46:28.094Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="牛客">
 <meta property="article:tag" content="模拟">
@@ -131,7 +131,7 @@
 
 
 
-  <title>牛客入门题单：模拟、枚举与贪心 | 不学习变傻瓜</title>
+  <title>牛客入门题单：模拟、枚举与贪心 | 黄油法棍与树莓甜甜圈</title>
   
 
 
@@ -165,7 +165,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">不学习变傻瓜</span>
+        <span class="site-title">黄油法棍与树莓甜甜圈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -271,7 +271,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不学习变傻瓜">
+      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
     </span>
 
     
@@ -353,6 +353,7 @@
       
         <h1 id="题单模拟枚举与贪心"><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/20960?from=acdiscuss#question">题单：模拟、枚举与贪心</a></h1>
 <p>2021秋季算法入门班第一章习题</p>
+<span id="more"></span>
 <h2 id="noip2007字符串的展开">1001 <a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/20960/1001">NOIP2007字符串的展开</a></h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> p1, p2, p3, i, j, k, l;</span><br><span class="line">    <span class="type">char</span> s[<span class="number">1000</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;p1, &amp;p2, &amp;p3);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line">    l = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; l; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] != <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">&#x27;-&#x27;</span> &amp;&amp; (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i + <span class="number">1</span>] &lt;= <span class="string">&#x27;9&#x27;</span>) || (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i + <span class="number">1</span>] &lt;= <span class="string">&#x27;z&#x27;</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i + <span class="number">1</span>] &lt;= s[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//逆向</span></span><br><span class="line">                <span class="keyword">if</span> (p3 == <span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (j = s[i + <span class="number">1</span>] - <span class="number">1</span>; j &gt;= s[i - <span class="number">1</span>] + <span class="number">1</span>; j--) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= p2; k++) &#123;</span><br><span class="line">                            <span class="comment">//只输出*号</span></span><br><span class="line">                            <span class="keyword">if</span> (p1 == <span class="number">3</span>) &#123;</span><br><span class="line">                                <span class="built_in">printf</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="comment">//输出数字</span></span><br><span class="line">                            <span class="keyword">else</span> <span class="keyword">if</span> (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i - <span class="number">1</span>] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="comment">//输出字母需要分大小写问题</span></span><br><span class="line">                            <span class="keyword">else</span> <span class="keyword">if</span> (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i + <span class="number">1</span>] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">                                <span class="comment">//小写</span></span><br><span class="line">                                <span class="keyword">if</span> (p1 == <span class="number">1</span>)</span><br><span class="line">                                    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j);</span><br><span class="line">                                <span class="comment">//大写</span></span><br><span class="line">                                <span class="keyword">if</span> (p1 == <span class="number">2</span>)</span><br><span class="line">                                    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j + <span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//正向输出</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (p3 == <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (j = s[i - <span class="number">1</span>] + <span class="number">1</span>; j &lt;= s[i + <span class="number">1</span>] - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= p2; k++) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (p1 == <span class="number">3</span>) &#123;</span><br><span class="line">                                <span class="built_in">printf</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span> <span class="keyword">if</span> (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i - <span class="number">1</span>] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span> <span class="keyword">if</span> (s[i - <span class="number">1</span>] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i + <span class="number">1</span>] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">                                <span class="keyword">if</span> (p1 == <span class="number">1</span>)</span><br><span class="line">                                    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j);</span><br><span class="line">                                <span class="keyword">if</span> (p1 == <span class="number">2</span>)</span><br><span class="line">                                    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j + <span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//为减号时且两边是其他标点符号</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>纯纯模拟。</p>
@@ -420,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/04/06/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C3-1%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E5%BF%B5/" rel="next" title="23王道操作系统 C3-1内存管理概念">
-                <i class="fa fa-chevron-left"></i> 23王道操作系统 C3-1内存管理概念
+              <a href="/2022/04/03/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E7%BE%8E%E5%9B%A2%E8%B5%9B%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B/" rel="next" title="2022美团商业分析赛AHP评价模型">
+                <i class="fa fa-chevron-left"></i> 2022美团商业分析赛AHP评价模型
               </a>
             
           </div>
@@ -430,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/04/12/ENG/TED-EDU/The%20mystery%20of%20motion%20sickness/" rel="prev" title="TED-ED The mystery of motion sickness">
-                TED-ED The mystery of motion sickness <i class="fa fa-chevron-right"></i>
+              <a href="/2022/04/12/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/DP/" rel="prev" title="牛客ACM题单：DP">
+                牛客ACM题单：DP <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -514,7 +515,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -525,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
