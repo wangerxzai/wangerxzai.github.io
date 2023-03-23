@@ -80,9 +80,9 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="黄油法棍与树莓甜甜圈">
+<meta property="og:title" content="小爆24">
 <meta property="og:url" content="https://wangerxzai.github.io/page/2/index.html">
-<meta property="og:site_name" content="黄油法棍与树莓甜甜圈">
+<meta property="og:site_name" content="小爆24">
 <meta property="og:locale">
 <meta property="article:author" content="wanger">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
 
 
 
-  <title>黄油法棍与树莓甜甜圈</title>
+  <title>小爆24</title>
   
 
 
@@ -156,12 +156,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">黄油法棍与树莓甜甜圈</span>
+        <span class="site-title">小爆24</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">Coding by Wanger</p>
+        <p class="site-subtitle">Coding by Wangxx</p>
       
   </div>
 
@@ -253,336 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/04/29/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/MATLAB%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%EF%BC%9A%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/04/29/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/MATLAB%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%EF%BC%9A%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/" itemprop="url">MATLAB 蚁群算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-29T00:00:00+08:00">
-                2022-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">智能算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="matlab智能算法蚁群算法">MATLAB智能算法：蚁群算法</h2>
-<h3 id="蚁群算法">蚁群算法</h3>
-<p><em>参考《MATLAB》智能算法，温正，清华大学出版社</em></p>
-<h4 id="蚁群算法基本原理">蚁群算法基本原理</h4>
-<p>由Marco
-Dorigo于1992年在他的博士论文中提出，其灵感来源于蚂蚁在寻找食物过程中发现路径的行为。
-蚁群优化算法是模拟蚂蚁觅食的原理，设计出的一种群集智能算法。蚂蚁在觅食过程中能够在其经过的路径上留下一种称之为信息素的物质，并在觅食过程中能够感知这种质的强度，并指导自己行动方向，他们总是朝着该物质强度高的方向移动，因此大量蚂蚁组成的集体觅食就表现为一种对信息素的正反馈现象。
-某一条路径越短，路径上经过的蚂蚁越多。其信息素遗留的也就越多，信息素的浓度也就越高，蚂蚁选择这条路径的几率也就越高。由此构成的正反馈过程，从而逐渐的逼近最优路径，找到最优路径。</p>
-<p>蚂蚁觅食的运行轨迹模式如图所示，蚂蚁以信息素作为媒介而间接进行信息交流，判断洞穴到食物地点的最佳路径。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/04/29/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/MATLAB%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%EF%BC%9A%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/04/26/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/gcd(%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/04/26/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/gcd(%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86)/" itemprop="url">牛客ACM题单：gcd(裴蜀定理)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-26T00:00:00+08:00">
-                2022-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <span id="more"></span>
-<h2 id="晨跑"><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/14503">晨跑</a></h2>
-<p>求 a , b , c 的最小公倍数。</p>
-<ul>
-<li>辗转相减法（更相减损术）</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll ;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll a, ll b)</span></span>&#123; <span class="comment">// 辗转相减法</span></span><br><span class="line">    ll ta = a ;</span><br><span class="line">    ll tb = b ;</span><br><span class="line">    <span class="keyword">while</span>(a != b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a &gt; b) a -= b ;</span><br><span class="line">        <span class="keyword">else</span> b -= a ;</span><br><span class="line">    &#125; <span class="comment">// 此时 a == b == 最大公因数</span></span><br><span class="line">    <span class="keyword">return</span> (ta * tb) / a ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll a, b, c ;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c ;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; <span class="built_in">solve</span>(<span class="built_in">solve</span>(a,b),c) &lt;&lt; endl ;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>虽然三者数据量都是 1e5，
-但是假如三个1e5互质，结果会超INT_MAX，所以还是需要用 long long 的。</p>
-<ul>
-<li>辗转相除法（欧几里得）</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll ;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll a, ll b)</span></span>&#123; <span class="comment">// 辗转相除法</span></span><br><span class="line">    ll ta = a ;</span><br><span class="line">    ll tb = b ;</span><br><span class="line">    <span class="keyword">if</span>(a &lt; b) <span class="built_in">swap</span>(a,b) ;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        ll t = b ;</span><br><span class="line">        b = a % b ;</span><br><span class="line">        a = t ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (ta * tb) / a ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll a, b, c ;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c ;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; <span class="built_in">solve</span>(<span class="built_in">solve</span>(a,b),c) &lt;&lt; endl ;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>基于公式 <code>gcd(a,b) = gcd(b,a%b)</code>。</p>
-<h2 id="gcd"><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/15425">gcd</a></h2>
-<p>求 a, b 的最大公因数，最小公倍数。数据范围增加到 1e18 。</p>
-<p>按照上题做法过
-80%，<code>mi = m / ma * n ;</code>这里先乘再除会超限，所以先除再乘。</p>
-<ul>
-<li>AC</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll ;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll a, ll b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a &lt; b) <span class="built_in">swap</span>(a,b) ;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        ll t = b ;</span><br><span class="line">        b = a % b ;</span><br><span class="line">        a = t ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll m ;</span><br><span class="line">    ll n ;</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; m &gt;&gt; n)&#123;</span><br><span class="line">        ll ma = <span class="built_in">solve</span>(m,n) ;</span><br><span class="line">        ll mi = m / ma * n ;</span><br><span class="line">        cout &lt;&lt; ma &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; mi &lt;&lt; endl ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="三棱锥"><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/problem/15705">三棱锥</a></h2>
-<p>在边为k三棱锥里整数点数的推导： <span class="math display">\[
-Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
-= \frac{1}{2} \sum_{i=1}^{k}{(n + n^2)}
-= \frac{1}{2}(\frac{k(k+1)}{2} + \frac{k(k+1)(2k+1)}{6})
-= \frac{1}{6} k(k+1)(k+2)
-\]</span></p>
-<ul>
-<li>AC</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> t,k,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; t ;</span><br><span class="line">	<span class="keyword">while</span>(t --)&#123;</span><br><span class="line">		cin &gt;&gt; k &gt;&gt; m ;</span><br><span class="line">		<span class="type">long</span> <span class="type">long</span>  ans = <span class="number">1LL</span> * (k + <span class="number">3</span>) * (k + <span class="number">2</span>) % (m * <span class="number">6</span>) ;</span><br><span class="line">		ans = ans * (k + <span class="number">1</span>) % (m * <span class="number">6</span>) / <span class="number">6</span> ;</span><br><span class="line">		cout &lt;&lt; ans &lt;&lt; endl ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>直接<code>(k+1)*(k+2)*(k+3)</code>会爆<code>ll</code>，所以要多做一次取模。</p>
-<p>同时注意到，<code>(k+1)*(k+2)*(K+3) % 6 == 0</code>，于是与<code>m * 6</code>同余，对<code>(m*6)</code>取模，否则依然会爆<code>longlong</code>。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/04/19/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2/%E8%B4%AA%E5%BF%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -592,7 +262,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -761,7 +431,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -931,7 +601,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -1078,7 +748,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -1225,7 +895,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -1376,7 +1046,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -1509,153 +1179,6 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/28/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/28/%E9%9A%8F%E7%AC%94/%E6%97%A5%E8%AE%B0/2022-03-28/" itemprop="url">随笔22/3/28</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T00:00:00+08:00">
-                2022-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已经到了三月的尾巴，这个月有太多失误与烦恼。失恋了，因为工作失误丢了学委的工作，损失了近一千块钱，因为不吃早点胃病变得更加严重，上吐下泻，身上一些不详的症状更加明显了。母亲最近的状况也不好，甚至不敢多问。</p>
-<p>灾厄，灾厄。已经很努力地去调整了，把人丢在了自习室里，可是生活中还是有太多的麻烦事找上头来。一切都可以熬过去，是呵，可是熬过去迎接自己的又是什么。最近算法做得少，一些基础的算法看着也变得陌生，做王道操作系统实在花费了太多的时间，是否该通过做BLOG来加深印象，的确记忆更加深刻，但是投入产出是否成正比。4月初的蓝桥杯到现在才做了一年的真题，各个平台上的题单都是仅仅开了头，还想去尝试9月的CSP认证，距离目标实在有些遥远。</p>
-<p>上个星期一套英一的真题都没做完，更别说CET6和听力。每天的时间莫名地消失，可是晚上九点多回到宿舍人完全处于颓废的状态，很难打起精神来再去多做些什么。</p>
-<p>美团赛也开始开摆了，漫无边际没头没脑的数据收集令人抓狂，甚至书和电影也看得不多，每天时间浪费在哪里了，总觉得自己所视太高而力气不足，恐怕得丢掉一些负重，才能跑得更远。失望而恐慌。</p>
-<p>又在贩卖焦虑，实在没有意思。欠缺的东西实在太多，生活慢慢丢掉了色彩。</p>
-<p>坚持住吧，既然已经选择了这条道路，再停下步伐只会失去更多。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/27/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1665,7 +1188,7 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油法棍与树莓甜甜圈">
+      <meta itemprop="name" content="小爆24">
     </span>
 
     
@@ -1805,11 +1328,491 @@ kkksc03考前临时抱佛脚</a></h2>
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E5%9F%BA%E4%BA%8EGA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" itemprop="url">基于遗传算法的测试用例自动生成方法综述--赫彦文</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="标准遗传算法的应用">1.标准遗传算法的应用</h2>
+<p>mermaid
+direction：TB-从上到下，BT-从下到上，RL-从右到左，LR-从左到右。</p>
+<pre class="mermaid">graph TD;
+开始(Start)-->静态分析[Static Analysis];
+静态分析-->控制流程图[Flow Chart];
+控制流程图-->路径选择[Path Choice];
+路径选择-->构造适应度函数[Construct the Fitness Function];
+构造适应度函数-->参数编码[Parameter Coding];
+参数编码-->遗传算法初始化[Initialization of Genetic Algorithm];
+遗传算法初始化-->评估适应度值[Accessment of Fitness];
+评估适应度值-->最优解{Get the Optimal Solution or Achieve the Iteration End Condition};
+最优解-- Yes -->输出[Decoding and Output];
+输出-->结束(End);
+最优解-- No -->遗传操作[Genetic Manipulation including Choice, Crossover and Mutation];
+遗传操作-->下一代种群[Generduce Next Generation Populations];
+下一代种群-->评估适应度值;
+评估适应度值-- use -->驱动模块((Driver Module));
+程序插桩[Program Instrumentation]-->参数编码;
+程序插桩-->驱动模块;
+驱动模块-->被测单元((Tested Units));
+被测单元-->桩模块((Instrumentation Module));</pre>
+<h2 id="改进遗传算法的应用">2.改进遗传算法的应用</h2>
+<h3 id="改进遗传算子">2.1 改进遗传算子</h3>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/26/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/" itemprop="url">条款02：Prefer consts, enums, and inlines to</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这个条款或许改为“以编译器替换预处理器”比较好，因为或许<code>#define</code>不被视为语言的一部分。当你做出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define ASPECT_RATIO 1.653</span><br></pre></td></tr></table></figure>
+<p>记号名称 ASPECT_RATIO
+也许从未被编译器看见；也许<strong>在编译器开始处理源码之前它就被预处理器移走</strong>了。于是记号
+ASPECT_RATIO 有可能没有进入记号表 symbol table
+内。因此当运用此常量但获得一个编译错误时，错误信息也许会提到 1.653
+而不是 ASPECT_RATIO 。这个问题也可能出现在记号式调试器 symbolic debugger
+，原因相同：所使用的名称可能并未进入 symbol table 。</p>
+<p>解决方法是用<code>const</code>替换宏<code>#define</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> AspectRatio = <span class="number">1.653</span> ;</span><br></pre></td></tr></table></figure>
+<p>这样就会进入 symbol table 。此外，对浮点常量 floating point constant
+而言，使用常量可能比使用<code>#define</code>导致较小量的码，因为预处理器“盲目地将宏名称
+ASPECT_RATIO 替换为 1.653 ” ，导致目标码 object code 出现多份 1.653
+，若改用常量绝不会出现相同情况。</p>
+<p>当用<code>const</code>替换<code>#define</code>，注意到两种特殊情况：</p>
+<ol type="1">
+<li><strong>定义常量指针 constant pointers</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/26/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/" itemprop="url">23王道操作系统 C2-3 同步与互斥</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="同步与互斥">2.3 同步与互斥</h2>
+<h3 id="同步与互斥基本概念">2.3.1 同步与互斥基本概念</h3>
+<ol type="1">
+<li>临界资源</li>
+</ol>
+<p>将<strong>一次仅允许一个进程使用的资源</strong>称为<strong>临界资源</strong>。对于邻接资源的访问，必须<strong>互斥</strong>地进行，在每个进程中，访问临界资源的那段代码称为<strong>临界区</strong>。把临界资源的访问过程分为4部分：</p>
+<p>（1）<strong>进入区</strong>。为了进入临界区使用临界资源，在进入区要检查是否可以进入临界区，若能进入，则<strong>设置正在访问临界区的标志</strong>，以组织其他进程进入。</p>
+<p>（2）<strong>临界区</strong>。进程中访问临界资源的那段代码，称为<strong>临界段</strong>。</p>
+<p>（3）<strong>退出区</strong>。<strong>将正在访问临界区的标志清除</strong>。</p>
+<p>（4）<strong>剩余区</strong>。代码中的其余部分。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">	entry section ; <span class="comment">//进入区</span></span><br><span class="line">	critical section ; <span class="comment">//临界区</span></span><br><span class="line">	exit section ; <span class="comment">//退出区</span></span><br><span class="line">	remainder section ; <span class="comment">//剩余区</span></span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/03/26/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
 
 
@@ -1855,7 +1858,7 @@ kkksc03考前临时抱佛脚</a></h2>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1866,7 +1869,7 @@ kkksc03考前临时抱佛脚</a></h2>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1877,7 +1880,7 @@ kkksc03考前临时抱佛脚</a></h2>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1914,7 +1917,7 @@ kkksc03考前临时抱佛脚</a></h2>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
