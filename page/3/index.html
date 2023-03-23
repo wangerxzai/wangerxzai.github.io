@@ -253,6 +253,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/26/C++/E%20C++/%E6%9D%A1%E6%AC%BE02/" itemprop="url">条款02：Prefer consts, enums, and inlines to</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-26T00:00:00+08:00">
+                2022-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这个条款或许改为“以编译器替换预处理器”比较好，因为或许<code>#define</code>不被视为语言的一部分。当你做出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define ASPECT_RATIO 1.653</span><br></pre></td></tr></table></figure>
+<p>记号名称 ASPECT_RATIO
+也许从未被编译器看见；也许<strong>在编译器开始处理源码之前它就被预处理器移走</strong>了。于是记号
+ASPECT_RATIO 有可能没有进入记号表 symbol table
+内。因此当运用此常量但获得一个编译错误时，错误信息也许会提到 1.653
+而不是 ASPECT_RATIO 。这个问题也可能出现在记号式调试器 symbolic debugger
+，原因相同：所使用的名称可能并未进入 symbol table 。</p>
+<p>解决方法是用<code>const</code>替换宏<code>#define</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> AspectRatio = <span class="number">1.653</span> ;</span><br></pre></td></tr></table></figure>
+<p>这样就会进入 symbol table 。此外，对浮点常量 floating point constant
+而言，使用常量可能比使用<code>#define</code>导致较小量的码，因为预处理器“盲目地将宏名称
+ASPECT_RATIO 替换为 1.653 ” ，导致目标码 object code 出现多份 1.653
+，若改用常量绝不会出现相同情况。</p>
+<p>当用<code>const</code>替换<code>#define</code>，注意到两种特殊情况：</p>
+<ol type="1">
+<li><strong>定义常量指针 constant pointers</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/26/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C2-3%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1960,181 +2119,11 @@ Left-pad (20 分)</a></h2>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/12/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小爆24">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/12/%E6%95%B0%E6%8D%AE%E5%BA%93/22%E6%98%A5%E4%BD%9C%E4%B8%9A1/" itemprop="url">数据库 作业一</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-12T00:00:00+08:00">
-                2022-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第一章，绪论。</p>
-<figure>
-<img src="https://img-blog.csdnimg.cn/926ad69ba10f48dc8e9e4af6d7f73285.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题1">
-<figcaption aria-hidden="true">题1</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/ba60462bf8f549e6a4bf55db921c3ae8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题2">
-<figcaption aria-hidden="true">题2</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/2113cd6ea9b844eeabece255153f7760.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题3">
-<figcaption aria-hidden="true">题3</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/858116c6dd5a46e09a80a52e8bc44b46.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题4">
-<figcaption aria-hidden="true">题4</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/622eb2610fba4baa97a13b1394ebbdef.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题5">
-<figcaption aria-hidden="true">题5</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/c3b8bf50f5334ca195b91fb722e78601.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题6">
-<figcaption aria-hidden="true">题6</figcaption>
-</figure>
-<figure>
-<img src="https://img-blog.csdnimg.cn/19094fed06a64a50847d8ec35d2c1fe0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16" alt="题7">
-<figcaption aria-hidden="true">题7</figcaption>
-</figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
   </nav>
 
 
@@ -2180,7 +2169,7 @@ Left-pad (20 分)</a></h2>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2202,7 +2191,7 @@ Left-pad (20 分)</a></h2>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
