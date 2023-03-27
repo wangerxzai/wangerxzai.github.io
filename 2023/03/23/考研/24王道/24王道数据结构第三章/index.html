@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据结构,24王道," />
+  <meta name="keywords" content="数据结构,24王道,栈,队列,数组," />
 
 
 
@@ -81,16 +81,19 @@
 
 <meta name="description" content="3.1栈 P64 3.2队列 P80 3.3应用 P91 3.4数组和特殊矩阵 P102">
 <meta property="og:type" content="article">
-<meta property="og:title" content="24王道数据结构 C3栈、队列和数组 错题整理">
-<meta property="og:url" content="https://wangerxzai.github.io/2023/03/23/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0%E9%94%99%E9%A2%98/index.html">
+<meta property="og:title" content="24王道数据结构 C3栈、队列和数组">
+<meta property="og:url" content="https://wangerxzai.github.io/2023/03/23/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
 <meta property="og:site_name" content="小爆24">
 <meta property="og:description" content="3.1栈 P64 3.2队列 P80 3.3应用 P91 3.4数组和特殊矩阵 P102">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-23T01:52:19.348Z">
+<meta property="article:modified_time" content="2023-03-27T05:20:55.994Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="24王道">
+<meta property="article:tag" content="栈">
+<meta property="article:tag" content="队列">
+<meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://wangerxzai.github.io/2023/03/23/考研/24王道/24王道数据结构第三章错题/"/>
+  <link rel="canonical" href="https://wangerxzai.github.io/2023/03/23/考研/24王道/24王道数据结构第三章/"/>
 
 
 
 
 
-  <title>24王道数据结构 C3栈、队列和数组 错题整理 | 小爆24</title>
+  <title>24王道数据结构 C3栈、队列和数组 | 小爆24</title>
   
 
 
@@ -258,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2023/03/23/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0%E9%94%99%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2023/03/23/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -275,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">24王道数据结构 C3栈、队列和数组 错题整理</h1>
+          <h1 class="post-title" itemprop="name headline">24王道数据结构 C3栈、队列和数组</h1>
         
 
         <div class="post-meta">
@@ -352,10 +355,341 @@
 <p>3.3应用 P91</p>
 <p>3.4数组和特殊矩阵 P102</p>
 <span id="more"></span>
-<h2 id="整理">3.0 整理</h2>
+<h2 id="知识堆">3.0 知识堆</h2>
 <ul>
-<li>卡特兰数：n个不同元素进栈，出栈元素不同排列的个数为 C_2n^n /
-n+1</li>
+<li><p>卡特兰数：n个不同元素进栈，出栈元素不同排列的个数为 C_2n^n /
+n+1</p></li>
+<li><p>中缀转后缀<strong>机算</strong></p>
+<p>运算规则：</p>
+<p>①遇到操作数。直接加入后缀表达式。</p>
+<p>②遇到界限符。遇到“(”直接入栈，遇到“)”则<strong>依次</strong>弹出栈内运算符并加入后缀表达式，直到弹出“(”为止。注意:“(”不加入后缀表达式。</p>
+<p>③遇到运算符。<strong>依次</strong>弹出栈中优先级<strong>高于或等于</strong>当前运算符的所有运算符，并加入后缀表达式。若碰到“(”或栈空则停止。之后再把当前运算符入栈。</p>
+<p>以<code>( (15 / ( 7 - ( 1 + 1 ) ) ) * 3 ) - ( 2 + ( 1 + 1 ) )</code>
+为例：</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>操作符栈</th>
+<th>输入（中缀）</th>
+<th>输出（后缀）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#</td>
+<td>((15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>#(</td>
+<td>(15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>#((</td>
+<td>15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>#((</td>
+<td>/(7-(1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u></td>
+</tr>
+<tr class="odd">
+<td>#((/</td>
+<td>(7-(1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u></td>
+</tr>
+<tr class="even">
+<td>#((/(</td>
+<td>7-(1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u></td>
+</tr>
+<tr class="odd">
+<td>#((/(</td>
+<td>-(1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u>7</td>
+</tr>
+<tr class="even">
+<td>#((/(-</td>
+<td>(1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u>7</td>
+</tr>
+<tr class="odd">
+<td>#((/(-(</td>
+<td>1+1)))*3)-(2+(1+1))</td>
+<td><u>15</u>7</td>
+</tr>
+<tr class="even">
+<td>#((/(-(</td>
+<td>+1)))*3)-(2+(1+1))</td>
+<td><u>15</u>71</td>
+</tr>
+<tr class="odd">
+<td>#((/(-(+</td>
+<td>1)))*3)-(2+(1+1))</td>
+<td><u>15</u>71</td>
+</tr>
+<tr class="even">
+<td>#((/(-(+</td>
+<td>)))*3)-(2+(1+1))</td>
+<td><u>15</u>711</td>
+</tr>
+<tr class="odd">
+<td>#((/(-</td>
+<td>))*3)-(2+(1+1))</td>
+<td><u>15</u>711+</td>
+</tr>
+<tr class="even">
+<td>#((/</td>
+<td>)*3)-(2+(1+1))</td>
+<td><u>15</u>711+-</td>
+</tr>
+<tr class="odd">
+<td>#(</td>
+<td>*3)-(2+(1+1))</td>
+<td><u>15</u>711+-/</td>
+</tr>
+<tr class="even">
+<td>#(*</td>
+<td>3)-(2+(1+1))</td>
+<td><u>15</u>711+-/</td>
+</tr>
+<tr class="odd">
+<td>#(*</td>
+<td>)-(2+(1+1))</td>
+<td><u>15</u>711+-/3</td>
+</tr>
+<tr class="even">
+<td>#</td>
+<td>-(2+(1+1))</td>
+<td><u>15</u>711+-/3*</td>
+</tr>
+<tr class="odd">
+<td>#-</td>
+<td>(2+(1+1))</td>
+<td><u>15</u>711+-/3*</td>
+</tr>
+<tr class="even">
+<td>#-(</td>
+<td>2+(1+1))</td>
+<td><u>15</u>711+-/3*</td>
+</tr>
+<tr class="odd">
+<td>#-(</td>
+<td>+(1+1))</td>
+<td><u>15</u>711+-/3*2</td>
+</tr>
+<tr class="even">
+<td>#-(+</td>
+<td>(1+1))</td>
+<td><u>15</u>711+-/3*2</td>
+</tr>
+<tr class="odd">
+<td>#-(+(</td>
+<td>1+1))</td>
+<td><u>15</u>711+-/3*2</td>
+</tr>
+<tr class="even">
+<td>#-(+(</td>
+<td>+1))</td>
+<td><u>15</u>711+-/3*21</td>
+</tr>
+<tr class="odd">
+<td>#-(+(+</td>
+<td>1))</td>
+<td><u>15</u>711+-/3*21</td>
+</tr>
+<tr class="even">
+<td>#-(+(+</td>
+<td>))</td>
+<td><u>15</u>711+-/3*211</td>
+</tr>
+<tr class="odd">
+<td>#-(+</td>
+<td>)</td>
+<td><u>15</u>711+-/3*211+</td>
+</tr>
+<tr class="even">
+<td>#-</td>
+<td></td>
+<td><u>15</u>711+-/3*211++</td>
+</tr>
+<tr class="odd">
+<td>#</td>
+<td></td>
+<td><u>15</u>711+-/3*211++-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>中缀表达式运算<strong>机算</strong></p>
+<p>用操作符栈和操作数栈实现，当操作符栈弹出操作符时，对操作数栈顶两个元素进行运算。</p>
+<p>以<code>( (15 / ( 7 - ( 1 + 1 ) ) ) * 3 ) - ( 2 + ( 1 + 1 ) )</code>
+为例：</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>操作符栈</th>
+<th>输入（中缀）</th>
+<th>操作数栈</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#</td>
+<td>((15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td>#</td>
+</tr>
+<tr class="even">
+<td>#(</td>
+<td>(15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td>#</td>
+</tr>
+<tr class="odd">
+<td>#((</td>
+<td>15/(7-(1+1)))*3)-(2+(1+1))</td>
+<td>#</td>
+</tr>
+<tr class="even">
+<td>#((</td>
+<td>/(7-(1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u></td>
+</tr>
+<tr class="odd">
+<td>#((/</td>
+<td>(7-(1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u></td>
+</tr>
+<tr class="even">
+<td>#((/(</td>
+<td>7-(1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u></td>
+</tr>
+<tr class="odd">
+<td>#((/(</td>
+<td>-(1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>7</td>
+</tr>
+<tr class="even">
+<td>#((/(-</td>
+<td>(1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>7</td>
+</tr>
+<tr class="odd">
+<td>#((/(-(</td>
+<td>1+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>7</td>
+</tr>
+<tr class="even">
+<td>#((/(-(</td>
+<td>+1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>71</td>
+</tr>
+<tr class="odd">
+<td>#((/(-(+</td>
+<td>1)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>71</td>
+</tr>
+<tr class="even">
+<td>#((/(-(+</td>
+<td>)))*3)-(2+(1+1))</td>
+<td>#<u>15</u>711</td>
+</tr>
+<tr class="odd">
+<td>#((/(-</td>
+<td>))*3)-(2+(1+1))</td>
+<td>#<u>15</u>72</td>
+</tr>
+<tr class="even">
+<td>#((/</td>
+<td>)*3)-(2+(1+1))</td>
+<td>#<u>15</u>5</td>
+</tr>
+<tr class="odd">
+<td>#(</td>
+<td>*3)-(2+(1+1))</td>
+<td>#3</td>
+</tr>
+<tr class="even">
+<td>#(*</td>
+<td>3)-(2+(1+1))</td>
+<td>#3</td>
+</tr>
+<tr class="odd">
+<td>#(*</td>
+<td>)-(2+(1+1))</td>
+<td>#33</td>
+</tr>
+<tr class="even">
+<td>#</td>
+<td>-(2+(1+1))</td>
+<td>#9</td>
+</tr>
+<tr class="odd">
+<td>#-</td>
+<td>(2+(1+1))</td>
+<td>#9</td>
+</tr>
+<tr class="even">
+<td>#-(</td>
+<td>2+(1+1))</td>
+<td>#9</td>
+</tr>
+<tr class="odd">
+<td>#-(</td>
+<td>+(1+1))</td>
+<td>#92</td>
+</tr>
+<tr class="even">
+<td>#-(+</td>
+<td>(1+1))</td>
+<td>#92</td>
+</tr>
+<tr class="odd">
+<td>#-(+(</td>
+<td>1+1))</td>
+<td>#92</td>
+</tr>
+<tr class="even">
+<td>#-(+(</td>
+<td>+1))</td>
+<td>#921</td>
+</tr>
+<tr class="odd">
+<td>#-(+(+</td>
+<td>1))</td>
+<td>#921</td>
+</tr>
+<tr class="even">
+<td>#-(+(+</td>
+<td>))</td>
+<td>#9211</td>
+</tr>
+<tr class="odd">
+<td>#-(+</td>
+<td>)</td>
+<td>#922</td>
+</tr>
+<tr class="even">
+<td>#-</td>
+<td></td>
+<td>#94</td>
+</tr>
+<tr class="odd">
+<td>#</td>
+<td></td>
+<td>#5</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>三对角矩阵</strong>（下标从1开始）元素到<strong>一维数组</strong>（下标从0开始）的映射</p>
+<p>矩阵A的 a_i,j 映射到数组B的 b_k，其中 k=2i+j-3</p>
+<p>数组B的 b_k 映射到数组A的 a_i,j，其中
+i=[(k+2)/3]向上取整=[(k+4)/3]向下取整</p></li>
 </ul>
 <h2 id="栈">3.1 栈</h2>
 <ol type="1">
@@ -390,9 +724,51 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
 <p>B.函数调用时，系统要用栈保存必要的信息</p>
 <p>C.只要确定了入栈次序，即可确定出栈次序</p>
 <p>D.栈是一种受限的线性表，允许其在两端进行操作</p>
+<h2 id="队列">3.2 队列</h2>
+<ol type="1">
+<li>最适合用作链队的链表是（）</li>
+</ol>
+<p>A.带队首指针和队尾指针的循环单链表</p>
+<p>B.带队首指针和队尾指针的非循环单链表</p>
+<p>C.只带队首指针的非循环单链表</p>
+<p>D.只带队首指针的循环单链表</p>
+<ol start="2" type="1">
+<li>【2011】已知循环队列存储在一维数组A[0...n-1]中，且队列非空时，front和rear分别指向队头和队尾。若初始时队列为空，且要求第一个进入队列的元素存储在A[0]处，则初始front和rear的值为（）</li>
+</ol>
+<p>A.0,0 B.0,n-1 C.n-1,0 D.n-1,n-1</p>
+<ol start="3" type="1">
+<li>【2014】循环队列放在一维数组A[0...M-1]中，end1指向队头，end2指向队尾后一个位置。假设队列两端均可进行进队出队操作，队中最多容纳M-1个元素。初始时为空。下列判断队空队满的条件中，正确的是（）</li>
+</ol>
+<p>A.队空：end1==end2 队满：end1==(end2+1) mod M</p>
+<p>B.队空：end1==end2 队满：end2==(end1+1) mod M-1</p>
+<p>C.队空：end2==(end1+1) mod M 队满： end1==(end2+1) mod M</p>
+<p>D.队空：end1==(end2+1) mod M 队满：end2==(end1+1) mod M-1</p>
+<h2 id="栈和队列的应用">3.3 栈和队列的应用</h2>
+<ol type="1">
+<li>执行以下语句后，i的值为（）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int f(int x)&#123;</span><br><span class="line">return ((x&gt;0)?x*f(x-1):2);</span><br><span class="line">&#125;</span><br><span class="line">int i;</span><br><span class="line">i = f(f(1));</span><br></pre></td></tr></table></figure>
+<p>A.2 B.4 C.8 D.WRONG</p>
+<ol start="2" type="1">
+<li>以下正确的是（）</li>
+</ol>
+<p>A. 消除递归不一定需要用栈</p>
+<p>B.
+对同一输入序列进行两组不同的合法入栈和出栈组合操作，所得的输出序列也一定相同</p>
+<h2 id="数组和特殊矩阵">3.4 数组和特殊矩阵</h2>
+<p>1.【2020】将一个10*10对称矩阵M的上三角部分的元素m_i,j（i&lt;=i&lt;=j&lt;=10）按列优先存入C语言的一维数组N中，元素m_7,2在N中的下标是（）</p>
+<p>A. 15 B. 16 C. 22 D. 23</p>
 <h2 id="ans">ANS</h2>
-<h3 id="section">3.1</h3>
-<p>1.B 2.C 3.A 4.C 5.B 6.ACD</p>
+<ul>
+<li><p>3.1</p>
+<p>1.B 2.C 3.A 4.C 5.B 6.ACD</p></li>
+<li><p>3.2</p>
+<p>1.B 2.B 3.A</p></li>
+<li><p>3.3</p>
+<p>1.B 2.A</p></li>
+<li><p>3.4</p>
+<p>1.C 没有具体说明数组下标从1开始，默认都是从0开始</p></li>
+</ul>
 
       
     </div>
@@ -413,6 +789,12 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
             <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           
             <a href="/tags/24%E7%8E%8B%E9%81%93/" rel="tag"># 24王道</a>
+          
+            <a href="/tags/%E6%A0%88/" rel="tag"># 栈</a>
+          
+            <a href="/tags/%E9%98%9F%E5%88%97/" rel="tag"># 队列</a>
+          
+            <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
           
         </div>
       
@@ -435,8 +817,8 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2023/03/23/%E6%97%A5%E5%BF%97/%E5%B0%8F%E7%88%86%E6%97%A5%E5%BF%97/" rel="prev" title="“下次不要穿内裤”">
-                “下次不要穿内裤” <i class="fa fa-chevron-right"></i>
+              <a href="/2023/03/27/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/" rel="prev" title="24王道数据结构 C4串">
+                24王道数据结构 C4串 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +912,7 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -541,7 +923,7 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,7 +956,7 @@ Push(st,b); Pop(st,x); GetTop(st,x);</li>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">3.0 整理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">3.1 栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ans"><span class="nav-number">3.</span> <span class="nav-text">ANS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-number">3.1.</span> <span class="nav-text">3.1</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">3.0 知识堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">3.1 栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%9F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">3.2 队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">3.3 栈和队列的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5"><span class="nav-number">5.</span> <span class="nav-text">3.4 数组和特殊矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ans"><span class="nav-number">6.</span> <span class="nav-text">ANS</span></a></li></ol></div>
             
 
           </div>
