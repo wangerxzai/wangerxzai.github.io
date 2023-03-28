@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,24王道,树,二叉树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24王道数据结构 C5树和二叉树">
+<meta property="og:url" content="https://wangerxzai.github.io/2023/03/28/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0/index.html">
+<meta property="og:site_name" content="小爆24">
+<meta property="og:description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-28T08:59:05.957Z">
+<meta property="article:author" content="wanger">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="24王道">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="二叉树">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wangerxzai.github.io/2023/03/28/考研/24王道/24王道数据结构第五章/"/>
+
+
+
+
+
+  <title>24王道数据结构 C5树和二叉树 | 小爆24</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小爆24</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding by Wangxx</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2023/03/28/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">24王道数据结构 C5树和二叉树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-28T00:00:00+08:00">
+                2023-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>5.1 树的基本概念 P122</p>
+<p>5.2 二叉树的概念 P127</p>
+<p>5.3 二叉树的遍历和线索二叉树 P140</p>
+<span id="more"></span>
+<h2 id="知识堆">5.0 知识堆</h2>
+<ul>
+<li>具有n个结点的m叉树的最小高度为<span class="math inline">\([log_m(n(m-1)+1)]\)</span>向上取整。</li>
+<li>树中的结点数等于所有结点度数之和加1。</li>
+<li>度为m的树中第i层上至多有<span class="math inline">\(m^{i-1}\)</span>个结点。</li>
+<li>高度为h的m叉树至多有<span class="math inline">\(\frac{m^h-1}{m-1}\)</span>个结点。</li>
+<li>非空二叉树，<span class="math inline">\(n_0=n_2+1\)</span>。</li>
+<li>具有n个（n&gt;0）结点的完全二叉树的高度为<span class="math inline">\([log_2(n+1)]\)</span>向上取整或<span class="math inline">\([log_2n]+1\)</span>向下取整</li>
+<li>中序线索化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">InThread</span><span class="params">(ThreadTree p,ThreadTree &amp;pre)</span></span>&#123;<span class="comment">// 中序线索化</span></span><br><span class="line">    <span class="keyword">if</span>(P != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">InThread</span>(p-&gt;lchild,pre); <span class="comment">//递归，线索化左子树</span></span><br><span class="line">        <span class="keyword">if</span>(p-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//左子树为空，建立前驱线索</span></span><br><span class="line">            p-&gt;lchild = pre;</span><br><span class="line">            p-&gt;ltag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pre != <span class="literal">NULL</span> &amp;&amp; pre-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//建立前驱结点的后继线索</span></span><br><span class="line">            pre-&gt;rchild = p;</span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pre = p;</span><br><span class="line">        <span class="built_in">InThread</span>(p-&gt;rchild,pre); <span class="comment">//递归，线索化右子树</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreatePreThread</span><span class="params">(ThreadTree T)</span></span>&#123;</span><br><span class="line">    ThreadTree pre = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(T != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">InThread</span>(T,pre);</span><br><span class="line">        <span class="keyword">if</span>(pre-&gt;rchild == <span class="literal">NULL</span>) <span class="comment">//处理遍历的最后一个结点</span></span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//由于中序遍历——左根右——最后一次访问的结点就是最后一个的结点，所以可以无需判断：</span></span><br><span class="line">        <span class="comment">//pre-&gt;rchild = NULL;</span></span><br><span class="line">        <span class="comment">//pre-&gt;rtag = 1;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>先序线索化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PreThread</span><span class="params">(ThreadTree p,ThreadTree &amp;pre)</span></span>&#123;<span class="comment">// 先序线索化</span></span><br><span class="line">    <span class="keyword">if</span>(P != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//左子树为空，建立前驱线索</span></span><br><span class="line">            p-&gt;lchild = pre;</span><br><span class="line">            p-&gt;ltag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pre != <span class="literal">NULL</span> &amp;&amp; pre-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//建立前驱结点的后继线索</span></span><br><span class="line">            pre-&gt;rchild = p;</span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pre = p;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;ltag == <span class="number">0</span>) <span class="comment">//避免陷入“左-&gt;根-&gt;左”的循环</span></span><br><span class="line">            <span class="built_in">PreThread</span>(p-&gt;lchild,pre); <span class="comment">//递归，线索化左子树</span></span><br><span class="line">        <span class="built_in">PreThread</span>(p-&gt;rchild,pre); <span class="comment">//递归，线索化右子树</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreatePreThread</span><span class="params">(ThreadTree T)</span></span>&#123;</span><br><span class="line">    ThreadTree pre = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(T != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">PreThread</span>(T,pre);</span><br><span class="line">        <span class="keyword">if</span>(pre-&gt;rchild == <span class="literal">NULL</span>) <span class="comment">//处理遍历的最后一个结点</span></span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>后序线索化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PostThread</span><span class="params">(ThreadTree p,ThreadTree &amp;pre)</span></span>&#123;<span class="comment">// 后序线索化</span></span><br><span class="line">    <span class="keyword">if</span>(P != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">PostThread</span>(p-&gt;lchild,pre); <span class="comment">//递归，线索化左子树</span></span><br><span class="line">        <span class="built_in">PostThread</span>(p-&gt;rchild,pre); <span class="comment">//递归，线索化右子树</span></span><br><span class="line">        <span class="keyword">if</span>(p-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//左子树为空，建立前驱线索</span></span><br><span class="line">            p-&gt;lchild = pre;</span><br><span class="line">            p-&gt;ltag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pre != <span class="literal">NULL</span> &amp;&amp; pre-&gt;child == <span class="literal">NULL</span>)&#123; <span class="comment">//建立前驱结点的后继线索</span></span><br><span class="line">            pre-&gt;rchild = p;</span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pre = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreatePostThread</span><span class="params">(ThreadTree T)</span></span>&#123;</span><br><span class="line">    ThreadTree pre = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(T != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">PostThread</span>(T,pre);</span><br><span class="line">        <span class="keyword">if</span>(pre-&gt;rchild == <span class="literal">NULL</span>) <span class="comment">//处理遍历的最后一个结点</span></span><br><span class="line">            pre-&gt;rtag = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中序线索二叉树找中序后继</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadNode *<span class="title">Firstnode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中中序序列下的第一个结点</span></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;ltag == <span class="number">0</span>)</span><br><span class="line">        p = p-&gt;lchild; <span class="comment">//循环找到最左下结点（不一定是叶结点）</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ThreadNode *<span class="title">Nextnode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中结点p在中序序列下的后继</span></span><br><span class="line">    <span class="keyword">if</span>(p-&gt;rtag == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Firstnode</span>(p-&gt;rchild);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> p-&gt;rchild;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Inorder</span><span class="params">(ThreadNode *T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(ThreadNode *p = <span class="built_in">Firstnode</span>(T) ; p != <span class="literal">NULL</span> ; p = <span class="built_in">Nextnode</span>(p))</span><br><span class="line">        <span class="built_in">visit</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中序线索二叉树找中序前驱</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadNode *<span class="title">Lastnode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中中序序列下的最后一个结点</span></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;rtag == <span class="number">0</span>)</span><br><span class="line">        p = p-&gt;rchild; </span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ThreadNode *<span class="title">Prenode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中结点p在中序序列下的前驱</span></span><br><span class="line">    <span class="keyword">if</span>(p-&gt;ltag == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Prenode</span>(p-&gt;lchild);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> p-&gt;lchild;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RevInorder</span><span class="params">(ThreadNode *T)</span></span>&#123; <span class="comment">//进行逆向中序遍历</span></span><br><span class="line">    <span class="keyword">for</span>(ThreadNode *p = <span class="built_in">Lastnode</span>(T) ; p != <span class="literal">NULL</span> ; p = <span class="built_in">Prenode</span>(p))</span><br><span class="line">        <span class="built_in">visit</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="树的基本概念">5.1 树的基本概念</h2>
+<ol type="1">
+<li>对于一棵具有n个结点、度为4的树来说，（）</li>
+</ol>
+<p>A.树的高度至多是n-3 B.树的高度至多是n-4 C.第i层上至多有4(i-1)个结点
+D.至少在某一层上正好有4个结点</p>
+<h2 id="二叉树的概念">5.2 二叉树的概念</h2>
+<ol type="1">
+<li>以下正确的是（）。</li>
+</ol>
+<p>A.在完全二叉树中，叶结点的双亲的左兄弟（若存在）一定不是叶结点。</p>
+<p>B.结点按照完全二叉树层序编号的二叉树中，第i个结点的左孩子的编号是2i。</p>
+<ol start="2" type="1">
+<li>设高度为h的二叉树上只有度为0和2的结点，则此类二叉树中所包含的结点数至少是（）。</li>
+</ol>
+<p>A.h B.2h-1 C.2h+1 D.h+1</p>
+<ol start="3" type="1">
+<li>假设一棵二叉树的结点个数为50，则它的最小高度为（）。</li>
+</ol>
+<p>A.4 B.5 C.6 D.7</p>
+<ol start="4" type="1">
+<li>设二叉树有2n个结点，且m&lt;n，则不可能存在（）的结点。</li>
+</ol>
+<p>A.n个度为0 B.2m个度为0 C.2m个度为1 D.2m个度为2</p>
+<ol start="5" type="1">
+<li>一棵有124个叶结点的完全二叉树，最多有（）个结点。</li>
+</ol>
+<p>A.247 B.248 C.249 D.250</p>
+<ol start="6" type="1">
+<li>一棵有n个结点的二叉树采用二叉链存储结点，其中空指针数为（）。</li>
+</ol>
+<p>A.n B.n+1 C.n-1 D.2n</p>
+<ol start="7" type="1">
+<li>【2020】对于任意一棵高度为5且有10个结点的二叉树，若采用顺序存储结构保存，每个结点占1个存储单元（仅存放结点的数据信息），则存放该二叉树需要的存储单元数量至少是（）。</li>
+</ol>
+<p>A.31 B.16 C.15 D.10</p>
+<h2 id="二叉树的遍历和线索二叉树">5.3 二叉树的遍历和线索二叉树</h2>
+<ol type="1">
+<li>在二叉树中两个结点m和n，若m是n的祖先，则使用（）可以找到从m到n的路径。</li>
+</ol>
+<p>A.先序遍历 B.中序遍历 C.后序遍历 D.层次遍历</p>
+<ol start="2" type="1">
+<li>线索二叉树是一种（）结构。</li>
+</ol>
+<p>A.逻辑 B.逻辑和存储 C.物理 D.线性</p>
+<ol start="3" type="1">
+<li>若X是二叉中序线索树中一个有左孩子的结点，且X不为根，则X的前驱是（）。</li>
+</ol>
+<p>A.X的双亲 B.X的右子树中最左的结点 C.X的左子树中最右的结点
+D.X的左子树中最右的叶结点</p>
+<ol start="4" type="1">
+<li>（）的遍历仍需要栈的支持。</li>
+</ol>
+<p>A.前序线索树 B.中序线索树 C.后序线索树 D.所有线索树</p>
+<h2 id="ans">ANS</h2>
+<ul>
+<li><strong>5.1</strong> 1.A</li>
+<li><strong>5.2</strong> 1.A 2.B 3.C 4.C 5.B 6.B 7.A</li>
+<li><strong>5.3</strong> 1.C 2.C 3.C 4.C</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/24%E7%8E%8B%E9%81%93/" rel="tag"># 24王道</a>
+          
+            <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+          
+            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"># 二叉树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/03/27/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/" rel="next" title="24王道数据结构 C4串">
+                <i class="fa fa-chevron-left"></i> 24王道数据结构 C4串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NTcxOS8zMjE4NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">5.0 知识堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">5.1 树的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">5.2 二叉树的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E5%92%8C%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.</span> <span class="nav-text">5.3 二叉树的遍历和线索二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ans"><span class="nav-number">5.</span> <span class="nav-text">ANS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
