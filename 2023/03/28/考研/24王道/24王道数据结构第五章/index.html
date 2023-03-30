@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140">
+<meta name="description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140 5.4 树、森林 P168 5.5 树与二叉树的应用 P179">
 <meta property="og:type" content="article">
 <meta property="og:title" content="24王道数据结构 C5树和二叉树">
 <meta property="og:url" content="https://wangerxzai.github.io/2023/03/28/%E8%80%83%E7%A0%94/24%E7%8E%8B%E9%81%93/24%E7%8E%8B%E9%81%93%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0/index.html">
 <meta property="og:site_name" content="小爆24">
-<meta property="og:description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140">
+<meta property="og:description" content="5.1 树的基本概念 P122 5.2 二叉树的概念 P127 5.3 二叉树的遍历和线索二叉树 P140 5.4 树、森林 P168 5.5 树与二叉树的应用 P179">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-28T08:59:05.957Z">
+<meta property="article:modified_time" content="2023-03-30T05:28:20.208Z">
 <meta property="article:author" content="wanger">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="24王道">
@@ -352,6 +352,8 @@
         <p>5.1 树的基本概念 P122</p>
 <p>5.2 二叉树的概念 P127</p>
 <p>5.3 二叉树的遍历和线索二叉树 P140</p>
+<p>5.4 树、森林 P168</p>
+<p>5.5 树与二叉树的应用 P179</p>
 <span id="more"></span>
 <h2 id="知识堆">5.0 知识堆</h2>
 <ul>
@@ -380,6 +382,13 @@
 <li>中序线索二叉树找中序前驱</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadNode *<span class="title">Lastnode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中中序序列下的最后一个结点</span></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;rtag == <span class="number">0</span>)</span><br><span class="line">        p = p-&gt;rchild; </span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ThreadNode *<span class="title">Prenode</span><span class="params">(ThreadNode *p)</span></span>&#123; <span class="comment">//求中序线索二叉树中结点p在中序序列下的前驱</span></span><br><span class="line">    <span class="keyword">if</span>(p-&gt;ltag == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Prenode</span>(p-&gt;lchild);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> p-&gt;lchild;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RevInorder</span><span class="params">(ThreadNode *T)</span></span>&#123; <span class="comment">//进行逆向中序遍历</span></span><br><span class="line">    <span class="keyword">for</span>(ThreadNode *p = <span class="built_in">Lastnode</span>(T) ; p != <span class="literal">NULL</span> ; p = <span class="built_in">Prenode</span>(p))</span><br><span class="line">        <span class="built_in">visit</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>并查集的优化</p>
+<p>①Union优化：小树并大树</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Union</span><span class="params">(<span class="type">int</span> S[], <span class="type">int</span> Root1, <span class="type">int</span> Root2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Root1 == Root2) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(S[Root2] &gt; S[Root1])&#123;</span><br><span class="line">        S[Root1] += S[Root2];</span><br><span class="line">        S[Root2] = Root1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        S[Root2] += S[Root1];</span><br><span class="line">        S[Root1] = Root2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>②Find优化：压缩路径，目标使树变矮</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Find</span><span class="params">(<span class="type">int</span> S[], <span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> root = x;</span><br><span class="line">    <span class="keyword">while</span>(S[root] &gt;= <span class="number">0</span>) root = S[root];</span><br><span class="line">    <span class="keyword">while</span>(x != root)&#123;</span><br><span class="line">        <span class="type">int</span> t = S[x];</span><br><span class="line">        S[x] = root;</span><br><span class="line">        x = t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h2 id="树的基本概念">5.1 树的基本概念</h2>
 <ol type="1">
 <li>对于一棵具有n个结点、度为4的树来说，（）</li>
@@ -434,11 +443,62 @@ D.X的左子树中最右的叶结点</p>
 <li>（）的遍历仍需要栈的支持。</li>
 </ol>
 <p>A.前序线索树 B.中序线索树 C.后序线索树 D.所有线索树</p>
+<h2 id="树森林">5.4 树、森林</h2>
+<ol type="1">
+<li>设F是一个森林，B是F变换来的二叉树。若F中有n个非终端结点，则B中右指针域为空的结点有（）个。</li>
+</ol>
+<p>A.n-1 B.n C.n+1 D.n+2</p>
+<ol start="2" type="1">
+<li>【2009】将森林转换为对应的二叉树，若在二叉树中，结点u是结点v的父结点的父结点，则在原来的森林中，u和v可能具有的关系是（）。</li>
+</ol>
+<p>I.父子关系 II.兄弟关系 III.u的父结点和v的父结点是兄弟关系</p>
+<p>A.II B.I,II C.I,III D.I,II,III</p>
+<ol start="3" type="1">
+<li>【2011】已知有一棵2011个结点的树，其叶结点个数为116，该树对应的二叉树中无右孩子的结点个数为（）。</li>
+</ol>
+<p>A.115 B.116 C.1895 D.1896</p>
+<ol start="4" type="1">
+<li>【2016】若森林F有15条边，25个结点，则F包含树的个数为（）。</li>
+</ol>
+<p>A.8 B.9 C.10 D.11</p>
+<ol start="5" type="1">
+<li>【2020】已知森林F与之对应的二叉树T，若F的先根遍历序列是a,b,c,d,e,f，中根遍历序列是b,a,d,f,e,c，则T的后跟遍历序列是（）。</li>
+</ol>
+<p>A.b,a,d,f,e,c B.b,d,f,e,c,a C.b,f,e,d,c,a D.f,e,d,c,b,a</p>
+<ol start="6" type="1">
+<li>【2022】如果三叉树T中有244个结点（叶结点的高度为1），那么T的高度至少是（）。</li>
+</ol>
+<p>A.8 B.7 C.6 D.5</p>
+<h2 id="树与二叉树的应用">5.5 树与二叉树的应用</h2>
+<ol type="1">
+<li>若度为m的哈夫曼树中，叶结点个数为n，则非叶结点的个数为（）。</li>
+</ol>
+<p>A.n-1 B.[n/m]向下取整-1 C.[(n-1)/(m-1)]向上取整
+D.[n/(m-1)]向上取整-1</p>
+<ol start="2" type="1">
+<li>【2015】下列选项给出的是从根分别到达两个叶结点路径上的权值序列，能属于同一棵哈夫曼树的是（）。</li>
+</ol>
+<p>A.24,10,5和24,10,7 B.24,10,5和24,12,7 C.24,10,10和24,14,11
+D.24,10,5和24,14,6</p>
+<ol start="3" type="1">
+<li>【2018】已知字符集{a,b,c,d,e,f}，各字符出现的次数为6,3,8,2,10,4，则对应字符集中各字符的哈夫曼编码可能是（）。</li>
+</ol>
+<p>A.00,1011,01,1010,11,100 B.00,100,110,000,0010,01
+C.10,1011,11,0011,00,010 D.0011,10,11,0010,01,000</p>
+<ol start="4" type="1">
+<li>【2022】对任意给定的n（n&gt;2）个字符的有限集S，用二叉树表示S的哈夫曼编码集和定长编码集，分别得到二叉树T1和T2。下述叙述中，正确的是（）。</li>
+</ol>
+<p>A.T1和T2的结点数相同</p>
+<p>B.T1高度大于T2高度</p>
+<p>C.出现频次不同的字符在T1中处于不同的层</p>
+<p>D.出现频次不同的字符在T2中处于相同的层</p>
 <h2 id="ans">ANS</h2>
 <ul>
-<li><strong>5.1</strong> 1.A</li>
-<li><strong>5.2</strong> 1.A 2.B 3.C 4.C 5.B 6.B 7.A</li>
-<li><strong>5.3</strong> 1.C 2.C 3.C 4.C</li>
+<li><p><strong>5.1</strong> 1.A</p></li>
+<li><p><strong>5.2</strong> 1.A 2.B 3.C 4.C 5.B 6.B 7.A</p></li>
+<li><p><strong>5.3</strong> 1.C 2.C 3.C 4.C</p></li>
+<li><p><strong>5.4</strong> 1.C 2.B 3.D 4.C 5.C 6.C</p></li>
+<li><p><strong>5.5</strong> 1.C 2.D 3.A 4.D</p></li>
 </ul>
 
       
@@ -566,7 +626,7 @@ D.X的左子树中最右的叶结点</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +681,7 @@ D.X的左子树中最右的叶结点</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">5.0 知识堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">5.1 树的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">5.2 二叉树的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E5%92%8C%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.</span> <span class="nav-text">5.3 二叉树的遍历和线索二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ans"><span class="nav-number">5.</span> <span class="nav-text">ANS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">5.0 知识堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">5.1 树的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">5.2 二叉树的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E5%92%8C%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.</span> <span class="nav-text">5.3 二叉树的遍历和线索二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E6%A3%AE%E6%9E%97"><span class="nav-number">5.</span> <span class="nav-text">5.4 树、森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">5.5 树与二叉树的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ans"><span class="nav-number">7.</span> <span class="nav-text">ANS</span></a></li></ol></div>
             
 
           </div>

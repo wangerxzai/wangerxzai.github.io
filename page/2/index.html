@@ -253,6 +253,483 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/05/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E6%95%99%E7%89%88%20%E7%AC%AC1%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/12/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%AB%98%E6%95%99%E7%89%88%20%E7%AC%AC1%E7%AB%A0/" itemprop="url">数据库 第1章</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-12T00:00:00+08:00">
+                2022-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="系统概述">1.1 系统概述</h2>
+<h3 id="四个基本概念">1.1.1 四个基本概念</h3>
+<h4 id="数据">1. 数据</h4>
+<p>描述事物的符号记录称为<strong>数据</strong>。</p>
+<p>数据的含义称为数据的语义，数据与语义是不可分的。</p>
+<h4 id="数据库">2. 数据库</h4>
+<p>数据库是长期储存在计算机内、有组织、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度、较高的数据独立性和易扩展性，并可为各种用户共享。</p>
+<h4 id="数据库管理系统">3. 数据库管理系统</h4>
+<p>数据库管理系统和操作系统一样<strong>是计算机基础软件</strong>。主要功能包括：</p>
+<ol type="1">
+<li>数据定义功能</li>
+<li>数据组织、存储和管理</li>
+<li>数据操纵功能</li>
+<li>数据库的事务管理和运行管理</li>
+<li>数据库的建立和维护功能</li>
+<li>其他功能</li>
+</ol>
+<h4 id="数据库系统">4. 数据库系统</h4>
+<p>数据库系统是由数据库、数据库管理系统（及其应用开发工具）、应用程序和数据库管理员（DA）组成的存储、管理、处理和维护数据的系统。</p>
+<h3 id="数据管理技术的生产与发展">1.1.2 数据管理技术的生产与发展</h3>
+<table>
+<tr>
+<td colspan="2">
+</td>
+<td>
+人工管理阶段
+</td>
+<td>
+文件系统阶段
+</td>
+<td>
+数据库系统阶段
+</td>
+</tr>
+<tr>
+<td rowspan="4">
+背景
+</td>
+<td>
+应用背景
+</td>
+<td>
+科学计算
+</td>
+<td>
+科学计算、数据管理
+</td>
+<td>
+大规模数据管理
+</td>
+</tr>
+<tr>
+<td>
+硬件背景
+</td>
+<td>
+无直接存取存储设备
+</td>
+<td>
+磁盘、磁鼓
+</td>
+<td>
+大容量磁盘、磁盘阵列
+</td>
+</tr>
+<tr>
+<td>
+软件背景
+</td>
+<td>
+没有操作系统
+</td>
+<td>
+有文件系统
+</td>
+<td>
+有数据库管理系统
+</td>
+</tr>
+<tr>
+<td>
+处理方式
+</td>
+<td>
+批处理
+</td>
+<td>
+联机实时处理、批处理
+</td>
+<td>
+联机实时处理、分布处理、批处理
+</td>
+</tr>
+<tr>
+<td rowspan="6">
+特点
+</td>
+<td>
+数据的管理者
+</td>
+<td>
+用户（程序员）
+</td>
+<td>
+文件系统
+</td>
+<td>
+数据库管理系统
+</td>
+</tr>
+<tr>
+<td>
+数据面向的对象
+</td>
+<td>
+某一应用程序
+</td>
+<td>
+某一应用
+</td>
+<td>
+现实世界（一个部门、企业、跨国组织等）
+</td>
+</tr>
+<tr>
+<td>
+数据的共享程序
+</td>
+<td>
+无共享，冗余度极大
+</td>
+<td>
+共享性差，冗余度大
+</td>
+<td>
+共享性高，冗余度小
+</td>
+</tr>
+<tr>
+<td>
+数据的独立性
+</td>
+<td>
+不独立，完全依赖于程序
+</td>
+<td>
+独立性差
+</td>
+<td>
+具有高度的物理独立性和一定的逻辑独立性
+</td>
+</tr>
+<tr>
+<td>
+数据的结构化
+</td>
+<td>
+无结构
+</td>
+<td>
+记录内有结构、整体无结构
+</td>
+<td>
+整体结构化，用数据模型描述
+</td>
+</tr>
+<tr>
+<td>
+数据控制能力
+</td>
+<td>
+应用程序自己控制
+</td>
+<td>
+应用程序自己控制
+</td>
+<td>
+由数据库管理系统提供数据安全性、完整性、并发控制和恢复能力
+</td>
+</tr>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/05/07/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C3-1%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小爆24">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/05/07/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C3-1%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E5%BF%B5/" itemprop="url">23王道操作系统 C3-1内存管理概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-07T00:00:00+08:00">
+                2022-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">考研</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="内存管理的基本原理和内容">3.1.1 内存管理的基本原理和内容</h2>
+<p>内存管理的概念就是<strong>操作系统对内存的划分与动态分配</strong>。</p>
+<p>内存管理主要功能有：</p>
+<ul>
+<li><p><strong>内存空间的分配与回收。</strong></p></li>
+<li><p><strong>地址转换。</strong>在多道程序环境下，程序中的逻辑地址与内存物理地址一定不一致，因此内存管理必须提供地址变换功能，把逻辑地址转换成相应的物理地址。</p></li>
+<li><p><strong>内存空间的扩充。</strong>利用虚拟存储技术或自动覆盖技术，从逻辑上扩充内存。</p></li>
+<li><p><strong>内存共享。</strong>指允许多个进程访问内存的同一部分。</p></li>
+<li><p><strong>存储保护。</strong>保证各道作业在各自的存储空间内运行，互不干扰。</p></li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/05/07/%E8%80%83%E7%A0%94/23%E7%8E%8B%E9%81%93/23%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20C3-1%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%A6%82%E5%BF%B5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/04/30/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95_%E9%AB%98%E5%B0%9A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1501,310 +1978,6 @@ Cnt = \sum_{i=1}^{k}{\frac{n(n+1)}{2}}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/28/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小爆24">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/28/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" itemprop="url">密码学第二章 数的格式：C中大数的表示</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T00:00:00+08:00">
-                2022-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">密码学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wangerxzai.github.io/2022/03/27/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小爆24">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/03/27/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B4%9B%E8%B0%B7/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%8D%95%20%E7%AE%97%E6%B3%951-7%20%E6%90%9C%E7%B4%A2/" itemprop="url">洛谷题单 算法1-7 搜索</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-27T00:00:00+08:00">
-                2022-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="p1219-usaco1.5八皇后-checker-challenge"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1219">P1219 [USACO1.5]八皇后
-Checker Challenge</a></h2>
-<ul>
-<li>36</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">15</span> ;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="type">bool</span> col[N], d[N], ud[N] ;</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ans[N] ; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt &lt; <span class="number">3</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">				cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span> ;</span><br><span class="line">			&#125; cout &lt;&lt; endl ;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt ++ ;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!col[i] &amp;&amp; !d[n - i + x] &amp;&amp; !ud[x + i])&#123;</span><br><span class="line">			col[i] = d[n - i + x] = ud[x + i] = <span class="literal">true</span> ;</span><br><span class="line">			ans[x] = i + <span class="number">1</span> ;</span><br><span class="line">			<span class="built_in">dfs</span>(x + <span class="number">1</span>) ;</span><br><span class="line">			col[i] = d[n - i + x] = ud[x + i] = <span class="literal">false</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n ;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>) ;</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl ;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>直接考虑用全排列的思路做，从测试点来从<code>n == 9</code>开始就出现问题了。</p>
-<p><img src="https://img-blog.csdnimg.cn/8f3eb8bf67bb481e9f837ebd584394a5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2FuZ2VyX3h4,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
-<ul>
-<li>100</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">50</span>;</span><br><span class="line"><span class="type">int</span> n ;</span><br><span class="line"><span class="type">bool</span> col[N], d[N], ud[N] ;</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ans[N] ; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &gt;= n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt &lt; <span class="number">3</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">				cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span> ;</span><br><span class="line">			&#125; cout &lt;&lt; endl ;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt ++ ;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i ++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!col[i] &amp;&amp; !d[n - x + i] &amp;&amp; !ud[x + i])&#123;</span><br><span class="line">			col[i] = d[n - x + i] = ud[x + i] = <span class="literal">true</span> ;</span><br><span class="line">			ans[x] = i + <span class="number">1</span> ;</span><br><span class="line">			<span class="built_in">dfs</span>(x + <span class="number">1</span>) ;</span><br><span class="line">			col[i] = d[n - x + i] = ud[x + i] = <span class="literal">false</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n ;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>) ;</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl ;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数组开小了。无语。</p>
-<h2 id="p2392-kkksc03考前临时抱佛脚"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2392">P2392
-kkksc03考前临时抱佛脚</a></h2>
-<ul>
-<li>贪心 0</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std ;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">25</span> ;</span><br><span class="line"><span class="type">int</span> s1, s2, s3, s4 ;</span><br><span class="line"><span class="type">int</span> a[N], b[N], c[N], d[N] ;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span> ;</span><br><span class="line"><span class="type">int</span> ax = <span class="number">0</span>, ay = <span class="number">0</span>, bx = <span class="number">0</span>, by = <span class="number">0</span>, cx = <span class="number">0</span>, cy = <span class="number">0</span>, dx = <span class="number">0</span>, dy = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; s1 &gt;&gt; s2 &gt;&gt; s3 &gt;&gt; s4 ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s1 ; i ++)&#123; </span><br><span class="line">		cin &gt;&gt; a[i] ;</span><br><span class="line">		<span class="keyword">if</span>(ax &lt; ay) ax += a[i] ;</span><br><span class="line">		<span class="keyword">else</span> ay += a[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(ax, ay) ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s2 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; b[i] ;</span><br><span class="line">		<span class="keyword">if</span>(bx &lt; by) bx += b[i] ;</span><br><span class="line">		<span class="keyword">else</span> by += b[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(bx, by);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s3 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; c[i] ;</span><br><span class="line">		<span class="keyword">if</span>(cx &lt; cy) cx += c[i] ;</span><br><span class="line">		<span class="keyword">else</span> cy += c[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(cx, cy) ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; s4 ; i ++)&#123;</span><br><span class="line">		cin &gt;&gt; d[i] ;</span><br><span class="line">		<span class="keyword">if</span>(dx &lt; dy) dx += d[i] ;</span><br><span class="line">		<span class="keyword">else</span> dy += d[i] ;</span><br><span class="line">	&#125; ans += <span class="built_in">max</span>(dx, dy) ;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; ans ;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>贪心WA了，在仔细思考后发现，在这样一个例子：目前的左脑为2，右脑为20，依次给出两个时间20，100，那么依照贪心算法，左脑就会变成22，右脑变成120；实际上的解应该是左脑102，右脑40。由于贪心只考虑眼前的大小值，会失去全局的统筹安排。</p>
-<p>所以考虑用DP - 01背包去解决这个问题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1855,7 +2028,7 @@ kkksc03考前临时抱佛脚</a></h2>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
